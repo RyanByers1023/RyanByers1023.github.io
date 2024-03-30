@@ -1,3 +1,4 @@
+TabHandler();
 
 function TabHandler() {
     const tabs = document.querySelectorAll('[data-tab-target]');
