@@ -5,3 +5,35 @@
 .active[data-tab-content] {
   display: block;
 }
+
+body{
+    padding:0px;
+    margin:0px;
+}
+
+.tabs{
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    margin : 0px;
+    padding: 0px;
+    border-bottom: 3px solid black;
+}
+
+.tab{
+    cursor: pointer;
+    padding: 10px;
+}
+
+.tab.active{
+    background-color: #CCC;
+}
+
+.tab:hover{
+    background-color: #f1f1f1;
+}
+
+.tab-content{
+    margin-left: 20px;
+    margin-right: 20px;
+}

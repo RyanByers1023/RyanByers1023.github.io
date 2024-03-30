@@ -7,38 +7,41 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <ul>
-        <li data-tab-target="#bio">Bio</li>
-        <li data-tab-target="#resume">Resume</li>
-        <li data-tab-target="#education-background">Education Background</li>
+    <ul class="tabs">
+        <li data-tab-target="#bio" class="active tab">Bio</li>
+        <li data-tab-target="#resume" class="tab">Resume</li>
+        <li data-tab-target='#projects' class="tab">Projects</li>
+        <li data-tab-target="#education-background" class="tab">Education Background</li>
     </ul>
     <div class="tab-content">
         <div id="bio" data-tab-content class="active">
             <h1>Ryan Byers</h1>
-            <h2>Full Stack Web Developer</h2>
             <p>Insert image here.</p>
-            <p>Insert contact information here.</p>
-            <p>Insert social media links here.</p>
-            <p>Insert professional skills here.</p>
-            <p>Insert personal skills here.</p>
-            <p>Insert work experience here.</p>
-            <p>Insert education here.</p>
-            <p>Insert projects here.</p>
-            <p>Insert hobbies here.</p>
-            <p>Insert certifications here.</p>
-            <p>Insert references here.</p>
+            <p>Contact Information: Email: ryanbyers1023@gmail.com. Phone: 816-213-4081</p>
+            <p>I like to spend most of my time working on personal projects to challenge myself and improve my abilities as a programmer. When I am not doing that, I like to go to the gym, go for runs when the weather is good, and play videogames.</p>
         </div>
+            <div id="projects" data-tab-content>
+            <h1>Projects</h1>
+            <p>I am working on a project that utilizes the publicly available and popular SDL2 library to create a 3-D renderer. The project is still in progress, but I am working right now on programming the ability to shade 3-D projected objects to the screen. I would like to bring the project to a point in which I can simulate basic physics interactions between basic objects on the screen.</p>
+            <p>With this being said, when it comes to my interest regarding projects, most of my interest lies in low level implementations. The challenge of using only SDL2 and as such forgoing a graphical API such as OpenGL provides me with additional challenges.</p>
+            <p>One of the main challenges lies in the fact that SDL2 is designed to be paired with a graphical API. It does not provide a 3-D coordinate space, nor does it provide any default implementations of some of the more important functions of a traditional 3-D renderer.</p>
+            <p>With this in mind, the challenge lies in coding low level implementations of needed functions to make a 3-D image on a 2-D screen possible. This involves the creation of a projection matrix, definitions for mesh objects, linear transformation matrices, code involved in shading and lighting calculations, and even the implementation of a 3-D world space as SDL2 only provides a 2-D coordinate space (which is defined by the resolution of the window SDL2 creates).</p>
+            <p>The creation of a project of this scale has been hard, and it has taken me many hours to even get the program to the point at which is being displayed now, but it has taught me valuable lessons through the many mistakes I've made.</p>
+            <p>One such mistake I made early on was making the mistake of not making my code more modular. I put many functionalites together that did not belong together, and this caused me many issues down the line. The process of refactoring my earlier written code was quite frankly a nightmare, but as I stated before, it taught me a valuable lesson: utilize modular programming techniques as early on as you can when you work on a project of this size.</p>
+            <p>I have become well-aqainted with GitHub through the process of crerating this project. Being specific and using correct terminology when making commits has become a prime concern of mine as I have progressed further and further thorugh this project.</p>
+            <p>I want to demonstrate that I am capable of correctly utilizing GitHub, because that is a valuable skill in this profession, but also it provides me with another valuable organizational tool: Version control.</p>
+            </div>
         <div id="resume" data-tab-content>
             <h1>Ryan Byers</h1>
-            <h2>Full Stack Web Developer</h2>
+            <p>Work experience: Dollar General--Sales Associate -> Sharptown, Maryland (March 2019 - May 2021). Loews Kansas City Hotel--Bellman -> Kansas City, Missouri (August 2021 - Present).</p>
+            <p>Proficient mostly in C++, but have experience in C#, Python, HTML, CSS, and JavaScript as well.</p>
             <p>Insert resume and resume PDF here.</p>
         </div>
         <div id="education-background" data-tab-content>
             <h1>Education Background</h1>
-            <p>Insert education background here.</p>
+            <p>Education: Wor-Wic Community College, Salisbury Maryland: Associate of Arts in General Studies: (Complete) May 2021. University of Missouri-Kansas City: Bachelors of Science in Computer Science: (Ongoing) Expected Graduation: Spring 2025.</p>
         </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
