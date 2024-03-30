@@ -4,7 +4,7 @@ function TabHandler() {
     const tabContents = document.querySelectorAll('[data-tab-content]');
 
     tabs.forEach(tab => {
-        tab.eventListener('click', () => {
+        tab.addEventListener('click', () => {
             const target = document.querySelector(tab.dataset.tabTarget);
 
             tabContents.forEach(tabContent => {
