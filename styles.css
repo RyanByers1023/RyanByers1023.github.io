@@ -11,6 +11,26 @@ body{
     margin:0px;
 }
 
+.column{
+    margin: 3px;
+    display: flex;
+    justify-content: flex-start;
+    padding: 3px;
+}
+
+.column.middle{
+  background-color: #6A7495;
+}
+
+.column.side{
+  background-color: #958B6A;
+}
+
+.row {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+  }
+
 .tabs{
     display: flex;
     justify-content: space-around;
@@ -19,26 +39,17 @@ body{
     padding: 0px;
 }
 
-.column{
-    margin: 3px;
-    display: flex;
-    justify-content: center;
-    padding: 3px;
-}
-
-.column
-
 .tab{
     cursor: pointer;
     padding: 10px;
 }
 
 .tab.active{
-    background-color: #CCC;
+    background-color: #B2B8C9;
 }
 
 .tab:hover{
-    background-color: #f1f1f1;
+    background-color: #606A87;
 }
 
 .tab-content{
