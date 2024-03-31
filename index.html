@@ -5,15 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ryan Byers Portfolio Website</title>
     <link rel="stylesheet" href="styles.css">
+
+   @media (max-width: 600px) {
+  .row {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+  }
+}
 </head>
 <body>
-    <ul class="tabs">
-        <li data-tab-target="#bio" class="active tab">Bio</li>
-        <li data-tab-target="#resume" class="tab">Resume</li>
-        <li data-tab-target='#projects' class="tab">Projects</li>
-        <li data-tab-target="#education-background" class="tab">Education Background</li>
-    </ul>
-    <div class="tab-content">
+    <div class="row">
+        <div class="column side">
+            <ul class="tabs">
+                <li data-tab-target="#bio" class="active tab">Bio</li>
+                <li data-tab-target="#resume" class="tab">Resume</li>
+                <li data-tab-target='#projects' class="tab">Projects</li>
+                <li data-tab-target="#education-background" class="tab">Education Background</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="column middle">
+        <div class="tab-content">
         <div id="bio" data-tab-content class="active">
             <h1>Ryan Byers</h1>
             <p>Insert image here.</p>
@@ -29,7 +42,7 @@
             <p>The creation of a project of this scale has been hard, and it has taken me many hours to even get the program to the point at which is being displayed now, but it has taught me valuable lessons through the many mistakes I've made.</p>
             <p>One such mistake I made early on was not making my code more modular. I put too many important variables in too little of a space, and this caused me many issues as I continued development. The process of refactoring my earlier written code was quite frankly a nightmare, but as I stated before, it taught me a valuable lesson: always utilize modular programming techniques. I learned the hard way that this is even more important early on in a project, as when one continues to build on code that is not modularized, the amount of refactoring one has to perform later on in development exponentially.</p>
             <p>Another thing this project has done for me is aquanting me more intimately me with GitHub. I learned that being specific and using the correct terminology when making commits is incredibly important, and as such it has become a prime concern of mine as I have progressed further and further thorugh this project.</p>
-            </div>
+        </div>
             <div id="resume" data-tab-content>
                 <h1>Ryan Byers</h1>
                 <p><b>Work experience</b>
@@ -57,6 +70,9 @@
             <p><b>University of Missouri-Kansas City</b> <i>Kansas City, Missouri</i> Bachelors of Science in Computer Science: Expected Graduation: Spring 2025.</p>
         </div>
     </div>
+    </div>
+    
+    
     <script src="script.js"></script>
 </body>
 </html>
