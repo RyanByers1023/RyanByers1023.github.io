@@ -17,8 +17,16 @@ body{
     list-style-type: none;
     margin : 0px;
     padding: 0px;
-    border-bottom: 3px solid black;
 }
+
+.column{
+    margin: 3px;
+    display: flex;
+    justify-content: center;
+    padding: 3px;
+}
+
+.column
 
 .tab{
     cursor: pointer;
