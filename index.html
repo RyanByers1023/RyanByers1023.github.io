@@ -19,28 +19,30 @@
 
             <div id="bio" data-tab-content class="active">
                 <h2>Ryan Byers</h2>
-                <img src="Me.jpg" alt="Me">
+                <img id="headshot" src="Me.jpg">
                 <p>Contact Information: Email: ryanbyers1023@gmail.com. Phone: 816-213-4081</p>
                 <p>I like to spend most of my time working on personal projects to challenge myself and improve my abilities as a programmer. When I am not doing that, I like to go to the gym, go for runs when the weather is good, and play videogames.</p>
             </div>
 
             <div id="projects" data-tab-content>
                 <h1>Projects</h1>
-                <p>I am working on a project that utilizes the popular SDL2 library to create a 3-D renderer. The project is still in progress, but I am working right now on programming the ability to shade 3-D projected objects to the screen. I would like to bring the project to a point in which I can simulate basic physics interactions between basic objects on the screen.</p>
-                <p>With this being said, when it comes to my interest regarding projects, most of my interest lies in low level implementations. The challenge of using only SDL2 and as such forgoing a graphical API such as OpenGL provides me with additional challenges.</p>
+                <p>I am currently working on my first large scale project that's goal is to utilize a multimedia library called SDL2 to create a 3-D renderer from scratch using C++. The project is still in progress, but I am working right now on programming the ability to shade 3-D projected objects to the screen. I would like to bring the project to a point in which I can simulate basic physics interactions between basic objects on the screen.</p>
+                <p>With this being said, when it comes to my interest regarding projects, most of my interest lies in low level implementations. The challenge of using only SDL2 and forgoing a graphical API such as OpenGL provides me with additional challenges.</p>
                 <p>One of the main challenges lies in the fact that SDL2 is designed to be paired with a graphical API. It does not provide a 3-D coordinate space, nor does it provide implementations of crucial functions involved in the rendering pipeline that are present in traditional 3-D renderers. SDL2 provides functions that allow the collection of user input, creating a window, and drawing pixels and lines to the screen. Anything that must be done in 3-D is something that has to be implemented using custom, user created modules.</p>
-                <p>With this in mind, the challenge lies in the implementations of functions required to produce a 3-D rendering pipeline. This involves the implementation of things such as the projection matrix to take objects that are defined in a three dimensional space and project them onto a two dimensional space (the screen), linear transformation matrices allow for objects to be rotated, translated, scaled, etc., and eventually, implementation for functions that have the ability to calculate normal vectors with respect to vertices that are a part of a mesh in order to allow proper shading that takes into account variables related to light sources and perspective.</p>
+                <p>The challenge lies in the planning and designing of implementations required to produce a 3-D rendering pipeline. This involves the implementing a projection matrix to take objects that are defined in a three dimensional space and project them onto a two dimensional space (the screen), linear transformation matrices allow for objects to be rotated, translated, scaled, etc., and eventually, implementing functions that give me the ability to calculate normals on my world objects' vertices in order to allow proper shading that utilizes the camera's position/angle relative to certain world objects to simulate simple light reflections, and to also determine whether or not a part of an object needs to be rendered (the back side of an opaque object for example should not be rendererd, while the front side should assuming it is within the field of view of the camera). </p>
                 <p>The creation of a project of this scale has been hard, and it has taken me many hours to even get the program to the point at which is being displayed now, but it has taught me valuable lessons through the many mistakes I've made.</p>
                 <p>One such mistake I made early on was not making my code more modular. I put too many important variables in too little of a space, and this caused me many issues as I continued development. The process of refactoring my earlier written code was quite frankly a nightmare, but as I stated before, it taught me a valuable lesson: always utilize modular programming techniques. I learned the hard way that this is even more important early on in a project, as when one continues to build on code that is not modularized, the amount of refactoring one has to perform later on in development exponentially.</p>
                 <p>Another thing this project has done for me is aquanting me more intimately me with GitHub. I learned that being specific and using the correct terminology when making commits is incredibly important, and as such it has become a prime concern of mine as I have progressed further and further thorugh this project.</p>
+                <p>Below is a short demo that represents the current state of the project:</p>
+                <img id="renderer-demo" src="RendererDemo.gif" />
             </div>
 
             <div id="resume" data-tab-content>
                 <div class="title"><h1>Work experience</h1></div>
                 <div class="list">
                     <ul>
-                        <li>Dollar General Sales --- Sales Associate <i>Sharptown, Maryland</i> (March 2019 - May 2021).</li>
-                        <li>Loews Kansas City Hotel --- Bellman <i>Kansas City, Missouri</i> (August 2021 - Present).</li>
+                        <li>Dollar General --- Sales Associate, <i>Sharptown, Maryland</i> (March 2019 - May 2021).</li>
+                        <li>Loews Kansas City Hotel --- Bellman, <i>Kansas City, Missouri</i> (August 2021 - Present).</li>
                     </ul> 
                 </div>
                     
@@ -61,11 +63,51 @@
 
             <div id="education-background" data-tab-content>
                 <h1>Education Background</h1>
-                <p><b>Wor-Wic Community College</b> <i>Salisbury Maryland</i> --- Associate of Arts in General Studies: May 2021.</p>
-                <p><b>University of Missouri-Kansas City</b> <i>Kansas City, Missouri</i> Bachelors of Science in Computer Science: Expected Graduation: Spring 2025.</p>
+                <p><b>Wor-Wic Community College</b> <i>Salisbury Maryland</i> --- Associate of Arts in General Studies: Completed May 2021.</p>
+                <h3>Course List</h3>
+                <div class="list">
+                    <ul>
+                        <li><strong>Eng 101:</strong> Fund of English I</li>
+                        <li><strong>His 101:</strong> World Civilizations I</li>
+                        <li><strong>Mth 201:</strong> Calculus I (Ma)</li>
+                        <li><strong>Psy 101:</strong> Intro to Psychology (SS)</li>
+                        <li><strong>Sdv 100:</strong> Fund of College Stud</li>
+                        <li><strong>Cmp 104:</strong> Intro to Programming</li>
+                        <li><strong>Cmp 115:</strong> Fund of Cmp Architecture</li>
+                        <li><strong>Com 101:</strong> Intro to Public Speaking</li>
+                        <li><strong>Eng 151:</strong> Fund of English II (En)</li>
+                        <li><strong>Cmp 210:</strong> Computer Science I</li>
+                        <li><strong>His 151:</strong> World Civ II</li>
+                        <li><strong>Phy 141:</strong> Princ of Physics I (BS)</li>
+                        <li><strong>Spn 101:</strong> Fund of Spanish I (Ah)</li>
+                        <li><strong>Cmp 120:</strong> Intro to Linux</li>
+                        <li> <strong>Eng 202N:</strong> Studies in Lit 1 Novel</li>
+                        <li><strong>Env 101:</strong> Enviromn Science (BS)</li>
+                        <li> <strong>Phe 106:</strong> Integratd Hlth & Fitness</li>
+                        <li><strong>Spn 102:</strong> Fund of Spanish II (Ah)</li> 
+                    </ul>
+                </div>
+                
+                <p><b>University of Missouri-Kansas City</b> <i>Kansas City, Missouri</i> --- Bachelors of Science in Computer Science: Expected Graduation: Spring 2025.</p>
+                <h3>Course List</h3>
+                <div class="list"></div>
+                    <ul>
+                        <li><strong>Comp Sci 101:</strong> Problm Slvng & Prgmg I</li>
+                        <li><strong>Comp Sci 101L:</strong> Problem Solving/Program Lab I</li>
+                        <li><strong>Comp Sci 191:</strong> Discrete Structures I</li>
+                        <li><strong>Comp Sci 304WI:</strong> Ethics & Professionalism</li>
+                        <li><strong>Stat 235:</strong> Elementary Statistics</li>
+                        <li><strong>Comp Sci 201L:</strong> Problem Solving/Program Lab 2</li>
+                        <li><strong>Comp Sci 201R:</strong> Problm Slvng & Prgmg II</li>
+                        <li><strong>Comp Sci 291:</strong> Discrete Structures II</li>
+                        <li><strong>Math 220:</strong> Calculus II</li>
+                        <li><strong>Comp Sci 303:</strong> Data Structures</li>
+                        <li><strong>Comp Sci 320:</strong> Data Com. and Networking</li>
+                        <li><strong>Comp Sci 394R:</strong> Applied Probability</li>
+                        <li><strong>Math 250:</strong> Calculus III</li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </div>
     
     <script src="script.js"></script>
     

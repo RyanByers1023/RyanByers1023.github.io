@@ -45,3 +45,16 @@ body{
 .tab-content{
     margin-left: 225px;
 }
+
+#headshot{
+    width: 300px;
+    height: auto;
+}
+
+#renderer-demo{
+    width: 500px;
+    height:auto;
+}
+
+
+/*CSS template retrieved from: "https://www.w3schools.com/css/tryit.asp?filename=trycss_template4"*/
