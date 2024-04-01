@@ -16,32 +16,32 @@ body{
 }
 
 .tabs {
-  height: 100%;
-  width: 200px;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
+    height: 100%;
+    width: 180px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #310F08;
+    overflow-x: hidden;
 }
 
 .tab{
     cursor: pointer;
     padding: 16px;
     text-decoration: none;
+    color: white;
     display: block;
 }
 
-.tab.active{
-    background-color: #ddd;
+.tab.active {
+    background-color: #C5651F;
 }
 
 .tab:hover{
-    background-color: #ddd;
+    background-color: #C58F1F
 }
 
 .tab-content{
-    margin-left: 200px;
-    padding-left: 20px;
+    margin-left: 225px;
 }
