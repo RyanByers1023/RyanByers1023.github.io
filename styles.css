@@ -46,9 +46,10 @@ body{
     margin-left: 225px;
 }
 
-#headshot{
+#headshot {
     width: 300px;
     height: auto;
+    border-radius: 50%;
 }
 
 #renderer-demo{
