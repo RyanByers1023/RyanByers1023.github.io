@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ryan Byers Portfolio Website</title>
+    <title>Ryan Byers Portfolio</title>
     <link rel="stylesheet" href="styles.css">
     
 </head>
@@ -17,29 +17,43 @@
         </div>
         
         <div class="tab-content">
-
             <div id="bio" data-tab-content class="active">
-                <h1>Bio</h1>
-                <img id="headshot" src="Me.jpg">
-                <p>Greetings, my name is Ryan Byers. I am currently enrolled at the University of Missouri-Kansas City in Kansas City, Missouri in the pursuit of a Bachelors of Science in Computer Science. I am set to graduate next Spring (Spring 2025).</p>
-                <p>I like to spend most of my time working on personal projects to challenge myself and improve my abilities as a programmer. When I am not doing that, I like to go to the gym, go out for runs, and play videogames.</p>
+
+                <div class="column-container">
+
+                    <div class="title">Bio</div>
+
+                    <div class="column">
+                        <img id="headshot" src="Me.jpg">
+                    </div>
+
+                    <div class="column">
+                        <p>Greetings, my name is Ryan Byers. I am currently enrolled at the University of Missouri-Kansas City in Kansas City, Missouri in the pursuit of a Bachelors of Science in Computer Science. I am set to graduate next Spring (Spring 2025).</p>
+                        <p>I like to spend most of my time working on personal projects to challenge myself and improve my abilities as a programmer. When I am not doing that, I like to go to the gym, go out for runs, and play videogames.</p>
+                    </div>
+                </div>
             </div>
 
             <div id="projects" data-tab-content>
-                <h1>Projects</h1>
+
+                <div class="title">Projects</div>
+
                 <p>I am currently working on my first large scale project. Its primary goal is to utilize a multimedia library called SDL2 to create a 3-D renderer from scratch using C++. The project is a work in progress, with my current focus now on programming the ability to shade the objects the renderer displays on screen. I would like to bring the project to a point in which I can simulate basic physics interactions between objects on the screen.</p>
                 <p>One of the main challenges lies in the fact that SDL2 is typically paired with a graphical API like OpenGL. Thus, SDL2 does not provide functions to handle rendering in 3-D. The functions derived from SDL2 that are in use in this project at this time allow the collection of user input, creating a window, and drawing pixels onto said window. Everything else involved in the rendering pipeline must be made from scratch.</p>
                 <p>A project of this magnitude has taught me many skills, but it has also taught me many lessons. Sometimes these lessons were learned the hard way via mistakes.</p>
                 <p>One such mistake I made early on was not making my code more modular. I put too many important variables/functions in too little of a space, and this created issues as I continued development. Circular dependencies between different modules were a common problem I had run into that halted progress, as were readability, and organizational issues. I made the choice to stop progress on this project and focus my time strictly on refactoring efforts. This process was quite arduous, but as I stated before, it taught me a valuable lesson: always utilize modular programming techniques, and utilize them early on.</p>
                 <p>Additionally, this project has aquanted me much more intimately me with GitHub. I learned that using the correct terminology when making commits is incredibly important, and as such it has become a prime concern of mine as I have progressed further and further thorugh this project. I find that sometimes I come back to my project days later wanting to know what the last contribution/additon was that I has made. Early on when I was not making commits with specifc messages, this was sometimes hard, and I would be forced to dig through and re-read sections of my code that looked new to figure this out.</p>
                 <p>Below is a short demo that represents the current state of the project:</p>
+
                 <img id="renderer-demo" src="RendererDemo.gif" />
+
                 <p>As stated before, this is still very much a work in progress, but I am hopeful that I can get this project to a point that can be deemed somewhat visually impressive given the limitations I've set for myself. Below is the link to the GitHub repository for any interested parties:</p>
-                <a href = "https://github.com/RyanByers1023/Testing.git" target="_blank">View code on Github.com</a>
+                <a href="https://github.com/RyanByers1023/Testing.git" target="_blank">View code on Github.com</a>
             </div>
 
             <div id="resume" data-tab-content>
-                <div class="title"><h1>Work experience</h1></div>
+                <div class="title">Work experience</div>
+
                 <div class="list">
                     <ul>
                         <li>Dollar General --- Sales Associate, <i>Sharptown, Maryland</i> (March 2019 - May 2021).</li>
@@ -47,7 +61,8 @@
                     </ul> 
                 </div>
                     
-                <div class = "title"><h1>Programming Proficiencies</h1></div>
+                <h1>Programming Proficiencies</h1>
+
                 <div class="list">   
                     <ul>
                         <li>C++</li>
@@ -61,7 +76,7 @@
             </div>
 
             <div id="education-background" data-tab-content>
-                <h1>Education Background</h1>
+                <div class="title">Education Background</div>
                 <p><b>Wor-Wic Community College</b> <i>Salisbury Maryland</i> --- Associate of Arts in General Studies: Completed May 2021.</p>
                 <h3>Course List</h3>
                 <div class="list">
@@ -89,7 +104,7 @@
                 
                 <p><b>University of Missouri-Kansas City</b> <i>Kansas City, Missouri</i> --- Bachelors of Science in Computer Science: Expected Graduation: Spring 2025.</p>
                 <h3>Course List</h3>
-                <div class="list"></div>
+                <div class="list">
                     <ul>
                         <li><strong>Comp Sci 101:</strong> Problm Slvng & Prgmg I</li>
                         <li><strong>Comp Sci 101L:</strong> Problem Solving/Program Lab I</li>
@@ -106,12 +121,13 @@
                         <li><strong>Math 250:</strong> Calculus III</li>
                     </ul>
                 </div>
+            </div>
             <div id="contact-info" data-tab-content>
-                <h1>Contact Information</h1>
-                <p><strong>Email:</strong> ryanbyers1023@gmail.com</p> 
+                <div class="title">Contact Information</div>
+                <p><strong>Email:</strong> ryanbyers1023@gmail.com</p>
                 <p><strong>Phone:</strong> 816-213-4081</p>
             </div>
-            </div>
+        </div>
     
     <script src="script.js"></script>
     
