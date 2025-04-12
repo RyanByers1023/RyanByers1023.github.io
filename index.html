@@ -3,133 +3,368 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ryan Byers Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    
+    <title>Ryan Byers - CS Student & Developer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .skill-bar {
+            height: 10px;
+            border-radius: 5px;
+            background-color: #e2e8f0;
+            margin-bottom: 20px;
+        }
+        .skill-progress {
+            height: 100%;
+            border-radius: 5px;
+            background-color: #4f46e5;
+        }
+    </style>
 </head>
-<body>
-        <div class="tabs">
-            <a data-tab-target="#bio" class="active tab">Bio</a>
-            <a data-tab-target="#resume" class="tab">Resume</a>
-            <a data-tab-target='#projects' class="tab">Projects</a>
-            <a data-tab-target="#education-background" class="tab">Education Background</a>
-            <a data-tab-target="#contact-info" class="tab">Contact Information</a>
-        </div>
-        
-        <div class="tab-content">
-            <div id="bio" data-tab-content class="active">
-
-                <div class="column-container">
-
-                    <div class="title">Bio</div>
-
-                    <div class="column">
-                        <img id="headshot" src="Me.jpg">
-                    </div>
-
-                    <div class="column">
-                        <p>Greetings, my name is Ryan Byers. I am currently enrolled at the University of Missouri-Kansas City in Kansas City, Missouri in the pursuit of a Bachelors of Science in Computer Science. I am set to graduate next Spring (Spring 2025).</p>
-                        <p>I like to spend most of my time working on personal projects to challenge myself and improve my abilities as a programmer. When I am not doing that, I like to go to the gym, go out for runs, and play videogames.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div id="projects" data-tab-content>
-
-                <div class="title">Projects</div>
-
-                <p>I am currently working on my first large scale project. Its primary goal is to utilize a multimedia library called SDL2 to create a 3-D renderer from scratch using C++. The project is a work in progress, with my current focus now on programming the ability to shade the objects the renderer displays on screen. I would like to bring the project to a point in which I can simulate basic physics interactions between objects on the screen.</p>
-                <p>One of the main challenges lies in the fact that SDL2 is typically paired with a graphical API like OpenGL. Thus, SDL2 does not provide functions to handle rendering in 3-D. The functions derived from SDL2 that are in use in this project at this time allow the collection of user input, creating a window, and drawing pixels onto said window. Everything else involved in the rendering pipeline must be made from scratch.</p>
-                <p>A project of this magnitude has taught me many skills, but it has also taught me many lessons. Sometimes these lessons were learned the hard way via mistakes.</p>
-                <p>One such mistake I made early on was not making my code more modular. I put too many important variables/functions in too little of a space, and this created issues as I continued development. Circular dependencies between different modules were a common problem I had run into that halted progress, as were readability, and organizational issues. I made the choice to stop progress on this project and focus my time strictly on refactoring efforts. This process was quite arduous, but as I stated before, it taught me a valuable lesson: always utilize modular programming techniques, and utilize them early on.</p>
-                <p>Additionally, this project has aquanted me much more intimately me with GitHub. I learned that using the correct terminology when making commits is incredibly important, and as such it has become a prime concern of mine as I have progressed further and further thorugh this project. I find that sometimes I come back to my project days later wanting to know what the last contribution/additon was that I has made. Early on when I was not making commits with specifc messages, this was sometimes hard, and I would be forced to dig through and re-read sections of my code that looked new to figure this out.</p>
-                <p>Below is a short demo that represents the current state of the project:</p>
-
-                <img id="renderer-demo" src="RendererDemo.gif" />
-
-                <p>As stated before, this is still very much a work in progress, but I am hopeful that I can get this project to a point that can be deemed somewhat visually impressive given the limitations I've set for myself. Below is the link to the GitHub repository for any interested parties:</p>
-                <a href="https://github.com/RyanByers1023/Testing.git" target="_blank">View code on Github.com</a>
-            </div>
-
-            <div id="resume" data-tab-content>
-                <div class="title">Work experience</div>
-
-                <div class="list">
-                    <ul>
-                        <li>Dollar General --- Sales Associate, <i>Sharptown, Maryland</i> (March 2019 - May 2021).</li>
-                        <li>Loews Kansas City Hotel --- Bellman, <i>Kansas City, Missouri</i> (August 2021 - Present).</li>
-                    </ul> 
-                </div>
-                    
-                <h1>Programming Proficiencies</h1>
-
-                <div class="list">   
-                    <ul>
-                        <li>C++</li>
-                        <li>C#</li>
-                        <li>Python</li>
-                        <li>Javascript, HTML, and CSS</li>
-                    </ul>
-                </div>
-                    <p>Click on the below link to open my Resume in PDF form:</p>
-                    <a href="Ryan_Byers_Resume.pdf" target="_blank">View Resume</a>
-            </div>
-
-            <div id="education-background" data-tab-content>
-                <div class="title">Education Background</div>
-                <p><b>Wor-Wic Community College</b> <i>Salisbury Maryland</i> --- Associate of Arts in General Studies: Completed May 2021.</p>
-                <h3>Course List</h3>
-                <div class="list">
-                    <ul>
-                        <li><strong>Eng 101:</strong> Fund of English I</li>
-                        <li><strong>His 101:</strong> World Civilizations I</li>
-                        <li><strong>Mth 201:</strong> Calculus I (Ma)</li>
-                        <li><strong>Psy 101:</strong> Intro to Psychology (SS)</li>
-                        <li><strong>Sdv 100:</strong> Fund of College Stud</li>
-                        <li><strong>Cmp 104:</strong> Intro to Programming</li>
-                        <li><strong>Cmp 115:</strong> Fund of Cmp Architecture</li>
-                        <li><strong>Com 101:</strong> Intro to Public Speaking</li>
-                        <li><strong>Eng 151:</strong> Fund of English II (En)</li>
-                        <li><strong>Cmp 210:</strong> Computer Science I</li>
-                        <li><strong>His 151:</strong> World Civ II</li>
-                        <li><strong>Phy 141:</strong> Princ of Physics I (BS)</li>
-                        <li><strong>Spn 101:</strong> Fund of Spanish I (Ah)</li>
-                        <li><strong>Cmp 120:</strong> Intro to Linux</li>
-                        <li> <strong>Eng 202N:</strong> Studies in Lit 1 Novel</li>
-                        <li><strong>Env 101:</strong> Enviromn Science (BS)</li>
-                        <li> <strong>Phe 106:</strong> Integratd Hlth & Fitness</li>
-                        <li><strong>Spn 102:</strong> Fund of Spanish II (Ah)</li> 
-                    </ul>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-2xl font-bold text-gray-900">Ryan Byers</h1>
+                    <p class="text-gray-600">Computer Science Student & Developer</p>
                 </div>
                 
-                <p><b>University of Missouri-Kansas City</b> <i>Kansas City, Missouri</i> --- Bachelors of Science in Computer Science: Expected Graduation: Spring 2025.</p>
-                <h3>Course List</h3>
-                <div class="list">
-                    <ul>
-                        <li><strong>Comp Sci 101:</strong> Problm Slvng & Prgmg I</li>
-                        <li><strong>Comp Sci 101L:</strong> Problem Solving/Program Lab I</li>
-                        <li><strong>Comp Sci 191:</strong> Discrete Structures I</li>
-                        <li><strong>Comp Sci 304WI:</strong> Ethics & Professionalism</li>
-                        <li><strong>Stat 235:</strong> Elementary Statistics</li>
-                        <li><strong>Comp Sci 201L:</strong> Problem Solving/Program Lab 2</li>
-                        <li><strong>Comp Sci 201R:</strong> Problm Slvng & Prgmg II</li>
-                        <li><strong>Comp Sci 291:</strong> Discrete Structures II</li>
-                        <li><strong>Math 220:</strong> Calculus II</li>
-                        <li><strong>Comp Sci 303:</strong> Data Structures</li>
-                        <li><strong>Comp Sci 320:</strong> Data Com. and Networking</li>
-                        <li><strong>Comp Sci 394R:</strong> Applied Probability</li>
-                        <li><strong>Math 250:</strong> Calculus III</li>
+                <nav class="hidden md:block">
+                    <ul class="flex space-x-6">
+                        <li><a href="#" data-tab-target="#about" class="text-indigo-600 font-medium tab active">About</a></li>
+                        <li><a href="#" data-tab-target="#projects" class="text-gray-500 hover:text-indigo-600 font-medium tab">Projects</a></li>
+                        <li><a href="#" data-tab-target="#skills" class="text-gray-500 hover:text-indigo-600 font-medium tab">Skills</a></li>
+                        <li><a href="#" data-tab-target="#contact" class="text-gray-500 hover:text-indigo-600 font-medium tab">Contact</a></li>
                     </ul>
-                </div>
+                </nav>
+                
+                <button class="md:hidden focus:outline-none" id="menu-toggle">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
             </div>
-            <div id="contact-info" data-tab-content>
-                <div class="title">Contact Information</div>
-                <p><strong>Email:</strong> ryanbyers1023@gmail.com</p>
-                <p><strong>Phone:</strong> 816-213-4081</p>
+            
+            <!-- Mobile Menu -->
+            <div class="hidden mt-4 md:hidden" id="mobile-menu">
+                <ul class="space-y-2">
+                    <li><a href="#" data-tab-target="#about" class="block py-2 text-indigo-600 font-medium tab">About</a></li>
+                    <li><a href="#" data-tab-target="#projects" class="block py-2 text-gray-500 hover:text-indigo-600 font-medium tab">Projects</a></li>
+                    <li><a href="#" data-tab-target="#skills" class="block py-2 text-gray-500 hover:text-indigo-600 font-medium tab">Skills</a></li>
+                    <li><a href="#" data-tab-target="#contact" class="block py-2 text-gray-500 hover:text-indigo-600 font-medium tab">Contact</a></li>
+                </ul>
             </div>
         </div>
+    </header>
     
-    <script src="script.js"></script>
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12">
+        <!-- About Section -->
+        <section id="about" class="tab-content active">
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="md:flex">
+                        <div class="md:flex-shrink-0">
+                            <img class="h-48 w-full object-cover md:w-48" src="/api/placeholder/300/300" alt="Profile photo">
+                        </div>
+                        <div class="p-8">
+                            <h2 class="text-2xl font-bold text-gray-900 mb-4">About Me</h2>
+                            <p class="text-gray-600 mb-4">
+                                Hello! I'm Ryan Byers, a passionate Computer Science student with a focus on software development and artificial intelligence. Currently pursuing my degree at State University, I combine theoretical knowledge with practical application through various projects and internships.
+                            </p>
+                            <p class="text-gray-600 mb-4">
+                                My journey in programming began when I was 15, creating simple games and applications. This early passion led me to pursue computer science academically and professionally. I'm particularly interested in web development, machine learning, and creating software that solves real-world problems.
+                            </p>
+                            <p class="text-gray-600">
+                                When I'm not coding, you can find me hiking local trails, playing chess, or contributing to open-source projects. I'm always looking for new challenges and opportunities to grow as a developer.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Projects Section -->
+        <section id="projects" class="tab-content">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">My Projects</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Project 1 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 project-card">
+                        <img class="w-full h-48 object-cover" src="/api/placeholder/600/400" alt="Project 1">
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2">Intelligent Task Manager</h3>
+                            <p class="text-gray-600 mb-4">A smart task management application with ML-powered priority suggestions and automated scheduling.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">React</span>
+                                <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">Node.js</span>
+                                <span class="px-2 py-1 bg-purple-100 text-purple-800 rounded-full text-xs">TensorFlow</span>
+                            </div>
+                            <a href="#" class="text-indigo-600 hover:text-indigo-800 font-medium">View Project →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 2 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 project-card">
+                        <img class="w-full h-48 object-cover" src="/api/placeholder/600/400" alt="Project 2">
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2">Smart Home Monitor</h3>
+                            <p class="text-gray-600 mb-4">IoT-based home monitoring system with real-time alerts, energy usage tracking, and security features.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-2 py-1 bg-red-100 text-red-800 rounded-full text-xs">Python</span>
+                                <span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs">Raspberry Pi</span>
+                                <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">MQTT</span>
+                            </div>
+                            <a href="#" class="text-indigo-600 hover:text-indigo-800 font-medium">View Project →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 3 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 project-card">
+                        <img class="w-full h-48 object-cover" src="/api/placeholder/600/400" alt="Project 3">
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2">Financial Analytics Dashboard</h3>
+                            <p class="text-gray-600 mb-4">Interactive visualization tool for personal finance tracking with predictive spending analysis.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-2 py-1 bg-indigo-100 text-indigo-800 rounded-full text-xs">Vue.js</span>
+                                <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">D3.js</span>
+                                <span class="px-2 py-1 bg-pink-100 text-pink-800 rounded-full text-xs">Firebase</span>
+                            </div>
+                            <a href="#" class="text-indigo-600 hover:text-indigo-800 font-medium">View Project →</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 text-center">
+                    <a href="https://github.com/RyanByers1023" target="_blank" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405 1.02 0 2.04.135 3 .405 2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                        </svg>
+                        View More Projects on GitHub
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Skills Section -->
+        <section id="skills" class="tab-content">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Skills & Expertise</h2>
+                
+                <div class="bg-white rounded-lg shadow-md p-8">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-lg font-semibold mb-4">Programming Languages</h3>
+                            
+                            <div class="mb-4">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-gray-700">Python</span>
+                                    <span class="text-gray-600 text-sm">95%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-gray-700">JavaScript</span>
+                                    <span class="text-gray-600 text-sm">90%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-gray-700">Java</span>
+                                    <span class="text-gray-600 text-sm">85%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-gray-700">C++</span>
+                                    <span class="text-gray-600 text-sm">80%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 80%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-semibold mb-4">Technologies & Tools</h3>
+                            
+                            <div class="mb-4">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-gray-700">React</span>
+                                    <span class="text-gray-600 text-sm">90%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-gray-700">Node.js</span>
+                                    <span class="text-gray-600 text-sm">85%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-gray-700">SQL & NoSQL Databases</span>
+                                    <span class="text-gray-600 text-sm">88%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 88%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-gray-700">Machine Learning</span>
+                                    <span class="text-gray-600 text-sm">75%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 75%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h3 class="text-lg font-semibold mb-4">Other Skills</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-gray-200 text-gray-800 rounded-full">Git & GitHub</span>
+                            <span class="px-3 py-1 bg-gray-200 text-gray-800 rounded-full">Docker</span>
+                            <span class="px-3 py-1 bg-gray-200 text-gray-800 rounded-full">AWS</span>
+                            <span class="px-3 py-1 bg-gray-200 text-gray-800 rounded-full">UI/UX Design</span>
+                            <span class="px-3 py-1 bg-gray-200 text-gray-800 rounded-full">Agile Methodologies</span>
+                            <span class="px-3 py-1 bg-gray-200 text-gray-800 rounded-full">RESTful APIs</span>
+                            <span class="px-3 py-1 bg-gray-200 text-gray-800 rounded-full">TensorFlow</span>
+                            <span class="px-3 py-1 bg-gray-200 text-gray-800 rounded-full">Computer Vision</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <section id="contact" class="tab-content">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Get in Touch</h2>
+                
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="md:flex">
+                        <div class="md:w-1/3 bg-indigo-600 p-8 text-white">
+                            <h3 class="text-xl font-bold mb-4">Contact Information</h3>
+                            <p class="mb-6">Feel free to reach out! I'm always open to discussing new projects, opportunities, or collaborations.</p>
+                            
+                            <div class="mb-4 flex items-start">
+                                <svg class="w-6 h-6 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                                <div>
+                                    <p class="font-medium">Email</p>
+                                    <a href="mailto:ryanbyers1023@gmail.com" class="text-indigo-200 hover:text-white">ryanbyers1023@gmail.com</a>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4 flex items-start">
+                                <svg class="w-6 h-6 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                                <div>
+                                    <p class="font-medium">Location</p>
+                                    <p class="text-indigo-200">Boston, Massachusetts</p>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-8">
+                                <p class="font-medium mb-2">Find me on</p>
+                                <div class="flex space-x-4">
+                                    <a href="https://github.com/RyanByers1023" target="_blank" class="text-white hover:text-indigo-200">
+                                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405 1.02 0 2.04.135 3 .405 2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                                        </svg>
+                                    </a>
+                                    <a href="#" target="_blank" class="text-white hover:text-indigo-200">
+                                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                        </svg>
+                                    </a>
+                                    <a href="#" target="_blank" class="text-white hover:text-indigo-200">
+                                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="md:w-2/3 p-8">
+                            <form>
+                                <div class="grid grid-cols-2 gap-4 mb-4">
+                                    <div>
+                                        <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
+                                        <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                    </div>
+                                    <div>
+                                        <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                                        <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
+                                    <input type="text" id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                </div>
+                                
+                                <div class="mb-6">
+                                    <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+                                    <textarea id="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+                                </div>
+                                
+                                <button type="submit" class="px-6 py-3 bg-indigo-600 text-white font-medium rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
     
-</body>
-</html>
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="md:flex md:justify-between">
+                <div class="mb-6 md:mb-0">
+                    <h2 class="text-xl font-bold">Ryan Byers</h2>
+                    <p class="text-gray-400">Computer Science Student & Developer</p>
+                </div>
+                
+                <div class="flex space-x-4">
+                    <a href="https://github.com/RyanByers1023" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405
