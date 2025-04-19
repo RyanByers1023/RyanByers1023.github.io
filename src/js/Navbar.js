@@ -1,4 +1,3 @@
-
 // Tab functionality
 function initializeNavbar() {
         tabs.forEach(tab => {
