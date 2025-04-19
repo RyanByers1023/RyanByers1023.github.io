@@ -1,58 +1,117 @@
-// Tab functionality
-function initializeNavbar() {
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                const target = document.querySelector(tab.dataset.tabTarget);
-                
-                tabContents.forEach(tabContent => {
-                    tabContent.classList.remove('active');
-                });
-                
-                tabs.forEach(tab => {
-                    tab.classList.remove('active-tab');
-                    tab.classList.remove('bg-accent');
-                });
-                
-                tab.classList.add('active-tab');
-                tab.classList.add('bg-accent');
-                target.classList.add('active');
-                
-                // Close mobile menu after selection
-                document.getElementById('mobile-menu').classList.add('hidden');
-            });
-        });
-        
-        // Initialize the first tab as active
-        tabs[0].classList.add('active-tab');
-        tabs[0].classList.add('bg-accent');
-        
+function Navbar(){
+    document.addEventListener('DOMContentLoaded', function() {
         // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         
-        mobileMenuButton.addEventListener('click', () => {
+        menuToggle.addEventListener('click', function() {
             mobileMenu.classList.toggle('hidden');
         });
         
-        // Course list toggles
-        const umkcCoursesBtn = document.getElementById('umkc-courses-btn');
-        const umkcChevron = document.getElementById('umkc-chevron');
-        const umkcCourses = document.getElementById('umkc-courses');
+        // Get content container
+        const contentContainer = document.getElementById('content-container');
+        const loadingIndicator = document.getElementById('loading');
         
-        umkcCoursesBtn.addEventListener('click', () => {
-            umkcCourses.classList.toggle('hidden');
-            umkcChevron.classList.toggle('rotate-180');
+        // All navigation links
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        // Function to load content
+        async function loadContent(page) {
+            try {
+                // Show loading indicator
+                loadingIndicator.classList.remove('hidden');
+                
+                // Fetch the content
+                const response = await fetch(page);
+                
+                if (!response.ok) {
+                    throw new Error(`Failed to load ${page}`);
+                }
+                
+                let html = await response.text();
+                
+                // Extract the section content from the page
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = html;
+                
+                // Find the section with ID matching the page name (without .html)
+                const pageName = page.split('.')[0];
+                const section = tempDiv.querySelector(`#${pageName}`);
+                
+                if (section) {
+                    // Update content container
+                    contentContainer.innerHTML = section.outerHTML;
+                } else {
+                    contentContainer.innerHTML = `<div class="text-center py-16"><p class="text-red-600">Error: Could not find content in ${page}</p></div>`;
+                }
+            } catch (error) {
+                console.error('Error loading content:', error);
+                contentContainer.innerHTML = `<div class="text-center py-16"><p class="text-red-600">Error loading content. Please try again.</p></div>`;
+            } finally {
+                // Hide loading indicator
+                loadingIndicator.classList.add('hidden');
+            }
+        }
+        
+        // Handle navigation clicks
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Update active state
+                navLinks.forEach(nav => {
+                    nav.classList.remove('text-indigo-600');
+                    nav.classList.add('text-gray-500');
+                });
+                this.classList.remove('text-gray-500');
+                this.classList.add('text-indigo-600');
+                
+                // Load the content
+                const page = this.getAttribute('data-page');
+                loadContent(page);
+                
+                // Update URL without page reload
+                history.pushState(null, null, this.getAttribute('href'));
+                
+                // Close mobile menu if open
+                mobileMenu.classList.add('hidden');
+            });
         });
         
-        const worwicCoursesBtn = document.getElementById('worwic-courses-btn');
-        const worwicChevron = document.getElementById('worwic-chevron');
-        const worwicCourses = document.getElementById('worwic-courses');
+        // Handle initial page load and back/forward navigation
+        function handleInitialPage() {
+            let targetPage = 'about.html'; // Default page
+            let targetHash = 'about';
+            
+            // Check if there's a hash in the URL
+            if (window.location.hash) {
+                targetHash = window.location.hash.substring(1);
+                targetPage = `${targetHash}.html`;
+            }
+            
+            // Find the corresponding nav link and simulate a click
+            const targetNavLink = document.querySelector(`.nav-link[data-page="${targetPage}"]`);
+            if (targetNavLink) {
+                // Update active state
+                navLinks.forEach(nav => {
+                    nav.classList.remove('text-indigo-600');
+                    nav.classList.add('text-gray-500');
+                });
+                targetNavLink.classList.remove('text-gray-500');
+                targetNavLink.classList.add('text-indigo-600');
+                
+                // Load the content
+                loadContent(targetPage);
+            } else {
+                // Default to about page if target not found
+                loadContent('about.html');
+            }
+        }
         
-        worwicCoursesBtn.addEventListener('click', () => {
-            worwicCourses.classList.toggle('hidden');
-            worwicChevron.classList.toggle('rotate-180');
-        });
+        // Handle back/forward navigation
+        window.addEventListener('popstate', handleInitialPage);
+        
+        // Handle initial page load
+        handleInitialPage();
+    });
 }
-
-//run the function on DOMContentLoaded
-document.addEventListener('DOMContentLoaded', initializeNavbar);
