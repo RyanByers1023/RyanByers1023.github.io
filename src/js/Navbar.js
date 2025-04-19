@@ -1,6 +1,6 @@
 
 // Tab functionality
-function initializeTabsAndMenus() {
+function initializeNavbar() {
         tabs.forEach(tab => {
             tab.addEventListener('click', () => {
                 const target = document.querySelector(tab.dataset.tabTarget);
@@ -56,4 +56,4 @@ function initializeTabsAndMenus() {
 }
 
 //run the function on DOMContentLoaded
-document.addEventListener('DOMContentLoaded', initializeTabsAndMenus);
+document.addEventListener('DOMContentLoaded', initializeNavbar);
