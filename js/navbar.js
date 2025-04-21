@@ -3,41 +3,41 @@ function Navbar(){
         // Mobile menu toggle
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
-        
+
         menuToggle.addEventListener('click', function() {
             mobileMenu.classList.toggle('hidden');
         });
-        
+
         // Get content container
         const contentContainer = document.getElementById('content-container');
         const loadingIndicator = document.getElementById('loading');
-        
+
         // All navigation links
         const navLinks = document.querySelectorAll('.nav-link');
-        
+
         // Function to load content
         async function loadContent(page) {
             try {
                 // Show loading indicator
                 loadingIndicator.classList.remove('hidden');
-                
+
                 // Fetch the content
                 const response = await fetch(page);
-                
+
                 if (!response.ok) {
                     throw new Error(`Failed to load ${page}`);
                 }
-                
+
                 let html = await response.text();
-                
+
                 // Extract the section content from the page
                 const tempDiv = document.createElement('div');
                 tempDiv.innerHTML = html;
-                
+
                 // Find the section with ID matching the page name (without .html)
                 const pageName = page.split('.')[0];
                 const section = tempDiv.querySelector(`#${pageName}`);
-                
+
                 if (section) {
                     // Update content container
                     contentContainer.innerHTML = section.outerHTML;
@@ -52,12 +52,12 @@ function Navbar(){
                 loadingIndicator.classList.add('hidden');
             }
         }
-        
+
         // Handle navigation clicks
         navLinks.forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
-                
+
                 // Update active state
                 navLinks.forEach(nav => {
                     nav.classList.remove('text-indigo-600');
@@ -65,30 +65,30 @@ function Navbar(){
                 });
                 this.classList.remove('text-gray-500');
                 this.classList.add('text-indigo-600');
-                
+
                 // Load the content
                 const page = this.getAttribute('data-page');
                 loadContent(page);
-                
+
                 // Update URL without page reload
                 history.pushState(null, null, this.getAttribute('href'));
-                
+
                 // Close mobile menu if open
                 mobileMenu.classList.add('hidden');
             });
         });
-        
+
         // Handle initial page load and back/forward navigation
         function handleInitialPage() {
             let targetPage = 'about.html'; // Default page
             let targetHash = 'about';
-            
+
             // Check if there's a hash in the URL
             if (window.location.hash) {
                 targetHash = window.location.hash.substring(1);
                 targetPage = `${targetHash}.html`;
             }
-            
+
             // Find the corresponding nav link and simulate a click
             const targetNavLink = document.querySelector(`.nav-link[data-page="${targetPage}"]`);
             if (targetNavLink) {
@@ -99,7 +99,7 @@ function Navbar(){
                 });
                 targetNavLink.classList.remove('text-gray-500');
                 targetNavLink.classList.add('text-indigo-600');
-                
+
                 // Load the content
                 loadContent(targetPage);
             } else {
@@ -107,11 +107,12 @@ function Navbar(){
                 loadContent('about.html');
             }
         }
-        
+
         // Handle back/forward navigation
         window.addEventListener('popstate', handleInitialPage);
-        
+
         // Handle initial page load
         handleInitialPage();
     });
 }
+Navbar();
