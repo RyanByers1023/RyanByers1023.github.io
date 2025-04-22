@@ -187,17 +187,6 @@ function Navbar(){
 
     // Check page URL and set active nav link
     document.addEventListener('DOMContentLoaded', function() {
-        // Your existing JavaScript code for loading content
-
-        // Example for setting active tab based on URL hash or path
-        const currentPage = window.location.hash || '#contact';
-        document.querySelectorAll('.nav-link').forEach(link => {
-            if (link.getAttribute('href') === currentPage) {
-                link.classList.add('active');
-            } else {
-                link.classList.remove('active');
-            }
-        });
     });
 }
 
