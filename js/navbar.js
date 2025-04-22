@@ -200,4 +200,5 @@ function Navbar(){
         });
     });
 }
+
 Navbar();
