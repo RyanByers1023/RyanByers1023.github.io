@@ -114,5 +114,90 @@ function Navbar(){
         // Handle initial page load
         handleInitialPage();
     });
+
+    // Mobile menu toggle
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+        document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    // Sticky header effect
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        if (window.scrollY > 100) {
+            header.classList.add('shadow-lg');
+            header.classList.add('py-2');
+            header.classList.remove('py-4');
+        } else {
+            header.classList.remove('shadow-lg');
+            header.classList.add('py-4');
+            header.classList.remove('py-2');
+        }
+    });
+
+    // Navigation active state
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function() {
+            document.querySelectorAll('.nav-link').forEach(el => {
+                el.classList.remove('active');
+            });
+            this.classList.add('active');
+
+            // Close mobile menu if open
+            document.getElementById('mobile-menu').classList.add('hidden');
+        });
+    });
+
+    // Simulated content loading (replace with your actual loading logic)
+    document.addEventListener('DOMContentLoaded', function() {
+        // Your existing JavaScript code for loading content
+        console.log('Content loaded');
+    });
+
+    // Mobile menu toggle
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+        document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    // Sticky header effect
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        if (window.scrollY > 100) {
+            header.classList.add('shadow-lg');
+            header.classList.add('py-2');
+            header.classList.remove('py-4');
+        } else {
+            header.classList.remove('shadow-lg');
+            header.classList.add('py-4');
+            header.classList.remove('py-2');
+        }
+    });
+
+    // Navigation active state
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function() {
+            document.querySelectorAll('.nav-link').forEach(el => {
+                el.classList.remove('active');
+            });
+            this.classList.add('active');
+
+            // Close mobile menu if open
+            document.getElementById('mobile-menu').classList.add('hidden');
+        });
+    });
+
+    // Check page URL and set active nav link
+    document.addEventListener('DOMContentLoaded', function() {
+        // Your existing JavaScript code for loading content
+
+        // Example for setting active tab based on URL hash or path
+        const currentPage = window.location.hash || '#contact';
+        document.querySelectorAll('.nav-link').forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+    });
 }
 Navbar();
