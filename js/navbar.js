@@ -80,7 +80,7 @@ function Navbar(){
 
         // Handle initial page load and back/forward navigation
         function handleInitialPage() {
-            let targetPage = 'projects.html'; // Default page
+            let targetPage = 'index.html'; // Default page
             let targetHash = 'projects';
 
             // Check if there's a hash in the URL
