@@ -1,193 +1,77 @@
-function Navbar(){
-    document.addEventListener('DOMContentLoaded', function() {
-        // Mobile menu toggle
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
+// Handles navbar UI: menu toggle, sticky header, active link styling, and emitting navigation.
+import { navigateTo, onRouteChange } from './router.js';
 
-        menuToggle.addEventListener('click', function() {
-            mobileMenu.classList.toggle('hidden');
-        });
+export function initNavbar({
+                               headerSelector = 'header',
+                               menuToggleId = 'menu-toggle',
+                               mobileMenuId = 'mobile-menu',
+                               linkSelector = 'nav-link',   // links must have data-page="routeName"
+                           } = {}) {
+    document.addEventListener('DOMContentLoaded', () => {
+        const header     = document.querySelector(headerSelector);
+        const menuToggle = document.getElementById(menuToggleId);
+        const mobileMenu = document.getElementById(mobileMenuId);
+        const navLinks = document.querySelectorAll(linkSelector);
 
-        // Get content container
-        const contentContainer = document.getElementById('content-container');
-        const loadingIndicator = document.getElementById('loading');
+        // Make sure the highlighted link in the navbar is correct, even through refreshes:
+        // Option 1: Use what was last clicked
+        const savedRoute = localStorage.getItem('activeRoute');
 
-        // All navigation links
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        // Function to load content
-        async function loadContent(page) {
-            try {
-                // Show loading indicator
-                loadingIndicator.classList.remove('hidden');
-
-                // Fetch the content
-                const response = await fetch(page);
-
-                if (!response.ok) {
-                    throw new Error(`Failed to load ${page}`);
-                }
-
-                let html = await response.text();
-
-                // Extract the section content from the page
-                const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = html;
-
-                // Find the section with ID matching the page name (without .html)
-                const pageName = page.split('.')[0];
-                const section = tempDiv.querySelector(`#${pageName}`);
-
-                if (section) {
-                    // Update content container
-                    contentContainer.innerHTML = section.outerHTML;
-                } else {
-                    contentContainer.innerHTML = `<div class="text-center py-16"><p class="text-red-600">Error: Could not find content in ${page}</p></div>`;
-                }
-            } catch (error) {
-                console.error('Error loading content:', error);
-                contentContainer.innerHTML = `<div class="text-center py-16"><p class="text-red-600">Error loading content. Please try again.</p></div>`;
-            } finally {
-                // Hide loading indicator
-                loadingIndicator.classList.add('hidden');
-            }
+        if (savedRoute) {
+            setActiveLink(savedRoute);
+        } else {
+            // Option 2: Fall back to current URL
+            const currentPath = window.location.pathname.split('/').pop();
+            setActiveLink(currentPath);
         }
 
-        // Handle navigation clicks
+        // Sticky header
+        const updateHeaderShadow = () => {
+            if (!header) return;
+            const SCROLL_THRESHOLD = 100;
+            const scrolled = window.scrollY > SCROLL_THRESHOLD;
+            header.classList.toggle('shadow-lg', scrolled);
+            header.classList.toggle('py-2', scrolled);
+            header.classList.toggle('py-4', !scrolled);
+        };
+        updateHeaderShadow();
+        window.addEventListener('scroll', updateHeaderShadow, { passive: true });
+
+        // Menu toggle
+        if (menuToggle && mobileMenu) {
+            menuToggle.setAttribute('aria-controls', mobileMenuId);
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.addEventListener('click', () => {
+                const willOpen = !mobileMenu.classList.toggle('hidden');
+                menuToggle.setAttribute('aria-expanded', String(willOpen));
+            });
+        }
+
+        // Active state management (when route changes)
+        const setActiveLink = (routeName) => {
+            const target = Array.from(navLinks).find(
+                link => link.getAttribute('data-page') === routeName
+            );
+
+            navLinks.forEach(link => link.classList.remove('active'));
+
+            if (target) {
+                target.classList.add('active');
+            }
+        };
+
+        // Link clicks -> navigate
         navLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
+            link.addEventListener('click', (e) => {
+                const routeName = link.getAttribute('data-page');
+                if (!routeName) return; // let normal navigation happen if missing
+                //prevent page reload
                 e.preventDefault();
-
-                // Update active state
-                navLinks.forEach(nav => {
-                    nav.classList.remove('text-indigo-600');
-                    nav.classList.add('text-gray-500');
-                });
-                this.classList.remove('text-gray-500');
-                this.classList.add('text-indigo-600');
-
-                // Load the content
-                const page = this.getAttribute('data-page');
-                loadContent(page);
-
-                // Update URL without page reload
-                history.pushState(null, null, this.getAttribute('href'));
-
-                // Close mobile menu if open
-                mobileMenu.classList.add('hidden');
+                setActiveLink(routeName);
+                //used later to check highlighted page in navbar
+                localStorage.setItem('activeRoute', routeName);
+                navigateTo(routeName);
             });
         });
-
-        // Handle initial page load and back/forward navigation
-        function handleInitialPage() {
-            let targetPage = 'projects.html'; // Default page
-            let targetHash = 'projects';
-
-            // Check if there's a hash in the URL
-            if (window.location.hash) {
-                targetHash = window.location.hash.substring(1);
-                targetPage = `${targetHash}.html`;
-            }
-
-            // Find the corresponding nav link and simulate a click
-            const targetNavLink = document.querySelector(`.nav-link[data-page="${targetPage}"]`);
-            if (targetNavLink) {
-                // Update active state
-                navLinks.forEach(nav => {
-                    nav.classList.remove('text-indigo-600');
-                    nav.classList.add('text-gray-500');
-                });
-                targetNavLink.classList.remove('text-gray-500');
-                targetNavLink.classList.add('text-indigo-600');
-
-                // Load the content
-                loadContent(targetPage);
-            } else {
-                // Default to about page if target not found
-                loadContent('about.html');
-            }
-        }
-
-        // Handle back/forward navigation
-        window.addEventListener('popstate', handleInitialPage);
-
-        // Handle initial page load
-        handleInitialPage();
-    });
-
-    // Mobile menu toggle
-    document.getElementById('menu-toggle').addEventListener('click', function() {
-        document.getElementById('mobile-menu').classList.toggle('hidden');
-    });
-
-    // Sticky header effect
-    window.addEventListener('scroll', function() {
-        const header = document.querySelector('header');
-        if (window.scrollY > 100) {
-            header.classList.add('shadow-lg');
-            header.classList.add('py-2');
-            header.classList.remove('py-4');
-        } else {
-            header.classList.remove('shadow-lg');
-            header.classList.add('py-4');
-            header.classList.remove('py-2');
-        }
-    });
-
-    // Navigation active state
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', function() {
-            document.querySelectorAll('.nav-link').forEach(el => {
-                el.classList.remove('active');
-            });
-            this.classList.add('active');
-
-            // Close mobile menu if open
-            document.getElementById('mobile-menu').classList.add('hidden');
-        });
-    });
-
-    // Simulated content loading (replace with your actual loading logic)
-    document.addEventListener('DOMContentLoaded', function() {
-        // Your existing JavaScript code for loading content
-        console.log('Content loaded');
-    });
-
-    // Mobile menu toggle
-    document.getElementById('menu-toggle').addEventListener('click', function() {
-        document.getElementById('mobile-menu').classList.toggle('hidden');
-    });
-
-    // Sticky header effect
-    window.addEventListener('scroll', function() {
-        const header = document.querySelector('header');
-        if (window.scrollY > 100) {
-            header.classList.add('shadow-lg');
-            header.classList.add('py-2');
-            header.classList.remove('py-4');
-        } else {
-            header.classList.remove('shadow-lg');
-            header.classList.add('py-4');
-            header.classList.remove('py-2');
-        }
-    });
-
-    // Navigation active state
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', function() {
-            document.querySelectorAll('.nav-link').forEach(el => {
-                el.classList.remove('active');
-            });
-            this.classList.add('active');
-
-            // Close mobile menu if open
-            document.getElementById('mobile-menu').classList.add('hidden');
-        });
-    });
-
-    // Check page URL and set active nav link
-    document.addEventListener('DOMContentLoaded', function() {
     });
 }
-
-Navbar();

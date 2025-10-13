@@ -1,0 +1,181 @@
+/* Theme tokens */
+:root {
+    --hero-left-gradient:           #049af8;
+    --hero-right-gradient:          #d4d4fa;
+
+    --hero-wave-fill:               #4F4B70;
+
+    --navbar-left-gradient:         #ffffff;
+    --navbar-right-gradient:        #cdeff4;
+
+    --body-left-gradient:           #dde3f8;
+    --body-mid-gradient:            #f1f1ff;
+    --body-end-gradient:            #b7dbff;
+
+    --body-text-fill:               #fffff;
+
+    --footer-left-gradient: #23a5da;
+    --footer-right-gradient:        #b7dbff;
+
+    --nav-link-text-fill:           #131313;
+    --nav-link-hover-text-fill:     #4f46e5;
+    --nav-link-active-text-fill:    #4f46e5; /* Tailwind indigo-600 */
+    --nav-link-active-font-weight:  600;
+
+    --nav-link-underline-fill:      #4029F0;
+    --nav-link-underline-width:     100%;
+}
+
+
+/* Gradient background for hero banner */
+.bg-gradient-hero {
+    background: linear-gradient(135deg, var(--hero-left-gradient), var(--hero-right-gradient));
+}
+
+.bg-gradient-navbar {
+    background: linear-gradient(90deg, var(--navbar-left-gradient), var(--navbar-right-gradient));
+}
+
+.bg-gradient-body {
+    background: linear-gradient(100deg, var(--body-left-gradient), var(--body-mid-gradient), var(--body-end-gradient));
+}
+
+.bg-gradient-footer {
+    background: linear-gradient(100deg, var(--footer-left-gradient), var(--footer-right-gradient));
+}
+
+/* Hero wave styles */
+.hero-wave svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 70px;
+}
+.hero-wave .shape-fill {
+    fill: var(--hero-wave-fill);
+}
+
+/* Navbar stylings and animation */
+.nav-link {
+    position: relative;
+    color: var(--nav-link-text-fill);
+    font-size: var(--nav-link-font-size);
+    transition: color 0.3s ease;
+
+}
+
+.nav-link:hover {
+    color: var(--nav-link-hover-text-fill);
+}
+
+.nav-link.active {
+    color: var(--nav-link-active-text-fill);
+    font-weight: var(--nav-link-active-font-weight);
+}
+
+/* Hover animation: draws underline from left to right */
+
+.nav-link.active:after {
+    content: '';
+    position: absolute;
+    width: var(--nav-link-underline-width);
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--nav-link-underline-fill);
+}
+
+
+.nav-link:hover:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--nav-link-underline-fill);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: bottom right;
+    animation: nav-hover 0.3s forwards;
+}
+
+@keyframes nav-hover {
+    to {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+    }
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;       /* space between items */
+    list-style: none; /* remove default bullets */
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu a {
+    color: #6b7280; /* gray-500 */
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: 500;
+}
+
+.nav-menu a:hover {
+    color: #4f46e5; /* indigo-600 */
+}
+
+.nav-menu a.active {
+    color: #4f46e5;
+    font-weight: 600;
+}
+
+#content-container {
+    position: relative; /* so the ::before stays inside */
+    overflow: hidden;   /* clip the blurred background */
+}
+
+#content-container::before {
+    content: "";
+    position: absolute;
+    background-image: url('../img/background/backgroundImage1.jpg');
+    background-repeat: repeat-y; /* instead of stretch */
+    background-size: auto;
+    background-position: center;
+    filter: blur(2px); /* adjust blur strength */
+    z-index: 0; /* sit behind content */
+}
+
+#content-container > * {
+    position: relative;
+    z-index: 1; /* keep content on top */
+}
+
+/* Glassmorphism Card */
+.glass-card {
+    position: relative;
+    border-radius: 1rem;            /* rounded-xl */
+    background: rgba(255, 255, 255, 0.15); /* frosted look */
+    backdrop-filter: blur(12px);    /* the blur */
+    -webkit-backdrop-filter: blur(12px); /* Safari support */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* subtle border */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);  /* soft shadow */
+    transition: transform 0.2s ease;
+}
+
+.glass-card:hover {
+    transform: scale(1.05); /* same as hover:scale-105 */
+}
+
+.bubble-list {
+    padding-left: 0.5rem;   /* px-2 */
+    padding-right: 0.5rem;
+    padding-top: 0.25rem;   /* py-1 */
+    padding-bottom: 0.25rem;
+    background-color: #E9D5FF; /* bg-purple-100 */
+    color: #3730A3; /* text-indigo-800 */
+    border-radius: 9999px;  /* rounded-full */
+    font-size: 0.75rem;     /* text-xs */
+    line-height: 1rem;
+}
