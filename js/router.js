@@ -1,12 +1,13 @@
 // small hash-based router. Others can subscribe to route changes.
 const listeners = new Set();
+const DEFAULT_ROUTE = 'projects';
 
 function pageFromHash() {
     const hash = window.location.hash.replace(/^#/, '').trim();
-    return hash || 'projects'; // route name (no .html)
+    return hash || DEFAULT_ROUTE; // route name (no .html)
 }
 
-export function currentRoute() {
+export function getCurrentRoute() {
     return pageFromHash();
 }
 

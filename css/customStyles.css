@@ -1,12 +1,7 @@
 /* Theme tokens */
 :root {
-    --hero-left-gradient:           #049af8;
-    --hero-right-gradient:          #d4d4fa;
-
-    --hero-wave-fill:               #4F4B70;
-
-    --navbar-left-gradient:         #ffffff;
-    --navbar-right-gradient:        #cdeff4;
+    --glass-right-gradient:         #ffffff;
+    --glass-left-gradient:         #cdeff4;
 
     --body-left-gradient:           #dde3f8;
     --body-mid-gradient:            #f1f1ff;
@@ -14,121 +9,24 @@
 
     --body-text-fill:               #fffff;
 
-    --footer-left-gradient: #23a5da;
-    --footer-right-gradient:        #b7dbff;
-
-    --nav-link-text-fill:           #131313;
-    --nav-link-hover-text-fill:     #4f46e5;
-    --nav-link-active-text-fill:    #4f46e5; /* Tailwind indigo-600 */
-    --nav-link-active-font-weight:  600;
-
-    --nav-link-underline-fill:      #4029F0;
-    --nav-link-underline-width:     100%;
-}
-
-
-/* Gradient background for hero banner */
-.bg-gradient-hero {
-    background: linear-gradient(135deg, var(--hero-left-gradient), var(--hero-right-gradient));
+    --nav-menu-element-border-color:#4029F0;
 }
 
 .bg-gradient-navbar {
-    background: linear-gradient(90deg, var(--navbar-left-gradient), var(--navbar-right-gradient));
+    background: linear-gradient(90deg, var(--glass-right-gradient), var(--glass-left-gradient));
 }
 
-.bg-gradient-body {
-    background: linear-gradient(100deg, var(--body-left-gradient), var(--body-mid-gradient), var(--body-end-gradient));
-}
-
-.bg-gradient-footer {
-    background: linear-gradient(100deg, var(--footer-left-gradient), var(--footer-right-gradient));
-}
-
-/* Hero wave styles */
-.hero-wave svg {
-    position: relative;
-    display: block;
-    width: calc(100% + 1.3px);
-    height: 70px;
-}
-.hero-wave .shape-fill {
-    fill: var(--hero-wave-fill);
-}
-
-/* Navbar stylings and animation */
-.nav-link {
-    position: relative;
-    color: var(--nav-link-text-fill);
-    font-size: var(--nav-link-font-size);
-    transition: color 0.3s ease;
-
-}
-
-.nav-link:hover {
-    color: var(--nav-link-hover-text-fill);
-}
-
-.nav-link.active {
-    color: var(--nav-link-active-text-fill);
-    font-weight: var(--nav-link-active-font-weight);
-}
-
-/* Hover animation: draws underline from left to right */
-
-.nav-link.active:after {
-    content: '';
-    position: absolute;
-    width: var(--nav-link-underline-width);
-    height: 2px;
-    bottom: -4px;
-    left: 0;
-    background-color: var(--nav-link-underline-fill);
-}
-
-
-.nav-link:hover:after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: -4px;
-    left: 0;
-    background-color: var(--nav-link-underline-fill);
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-    transform-origin: bottom right;
-    animation: nav-hover 0.3s forwards;
-}
-
-@keyframes nav-hover {
-    to {
-        transform: scaleX(1);
-        transform-origin: bottom left;
-    }
+.footer {
+    background: rgba(255, 255, 255, 0.15); /* frosted look */
+    backdrop-filter: blur(12px);    /* the blur */
+    -webkit-backdrop-filter: blur(12px); /* Safari support */
 }
 
 .nav-menu {
     display: flex;
     gap: 2rem;       /* space between items */
     list-style: none; /* remove default bullets */
-    margin: 0;
-    padding: 0;
-}
-
-.nav-menu a {
-    color: #6b7280; /* gray-500 */
-    text-decoration: none;
-    transition: color 0.3s ease;
-    font-weight: 500;
-}
-
-.nav-menu a:hover {
-    color: #4f46e5; /* indigo-600 */
-}
-
-.nav-menu a.active {
-    color: #4f46e5;
-    font-weight: 600;
+    font-family: 'Bebas Neue', sans-serif;
 }
 
 #content-container {
@@ -139,7 +37,6 @@
 #content-container::before {
     content: "";
     position: absolute;
-    background-image: url('../img/background/backgroundImage1.jpg');
     background-repeat: repeat-y; /* instead of stretch */
     background-size: auto;
     background-position: center;
@@ -152,7 +49,6 @@
     z-index: 1; /* keep content on top */
 }
 
-/* Glassmorphism Card */
 .glass-card {
     position: relative;
     border-radius: 1rem;            /* rounded-xl */
@@ -161,21 +57,308 @@
     -webkit-backdrop-filter: blur(12px); /* Safari support */
     border: 1px solid rgba(255, 255, 255, 0.2); /* subtle border */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);  /* soft shadow */
+}
+
+.glass-card.animated {
     transition: transform 0.2s ease;
 }
 
-.glass-card:hover {
+.glass-card.animated:hover {
     transform: scale(1.05); /* same as hover:scale-105 */
 }
 
+.glass-card.animated.nav-menu-element {
+    position: relative;
+}
+
+.glass-card.animated.nav-menu-element::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border-radius: 1rem;
+    background: conic-gradient(
+            from var(--angle, 0deg),
+            transparent 0deg,
+            var(--nav-menu-element-border-color) 60deg,
+            #6366f1 180deg,
+            var(--nav-menu-element-border-color) 300deg,
+            transparent 360deg
+    );
+    -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    padding: 3px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    animation: rotate-border 3s linear infinite paused;
+    z-index: -1;
+}
+
+.glass-card.animated.nav-menu-element:hover::before {
+    opacity: 1;
+    animation-play-state: running;
+}
+
+@property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes rotate-border {
+    0% {
+        --angle: 0deg;
+    }
+    100% {
+        --angle: 360deg;
+    }
+}
+
 .bubble-list {
-    padding-left: 0.5rem;   /* px-2 */
-    padding-right: 0.5rem;
-    padding-top: 0.25rem;   /* py-1 */
-    padding-bottom: 0.25rem;
+    padding: 0.25rem 0.5rem;
     background-color: #E9D5FF; /* bg-purple-100 */
     color: #3730A3; /* text-indigo-800 */
     border-radius: 9999px;  /* rounded-full */
     font-size: 0.75rem;     /* text-xs */
     line-height: 1rem;
+}
+
+/* Card Container with 3D perspective */
+.card-container {
+    perspective: 1000px;
+    width: 100%;
+    max-width: 400px;
+    height: 550px;
+}
+
+/* Card wrapper for flip */
+.card-flip {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
+    transform-style: preserve-3d;
+    cursor: grab;
+}
+
+.card-flip.flipped {
+    transform: rotateY(180deg);
+}
+
+/* Base card styling */
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.3s ease;
+}
+
+.card-face:hover {
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
+}
+
+/* Front face */
+.card-front {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Back face */
+.card-back {
+    transform: rotateY(180deg);
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+/* Tech tags */
+.tech-tag {
+    padding: 0.5rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: transform 0.2s ease;
+}
+
+.tech-tag:hover {
+    transform: scale(1.1);
+}
+
+/* Flip indicator */
+.flip-indicator {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.05);
+    }
+}
+
+/* Details section styling */
+.detail-section {
+    margin-bottom: 1.5rem;
+}
+
+.detail-title {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    font-size: 1.125rem;
+}
+
+.detail-content {
+    line-height: 1.6;
+}
+
+.detail-list {
+    list-style: none;
+    padding: 0;
+}
+
+.detail-list li {
+    padding: 0.5rem 0 0.5rem 1.5rem;
+    position: relative;
+}
+
+.detail-list li:before {
+    content: "▹";
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+/* Gallery container */
+.gallery-container {
+    position: relative;
+    width: 100%;
+    height: 192px;
+    overflow: hidden;
+    border-radius: 1rem 1rem 0 0;
+}
+
+.gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+}
+
+/* Navigation arrows */
+.gallery-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.gallery-arrow:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.gallery-arrow-left {
+    left: 1rem;
+}
+
+.gallery-arrow-right {
+    right: 1rem;
+}
+
+/* Gallery indicators */
+.gallery-indicators {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+    z-index: 10;
+}
+
+.gallery-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: grey;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.gallery-indicator.active {
+    background: lightskyblue;
+    width: 24px;
+    border-radius: 4px;
+}
+
+/* Custom scrollbar for back face */
+.card-back::-webkit-scrollbar {
+    width: 30px;
+}
+
+.card-back::-webkit-scrollbar-track {
+    background: aliceblue;
+    border-radius: 0 1rem 1rem 0;
+    box-shadow: inset 2px 0 4px rgba(0, 0, 0, 0.4);
+}
+
+.card-back::-webkit-scrollbar-thumb {
+    background: rgba(0, 50, 255, 0.5);
+    border-radius: 0 1rem 1rem 0;
+    margin: 8px;
+}
+
+.nav-menu-divider {
+    width: 2px;
+    height: 40px;
+    background: linear-gradient(
+            to bottom,
+            transparent,
+            rgb(61, 199, 223),
+            rgb(43, 200, 230),
+            transparent
+    );
+    align-self: center;
+    margin: 0 0.5rem;
 }
