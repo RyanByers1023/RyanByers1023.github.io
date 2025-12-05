@@ -29,11 +29,6 @@
     font-family: 'Bebas Neue', sans-serif;
 }
 
-#content-container {
-    position: relative; /* so the ::before stays inside */
-    overflow: hidden;   /* clip the blurred background */
-}
-
 #content-container::before {
     content: "";
     position: absolute;

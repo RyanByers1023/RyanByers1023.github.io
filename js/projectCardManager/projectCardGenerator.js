@@ -45,15 +45,9 @@ export function generateProjectCardHTML(project) {
                             ${techStackHTML}
                         </div>
                         
-                        <a href="${project.githubUrl}" target="_blank" class="glass-card no-transition">
+                        <a href="${project.githubUrl}" target="_blank" class ="transition-all duration-300 ease-in-out hover:text-indigo-700 hover:scale-105">
                             View Project on GitHub →
                         </a>
-                    </div>
-
-                    <div class="flip-indicator">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
                     </div>
                 </div>
 
@@ -83,12 +77,6 @@ export function generateProjectCardHTML(project) {
                     <div class="detail-section">
                         <div class="detail-title">Status</div>
                         <div class="detail-content">${project.details.status}</div>
-                    </div>
-
-                    <div class="flip-indicator">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                        </svg>
                     </div>
                 </div>
             </div>

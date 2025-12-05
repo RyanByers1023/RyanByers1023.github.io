@@ -9,11 +9,11 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet">
 </head>
 
-<!-- Header -->
-<header class="bg-gradient-navbar shadow-sm z-50 transition-all duration-300">
-    <div class="mx-auto px-4 py-4">
+<!-- Navbar + main content area + footer -->
+<div class="flex flex-col min-h-screen">
+    <!-- Navbar -->
+    <header class="bg-gradient-navbar px-8 py-3 z-50">
         <div class="flex justify-between items-center py-3">
-            <!-- Navbar -->
             <ul class="nav-menu">
                 <li class="glass-card animated nav-menu-element">
                     <a href="#about" data-page="about.html" class="block py-1 w-28 text-center">About</a>
@@ -56,37 +56,33 @@
                 <li><a href="#contact" data-page="contact.html">Contact</a></li>
             </ul>
         </div>
-    </div>
-</header>
+    </header>
 
-<!-- Main Content Area, content is dynamically loaded in here-->
-<div id="content-container"
-    class="mx-auto p-10 bg-gradient-navbar">
-    <!-- Loading Placeholder -->
-    <div id="loading" class="text-center py-16 hidden">
-        <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-indigo-500 border-t-transparent"></div>
-        <p class="text-black mt-4">Loading content...</p>
-    </div>
-</div>
 
-<!-- Footer -->
-<footer class="mt-auto px-8 py-5 footer bottom-0 left-0 right-0">
-    <div class="mx-auto">
-        <div class="md:flex md:justify-between">
-            <div class="mb-6 md:mb-0">
-                <h2 class="text-xl font-bold">Ryan Byers</h2>
-                <p>University of Missouri-Kansas City Computer Science Graduate</p>
-            </div>
-
-            <div class="flex space-x-4">
-                <a href="https://github.com/RyanByers1023" target="_blank" class="hover: transition(scale 1.05)">
-                    <svg class="w-11 h-11" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405 1.02 0 2.04.135 3 .405 2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
-                    </svg>
-                </a>
-            </div>
+    <!-- Main Content Area -- content dynamically loaded here-->
+    <div id="content-container" class="flex-1 bg-gradient-navbar">
+        <!-- Loading Placeholder -->
+        <div id="loading" class="text-center py-16 hidden">
+            <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-indigo-500 border-t-transparent"></div>
+            <p class="text-black mt-4">Loading content...</p>
         </div>
     </div>
-</footer>
+
+    <!-- Footer -->
+    <footer class="text-white bg-indigo-600 flex px-8 py-5">
+        <div class="mb-6 md:mb-0">
+            <h2 class="text-xl font-bold">Ryan Byers</h2>
+            <p>University of Missouri-Kansas City Computer Science Graduate</p>
+        </div>
+
+        <div class="fixed right-5 transition-all duration-300 ease-in-out hover:text-indigo-300">
+            <a href="https://github.com/RyanByers1023" target="_blank">
+                <svg class="w-11 h-11" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405 1.02 0 2.04.135 3 .405 2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+            </a>
+        </div>
+    </footer>
+</div>
 
 <script type="module" src="./js/main.js"></script>

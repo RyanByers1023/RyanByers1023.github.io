@@ -2,27 +2,30 @@ export const projectsData = [
     {
         id: 'project-card-1',
         title: 'Vector Graphics Engine',
-        description: '3D vector graphics engine made using C++ and the C programming API for SDL2 (Simple DirectMedia Layer 2) library.',
+        description: 'Lightweight 3-D model renderer. Users can import models and and view them fully shaded in a 3-D, perspective based render',
         images: ['./img/rendererDemo.gif'],
         techStack: [
-            { name: 'C++', color: 'bg-purple-100 text-indigo-800' },
-            { name: 'SDL2', color: 'bg-purple-100 text-indigo-800' }
+            { name: 'C++', color: 'bg-blue-100 text-indigo-800' },
+            { name: 'SDL2', color: 'bg-red-100 text-indigo-800' }
         ],
         githubUrl: 'https://github.com/RyanByers1023/SDL2_3D_Renderer',
         details: {
-            overview: 'A custom 3D rendering engine built from scratch using C++ and SDL2.',
+            overview: 'Custom 3D rendering engine built using C++ alongside SDL2\'s C API.',
             keyFeatures: [
-                'Custom vector mathematics library',
+                'Custom model shader implementation',
+                'Accurate perspective based 3-D projection pipeline',
                 'Real-time 3D transformations',
-                'Wireframe and solid rendering modes',
-                'Camera controls and perspective projection'
+                'Both wireframe and shaded rendering options available'
             ],
             technicalHighlights: [
-                'Optimized rendering pipeline',
-                'Matrix transformations',
-                'Z-buffer implementation'
+                'Lightweight and performant (x mb total size)',
             ],
-            status: 'Completed project demonstrating graphics programming fundamentals.'
+            status: 'Gourad Shader implementation incomplete as of 12/4/25.',
+            goals: ['Gain experience in medium sized-projects', 'Gain experience in software development', 'Gain familiarity with modern programming tools such as Git, package managers, and IDEs', 'Learn and employ modern coding strategies', 'Learn and implement software design patters such as factory and singleton'],
+            challenges: ['Unfamiliarity with graphical libraries such as SDL2, and handing memory management in a medium sized project'],
+            techStackJustifications: [],
+            skillsImproved:
+                ['Git CLI - Used during production to quickly push/pull changes and switch between my production and in-development branches. Provided ability to undo damaging changes'],
         }
     },
     {
