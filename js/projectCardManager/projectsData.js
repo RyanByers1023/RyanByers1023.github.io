@@ -1,68 +1,125 @@
+//contains all data related to project cards in projects tab, cards are created at runtime using the data stored here
 export const projectsData = [
     {
         id: 'project-card-1',
         title: 'Vector Graphics Engine',
         description: 'Lightweight 3-D model renderer. Users can import models and and view them fully shaded in a 3-D, perspective based render',
-        images: ['./img/rendererDemo.gif'],
+
+        images: [
+            './img/rendererDemo.gif'
+        ],
+
         techStack: [
             { name: 'C++', color: 'bg-blue-100 text-indigo-800' },
             { name: 'SDL2', color: 'bg-red-100 text-indigo-800' }
         ],
+
         githubUrl: 'https://github.com/RyanByers1023/SDL2_3D_Renderer',
+
         details: {
-            overview: 'Custom 3D rendering engine built using C++ alongside SDL2\'s C API.',
+            overview: 'Custom 3D rendering engine built using C++ and SDL2\'s C API.',
+
             keyFeatures: [
                 'Custom model shader implementation',
                 'Accurate perspective based 3-D projection pipeline',
                 'Real-time 3D transformations',
                 'Both wireframe and shaded rendering options available'
             ],
+
             technicalHighlights: [
-                'Lightweight and performant (x mb total size)',
+                'Lightweight and performant (x mb total size)'
             ],
-            status: 'Gourad Shader implementation incomplete as of 12/4/25.',
-            goals: ['Gain experience in medium sized-projects', 'Gain experience in software development', 'Gain familiarity with modern programming tools such as Git, package managers, and IDEs', 'Learn and employ modern coding strategies', 'Learn and implement software design patters such as factory and singleton'],
-            challenges: ['Unfamiliarity with graphical libraries such as SDL2, and handing memory management in a medium sized project'],
-            techStackJustifications: [],
-            skillsImproved:
-                ['Git CLI - Used during production to quickly push/pull changes and switch between my production and in-development branches. Provided ability to undo damaging changes'],
+
+            status: [
+                'Gourad Shader implementation incomplete as of 12/4/25.'
+            ],
+
+            goals: [
+                'Gain experience in medium sized-projects',
+                'Gain experience in software development',
+                'Gain familiarity with project management tools such as Git and package managers like npm',
+                'Learn and implement more advanced software design patterns like factory and singleton'
+            ],
+
+            challenges: [
+                    'Unfamiliarity with graphical libraries such as SDL2',
+                    'The pointer refactor - Learning how to effectively and safely refactor code',
+                    'Low level memory management via smart (unique_ptr) pointers',
+                    'Unfamiliarity with equations and techniques used to create a rendering pipeline'
+            ],
+
+            challengesSolutions: [
+                    'Memory management refactor - Employ modern memory management strategies as early as possible in development',
+                    'Refactor time reduction: More time and effort into the planning stage of the project.'
+            ],
+
+            techStackJustifications: [
+                'SDL2 - Forms the foundation of the rendering process. Opening and closing windows drawing pixels to the screen, and taking user input from the keyboard are the main functionalities provided by SDL2 that I used for this project'
+            ],
+
+            skillsImproved: [
+                'Git CLI - Used during production to quickly push/pull changes and switch between my production and in-development branches. Provided ability to undo damaging changes'
+            ],
         }
     },
     {
         id: 'project-card-2',
-        title: 'Full Stack Web Application',
-        description: 'Stock Market Simulator (WIP) - Full stack web application with custom-built user account system utilizing MySQL database integration via Node.js.',
+        title: 'x',
+        description: 'x',
+
         images: [
-            './img/SMS.png',
-            './img/SMS-dashboard.png',
-            './img/SMS-login.png',
-            './img/SMS-portfolio.png'
+        './img/rendererDemo.gif'
         ],
+
         techStack: [
-            { name: 'HTML', color: 'bg-orange-100 text-orange-800' },
-            { name: 'Tailwind CSS', color: 'bg-blue-100 text-blue-800' },
-            { name: 'JavaScript', color: 'bg-yellow-100 text-yellow-800' },
-            { name: 'Node.js', color: 'bg-green-100 text-green-800' },
-            { name: 'Java', color: 'bg-red-100 text-red-800' },
-            { name: 'MySQL', color: 'bg-emerald-100 text-emerald-800' }
+        { name: 'x', color: 'bg-blue-100 text-indigo-800' },
+        { name: 'x', color: 'bg-red-100 text-indigo-800' }
         ],
-        githubUrl: 'https://github.com/RyanByers1023/Commerce-Bank-Project',
+
+        githubUrl: 'x',
+
         details: {
-            overview: 'A comprehensive full-stack web application designed to simulate stock market trading. This project demonstrates advanced database management, user authentication, and real-time data handling capabilities.',
+            overview: 'x',
+
             keyFeatures: [
-                'Custom user authentication system with bcrypt encryption',
-                'Real-time stock market simulation',
-                'MySQL database integration for user data persistence',
-                'Responsive design with Tailwind CSS',
-                'RESTful API built with Node.js and Express'
+                'x',
+                'x',
+                'x',
             ],
+
             technicalHighlights: [
-                'Secure session management',
-                'MVC architecture pattern',
-                'CRUD operations for portfolio management',
-                'Input validation and sanitization'
+                'x'
             ],
-            status: 'Currently in active development. Future updates will include advanced charting, market analytics, and social trading features.'
+
+            status: [
+                'x'
+            ],
+
+            goals: [
+                'x',
+                'x',
+                'x',
+            ],
+
+            challenges: [
+                'x',
+                'x',
+                'x',
+            ],
+
+            challengesSolutions: [
+                'x',
+                'x',
+                'x',
+            ],
+
+            techStackJustifications: [
+                'x'
+            ],
+
+            skillsImproved: [
+                'x'
+            ],
         }
     },
     // Add more projects here...
