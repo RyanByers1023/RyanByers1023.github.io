@@ -6,7 +6,7 @@ export const projectsData = [
         description: 'Lightweight 3-D model renderer. Users can import models and and view them fully shaded in a 3-D, perspective based render',
 
         images: [
-            './img/rendererDemo.gif'
+            './img/renderer/rendererDemo.gif'
         ],
 
         techStack: [
@@ -68,7 +68,10 @@ export const projectsData = [
         description: 'x',
 
         images: [
-        './img/rendererDemo.gif'
+            './img/stockMarketSim/SMSGraphDemo.gif',
+            './img/stockMarketSim/SMSHome.gif',
+            './img/stockMarketSim/SMSLoginDemo.gif',
+            './img/stockMarketSim/SMSAbout.gif'
         ],
 
         techStack: [
