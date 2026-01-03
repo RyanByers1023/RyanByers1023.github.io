@@ -24,6 +24,7 @@ export function initProjectCard(cardId, images = []) {
 
     let currentImageIndex = 0;
     let isFlipped = false;
+    let isFlipping = false;  // NEW: Track flip animation state
     let tiltX = 0;
     let tiltY = 0;
 
@@ -39,22 +40,16 @@ export function initProjectCard(cardId, images = []) {
 
     // Capture scroll events when mouse is over card to improve ui responsiveness
     cardContainer.addEventListener('wheel', (e) => {
-        // Only hijack scroll if:
-        // 1. Mouse is over the card
-        // 2. Card is flipped to show the back
-        // 3. The back face has scrollable content
         if (isMouseOverCard && isFlipped && cardBack) {
             const hasScroll = cardBack.scrollHeight > cardBack.clientHeight;
 
             if (hasScroll) {
-                e.preventDefault(); // Stop page scroll
-                e.stopPropagation(); // Stop event bubbling
-
-                // Apply scroll to card-back
+                e.preventDefault();
+                e.stopPropagation();
                 cardBack.scrollTop += e.deltaY;
             }
         }
-    }, { passive: false }); // passive: false allows preventDefault
+    }, { passive: false });
 
     // Initialize gallery indicators
     function initIndicators() {
@@ -104,27 +99,41 @@ export function initProjectCard(cardId, images = []) {
 
     // Helper function to apply combined transforms
     function applyTransform() {
+        if (isFlipping) return;
+
         const flipRotation = isFlipped ? 180 : 0;
         card.style.transform = `rotateY(${flipRotation + tiltY}deg) rotateX(${tiltX}deg) scale(1.02)`;
     }
 
     // Click to flip
     card.addEventListener('click', (e) => {
-        //things to not trig
         if (e.target.closest('a') || e.target.closest('.gallery-arrow') || e.target.closest('.gallery-indicator')) {
             return;
         }
 
+        // Set flag FIRST, before any transform changes
+        isFlipping = true;
         isFlipped = !isFlipped;
         tiltX = 0;
         tiltY = 0;
 
-        card.style.transition = 'transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1)';
-        applyTransform();
+        card.classList.add('flipping');
+        card.classList.remove('tilting', 'resetting');
+
+        // This will be blocked by the isFlipping check in applyTransform
+        const flipRotation = isFlipped ? 180 : 0;
+        card.style.transform = `rotateY(${flipRotation}deg) rotateX(0deg) scale(1.02)`;
+
+        setTimeout(() => {
+            isFlipping = false;
+            card.classList.remove('flipping');
+        }, 800);
     });
 
     // 3D Tilt effect on hover
     cardContainer.addEventListener('mousemove', (e) => {
+        if (isFlipping) return;
+
         const rect = cardContainer.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
@@ -135,16 +144,20 @@ export function initProjectCard(cardId, images = []) {
         tiltX = (y - centerY) / CARD_TILT_DAMPENER;
         tiltY = (centerX - x) / CARD_TILT_DAMPENER;
 
-        card.style.transition = 'transform 0.1s ease-out';
+        card.classList.add('tilting');
+        card.classList.remove('flipping', 'resetting');
         applyTransform();
     });
 
     // Reset tilt when mouse leaves
     cardContainer.addEventListener('mouseleave', () => {
+        if (isFlipping) return;  // Don't interrupt flip
+
         tiltX = 0;
         tiltY = 0;
 
-        card.style.transition = 'transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1)';
+        card.classList.add('resetting');
+        card.classList.remove('tilting', 'flipping');
         applyTransform();
     });
 

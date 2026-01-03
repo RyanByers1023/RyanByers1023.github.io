@@ -149,6 +149,19 @@
     transform: rotateY(180deg);
 }
 
+/* Add these new classes after .card-flip */
+.card-flip.flipping {
+    transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1) !important;
+}
+
+.card-flip.tilting {
+    transition: transform 0.1s ease-out;
+}
+
+.card-flip.resetting {
+    transition: transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
 /* Base card styling */
 .card-face {
     position: absolute;
