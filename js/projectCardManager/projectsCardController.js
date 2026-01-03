@@ -25,8 +25,8 @@ export function initProjectCard(cardId, images = []) {
     let currentImageIndex = 0;
     let isFlipped = false;
     let isFlipping = false;  // NEW: Track flip animation state
-    let tiltX = 0;
-    let tiltY = 0;
+
+    initIndicators();
 
 
     // Track mouse position over card
@@ -49,7 +49,7 @@ export function initProjectCard(cardId, images = []) {
                 cardBack.scrollTop += e.deltaY;
             }
         }
-    }, { passive: false });
+    }, {passive: false});
 
     // Initialize gallery indicators
     function initIndicators() {
@@ -87,42 +87,23 @@ export function initProjectCard(cardId, images = []) {
         showImage(currentImageIndex);
     }
 
-    function prevImage(e) {
-        e.stopPropagation();
-        currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-        showImage(currentImageIndex);
-    }
-
-    // Event listeners for gallery navigation
-    if (prevBtn) prevBtn.addEventListener('click', prevImage);
-    if (nextBtn) nextBtn.addEventListener('click', nextImage);
-
-    // Helper function to apply combined transforms
-    function applyTransform() {
-        if (isFlipping) return;
-
-        const flipRotation = isFlipped ? 180 : 0;
-        card.style.transform = `rotateY(${flipRotation + tiltY}deg) rotateX(${tiltX}deg) scale(1.02)`;
-    }
-
     // Click to flip
     card.addEventListener('click', (e) => {
         if (e.target.closest('a') || e.target.closest('.gallery-arrow') || e.target.closest('.gallery-indicator')) {
             return;
         }
 
-        // Set flag FIRST, before any transform changes
-        isFlipping = true;
         isFlipped = !isFlipped;
-        tiltX = 0;
-        tiltY = 0;
+        isFlipping = true;
 
+        // Reset tilt
+        card.style.setProperty('--tilt-x', '0deg');
+        card.style.setProperty('--tilt-y', '0deg');
+
+        // Toggle flip and apply transition class
+        card.classList.toggle('flipped');
         card.classList.add('flipping');
         card.classList.remove('tilting', 'resetting');
-
-        // This will be blocked by the isFlipping check in applyTransform
-        const flipRotation = isFlipped ? 180 : 0;
-        card.style.transform = `rotateY(${flipRotation}deg) rotateX(0deg) scale(1.02)`;
 
         setTimeout(() => {
             isFlipping = false;
@@ -141,28 +122,33 @@ export function initProjectCard(cardId, images = []) {
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
 
-        tiltX = (y - centerY) / CARD_TILT_DAMPENER;
-        tiltY = (centerX - x) / CARD_TILT_DAMPENER;
+        const tiltX = (y - centerY) / CARD_TILT_DAMPENER;
+        const tiltY = (centerX - x) / CARD_TILT_DAMPENER;
+
+        // Just update CSS variables - CSS handles the rest
+        card.style.setProperty('--tilt-x', `${tiltX}deg`);
+        card.style.setProperty('--tilt-y', `${tiltY}deg`);
 
         card.classList.add('tilting');
-        card.classList.remove('flipping', 'resetting');
-        applyTransform();
+        card.classList.remove('resetting');
     });
 
     // Reset tilt when mouse leaves
     cardContainer.addEventListener('mouseleave', () => {
-        if (isFlipping) return;  // Don't interrupt flip
-
-        tiltX = 0;
-        tiltY = 0;
+        card.style.setProperty('--tilt-x', '0deg');
+        card.style.setProperty('--tilt-y', '0deg');
 
         card.classList.add('resetting');
-        card.classList.remove('tilting', 'flipping');
-        applyTransform();
+        card.classList.remove('tilting');
     });
 
-    // Initialize gallery if images provided
-    if (images.length > 0) {
-        initIndicators();
+    function prevImage(e) {
+        e.stopPropagation();
+        currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+        showImage(currentImageIndex);
     }
+
+    // Event listeners for gallery navigation
+    if (prevBtn) prevBtn.addEventListener('click', prevImage);
+    if (nextBtn) nextBtn.addEventListener('click', nextImage);
 }

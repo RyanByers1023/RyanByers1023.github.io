@@ -1,3 +1,5 @@
+/*TODO: Fix project card blur issue*/
+
 /* Theme tokens */
 :root {
     --glass-right-gradient:         #ffffff;
@@ -140,22 +142,24 @@
     position: relative;
     width: 100%;
     height: 100%;
-    transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
     transform-style: preserve-3d;
     cursor: grab;
+    /* Use CSS variables for dynamic values */
+    --tilt-x: 0deg;
+    --tilt-y: 0deg;
+    --flip-y: 0deg;
+    /* Single transform using variables */
+    transform: rotateY(calc(var(--flip-y) + var(--tilt-y))) rotateX(var(--tilt-x)) scale(1.02);
+    /* Default transition */
+    transition: transform 0.1s ease-out;
 }
 
 .card-flip.flipped {
-    transform: rotateY(180deg);
+    --flip-y: 180deg;
 }
 
-/* Add these new classes after .card-flip */
 .card-flip.flipping {
     transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1) !important;
-}
-
-.card-flip.tilting {
-    transition: transform 0.1s ease-out;
 }
 
 .card-flip.resetting {
