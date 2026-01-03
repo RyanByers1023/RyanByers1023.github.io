@@ -45,7 +45,7 @@ export function generateProjectCardHTML(project) {
                             ${techStackHTML}
                         </div>
                         
-                        <a href="${project.githubUrl}" target="_blank" class ="transition-all duration-300 ease-in-out hover:text-indigo-700 hover:scale-105">
+                        <a href="${project.githubUrl}" target="_blank" class ="github-url">
                             View Project on GitHub →
                         </a>
                     </div>
