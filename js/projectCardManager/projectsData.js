@@ -31,6 +31,7 @@ export const projectsData = [
             ],
 
             status: [
+                'Incomplete',
                 'Gourad Shader implementation incomplete as of 12/4/25.'
             ],
 
@@ -58,7 +59,14 @@ export const projectsData = [
             ],
 
             skillsImproved: [
-                'Git CLI - Used during production to quickly push/pull changes and switch between my production and in-development branches. Provided ability to undo damaging changes'
+                'Git CLI - Used during production to quickly push/pull changes and switch between my production and in-development branches. Provided ability to undo damaging changes',
+                'Project Management - I learned the fundamentals of how to begin, manage, and complete a medium sized project with no guidance',
+                'Proficiency in C++ - Given the codebase is 100% C++, I greatly improved my ability to use the language',
+                'Programming Pattern usage - Within my graphics pipeline, there are many, many classes that had to be created to handle the immense amount of data being calculated' +
+                    'each frame. To more effectively handle this data, I researched various different programming patterns that I later implemented into my program. The patterns I used' +
+                    ' within this program are the following: [insert pattern list here]',
+                'Discrete structure elements: Standard library containers such as vectors, arrays, unordered maps, and various other containers are used frequently throughout the program in order to make data handling as' +
+                    'transparent and easy to understand as possible'
             ],
         }
     },
@@ -90,7 +98,6 @@ export const projectsData = [
 
             keyFeatures: [
                 'Realtime, persistent, stock market simulation, all running within a web browser',
-
                 'Market information is supplemented with visuals via graphs, tables, and easy to understand icons',
                 'Easy to access via Render: automatically launching the web app upon user request',
             ],
@@ -109,7 +116,7 @@ export const projectsData = [
             ],
 
             goals: [
-                'Provide small platform for stock trading information, complete with a sandbox stock market to test strategies.',
+                'Provide platform for stock trading information, complete with a sandbox stock market to test simple trading strategies.',
                 'Show uneducated traders the potential loss come with stock trading in a risk-free environment',
             ],
 
