@@ -1,6 +1,6 @@
 /**
  * Validates a project object against the expected structure
- * @param {Project} project - Project to validate
+ * @param {Project} project - Project from projectsData.js
  * @returns {boolean} True if valid
  * @throws {Error} If validation fails
  */
@@ -25,7 +25,7 @@ export function validateProject(project) {
 }
 
 function validateProjectDetails(project){
-    const required = ['id', 'title', 'description', 'images', 'techStack', 'githubUrl', 'details'];
+    const required = ['overview'];
     
     for (const field of required) {
         if (!(field in project)) {
