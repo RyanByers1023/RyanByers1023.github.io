@@ -1,0 +1,37 @@
+/**
+ * Validates a project object against the expected structure
+ * @param {Project} project - Project to validate
+ * @returns {boolean} True if valid
+ * @throws {Error} If validation fails
+ */
+export function validateProject(project) {
+    const required = ['id', 'title', 'description', 'images', 'techStack', 'githubUrl', 'details'];
+    
+    for (const field of required) {
+        if (!(field in project)) {
+            throw new Error(`Error: "${project.title || 'Undefined Project Title'}" missing required field: ${field}`);
+        }
+    }
+
+    if (!Array.isArray(project.images) || project.images.length === 0) {
+        throw new Error(`Error: "${project.title}" project images could not be loaded.`);
+    }
+
+    if (!Array.isArray(project.techStack) || project.techStack.length === 0) {
+        throw new Error(`Error: "${project.title}" tech stack list could not be loaded.`);
+    }
+
+    return validateProjectDetails(project);
+}
+
+function validateProjectDetails(project){
+    const required = ['id', 'title', 'description', 'images', 'techStack', 'githubUrl', 'details'];
+    
+    for (const field of required) {
+        if (!(field in project)) {
+            throw new Error(`Error: "${project.title || 'Undefined Project Title'}" missing required field: ${field}`);
+        }
+    }
+
+    return true;
+}
