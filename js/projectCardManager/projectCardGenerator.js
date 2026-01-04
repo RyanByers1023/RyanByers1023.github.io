@@ -1,9 +1,23 @@
 //Generates project card from data stored wtihin projectsData.js
 
 /**
+ * Main function: Generates complete project card HTML
+ */
+export function generateProjectCardHTML(project) {
+    return `
+        <div class="card-container">
+            <div class="card-flip" id="${project.id}">
+                ${generateCardFrontHTML(project)}
+                ${generateCardBackHTML(project)}
+            </div>
+        </div>
+    `;
+}
+
+/**
  * Generates HTML for a single technology tag
  */
-function generateTechTag(tech) {
+function generateTechTagHTML(tech) {
     return `<span class="tech-tag ${tech.color}">${tech.name}</span>`;
 }
 
@@ -24,14 +38,14 @@ function generateListHTML(items) {
 /**
  * Determines whether gallery controls should be displayed
  */
-function shouldShowGalleryControls(images) {
+function imagesInArray(images) {
     return images.length > 1;
 }
 
 /**
  * Generates HTML for gallery navigation arrows
  */
-function generateGalleryArrows() {
+function generateGalleryArrowsHTML() {
     return `
         <button class="gallery-arrow gallery-arrow-left" aria-label="Previous Image">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -49,13 +63,13 @@ function generateGalleryArrows() {
 /**
  * Generates HTML for gallery controls (arrows and indicators)
  */
-function generateGalleryControlsHTML(images) {
-    if (!shouldShowGalleryControls(images)) {
+function generateGalleryControlHTML(images) {
+    if (!imagesInArray(images)) {
         return '';
     }
 
     return `
-        ${generateGalleryArrows()}
+        ${generateGalleryArrowsHTML()}
         <div class="gallery-indicators"></div>
     `;
 }
@@ -63,7 +77,7 @@ function generateGalleryControlsHTML(images) {
 /**
  * Generates HTML for a detail section
  */
-function generateDetailSection(title, content) {
+function generateDetailSectionHTML(title, content) {
     return `
         <div class="detail-section">
             <div class="detail-title">${title}</div>
@@ -75,7 +89,7 @@ function generateDetailSection(title, content) {
 /**
  * Generates HTML for a detail section with a list
  */
-function generateDetailListSection(title, items) {
+function generateDetailListSectionHTML(title, items) {
     return `
         <div class="detail-section">
             <div class="detail-title">${title}</div>
@@ -126,24 +140,10 @@ function generateCardBackHTML(project) {
         <div class="text-black card-face card-back">
             <h3 class="font-bold text-2xl mb-4">Project Details</h3>
             
-            ${generateDetailSection('Overview', details.overview)}
-            ${generateDetailListSection('Key Features', details.keyFeatures)}
-            ${generateDetailListSection('Technical Highlights', details.technicalHighlights)}
-            ${generateDetailSection('Status', details.status)}
-        </div>
-    `;
-}
-
-/**
- * Main function: Generates complete project card HTML
- */
-export function generateProjectCardHTML(project) {
-    return `
-        <div class="card-container">
-            <div class="card-flip" id="${project.id}">
-                ${generateCardFrontHTML(project)}
-                ${generateCardBackHTML(project)}
-            </div>
+            ${generateDetailSectionHTML('Overview', details.overview)}
+            ${generateDetailListSectionHTML('Key Features', details.keyFeatures)}
+            ${generateDetailListSectionHTML('Technical Highlights', details.technicalHighlights)}
+            ${generateDetailSectionHTML('Status', details.status)}
         </div>
     `;
 }
