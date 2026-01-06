@@ -1,5 +1,4 @@
 //Generates project card from data stored wtihin projectsData.js
-
 /**
  * Main function: Generates complete project card HTML
  */
@@ -25,7 +24,7 @@ function generateTechTagHTML(tech) {
  * Generates HTML for the tech stack section
  */
 function generateTechStackHTML(techStack) {
-    return techStack.map(generateTechTag).join('');
+    return techStack.map(generateTechTagHTML).join('');
 }
 
 /**
@@ -63,7 +62,7 @@ function generateGalleryArrowsHTML() {
 /**
  * Generates HTML for gallery controls (arrows and indicators)
  */
-function generateGalleryControlHTML(images) {
+function generateGalleryControlsHTML(images) {
     if (!imagesInArray(images)) {
         return '';
     }
