@@ -1,0 +1,73 @@
+/*TODO: Fix project card blur issue*/
+
+/* Theme tokens */
+:root {
+    --glass-right-gradient:         #ffffff;
+    --glass-left-gradient:         #cdeff4;
+
+    --body-left-gradient:           #dde3f8;
+    --body-mid-gradient:            #f1f1ff;
+    --body-end-gradient:            #b7dbff;
+
+    --body-text-fill:               #fffff;
+
+    --nav-menu-element-border-color:#4029F0;
+}
+
+.bg-gradient-navbar {
+    background: linear-gradient(90deg, var(--glass-right-gradient), var(--glass-left-gradient));
+}
+
+.footer {
+    background: rgba(255, 255, 255, 0.15); /* frosted look */
+    backdrop-filter: blur(12px);    /* the blur */
+    -webkit-backdrop-filter: blur(12px); /* Safari support */
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;       /* space between items */
+    list-style: none; /* remove default bullets */
+    font-family: 'Bebas Neue', sans-serif;
+}
+
+#content-container::before {
+    content: "";
+    position: absolute;
+    background-repeat: repeat-y; /* instead of stretch */
+    background-size: auto;
+    background-position: center;
+    filter: blur(2px); /* adjust blur strength */
+    z-index: 0; /* sit behind content */
+}
+
+#content-container > * {
+    position: relative;
+    z-index: 1; /* keep content on top */
+}
+
+
+
+.bubble-list {
+    padding: 0.25rem 0.5rem;
+    background-color: #E9D5FF; /* bg-purple-100 */
+    color: #3730A3; /* text-indigo-800 */
+    border-radius: 9999px;  /* rounded-full */
+    font-size: 0.75rem;     /* text-xs */
+    line-height: 1rem;
+}
+
+
+.nav-menu-divider {
+    width: 2px;
+    height: 40px;
+    background: linear-gradient(
+            to bottom,
+            transparent,
+            rgb(61, 199, 223),
+            rgb(43, 200, 230),
+            transparent
+    );
+    align-self: center;
+    margin: 0 0.5rem;
+}

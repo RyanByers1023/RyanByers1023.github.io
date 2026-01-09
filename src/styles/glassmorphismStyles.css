@@ -1,0 +1,73 @@
+.glass-card {
+    position: relative;
+    border-radius: 1rem;            /* rounded-xl */
+    background: rgba(255, 255, 255, 0.15); /* frosted look */
+    backdrop-filter: blur(12px);    /* the blur */
+    -webkit-backdrop-filter: blur(12px); /* Safari support */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* subtle border */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);  /* soft shadow */
+}
+
+.glass-card.animated {
+    transition: transform 0.2s ease;
+}
+
+.glass-card.animated:hover {
+    transform: scale(1.05); /* same as hover:scale-105 */
+}
+
+.glass-card.animated.nav-menu-element {
+    position: relative;
+}
+
+.glass-card.animated.nav-menu-element::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border-radius: 1rem;
+    background: conic-gradient(
+            from var(--angle, 0deg),
+            transparent 0deg,
+            var(--nav-menu-element-border-color) 60deg,
+            #6366f1 180deg,
+            var(--nav-menu-element-border-color) 300deg,
+            transparent 360deg
+    );
+    -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    padding: 3px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    animation: rotate-border 3s linear infinite paused;
+    z-index: -1;
+}
+
+.glass-card.animated.nav-menu-element:hover::before {
+    opacity: 1;
+    animation-play-state: running;
+}
+
+@property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes rotate-border {
+    0% {
+        --angle: 0deg;
+    }
+    100% {
+        --angle: 360deg;
+    }
+}

@@ -1,84 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ryan Byers' Portfolio Website</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <link href="./css/customStyles.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ryan Byers' Portfolio Website</title>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+        <link href="./src/styles/mainContainerStyles.css" rel="stylesheet">
+        <link href="./src/styles/glassmorphismStyles.css" rel="stylesheet">
+        <link href="./src/styles/projectCardStyles.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet">
+    </head>
+    <body>
+        <div class="flex flex-col min-h-screen navbar-container">
+            <!-- Navbar will be injected here -->
+            <div id="navbar-container"></div>
 
-<!-- Navbar +   main content area + footer -->
-<div class="flex flex-col min-h-screen">
-    <!-- Navbar -->
-    <header class="bg-gradient-navbar px-8 py-3 z-50">
-        <div class="flex justify-between items-center py-3">
-            <ul class="nav-menu">
-                <li class="glass-card animated nav-menu-element">
-                    <a href="#projects" data-page="projects.html" class="block px-2 py-1 w-28 text-center">Projects</a>
-                </li>
-                <li class="glass-card animated nav-menu-element">
-                    <a href="#skills" data-page="skills.html" class="block px-2 py-1 w-28 text-center">Skills</a>
-                </li>
-                <li class="glass-card animated nav-menu-element">
-                    <a href="#contact" data-page="contact.html" class="block px-2 py-1 w-28 text-center">Contact</a>
-                </li>
-            </ul>
+            <!-- Main Content Area -->
+            <div id="content-container" class="flex-1 bg-gradient-navbar">
+                <div id="loading" class="text-center py-16 hidden">
+                    <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-indigo-500 border-t-transparent"></div>
+                    <p class="text-black mt-4">Loading content...</p>
+                </div>
+            </div>
 
-            <!-- Right: Documents -->
-            <ul class="nav-menu flex items-center">
-                <li class="glass-card animated nav-menu-element">
-                    <a href="doc/resume.pdf" class="block px-2 py-1 w-28 text-center">Resume</a>
-                </li>
-                <div class ="nav-menu-divider"></div>
-                <li class="glass-card animated nav-menu-element">
-                    <a href="doc/diploma.pdf" class="block px-2 py-1 w-28 text-center">Diploma</a>
-                </li>
-            </ul>
-
-            <button class="md:hidden focus:outline-none" id="menu-toggle">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-            </button>
+            <!-- Footer will be injected here -->
+            <div id="footer-container"></div>
         </div>
-
-        <!-- Mobile Menu -->
-        <div class="hidden md:hidden" id="mobile-menu">
-            <ul class="mobile-nav-menu">
-                <li><a href="#projects" data-page="projects.html">Projects</a></li>
-                <li><a href="#skills" data-page="skills.html">Skills</a></li>
-                <li><a href="#contact" data-page="contact.html">Contact</a></li>
-            </ul>
-        </div>
-    </header>
-
-
-    <!-- Main Content Area -- content dynamically loaded here-->
-    <div id="content-container" class="flex-1 bg-gradient-navbar">
-        <!-- Loading Placeholder -->
-        <div id="loading" class="text-center py-16 hidden">
-            <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-indigo-500 border-t-transparent"></div>
-            <p class="text-black mt-4">Loading content...</p>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="text-white bg-indigo-600 flex px-8 py-5">
-        <div class="mb-6 md:mb-0">
-            <h2 class="text-xl font-bold">Ryan Byers</h2>
-            <p>University of Missouri-Kansas City Computer Science Graduate</p>
-        </div>
-
-        <div class="fixed right-5 footer-plug">
-            <a href="https://github.com/RyanByers1023" target="_blank">
-                <svg class="w-11 h-11" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405 1.02 0 2.04.135 3 .405 2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
-                </svg>
-            </a>
-        </div>
-    </footer>
-</div>
-
-<script type="module" src="./js/main.js"></script>
+    </body>
+    <script type="module" src="./src/main.ts"></script>
+</html>

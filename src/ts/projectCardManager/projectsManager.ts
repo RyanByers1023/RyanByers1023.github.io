@@ -1,8 +1,12 @@
-import { projectsData } from './projectsData.js';
-import { generateProjectCardHTML } from './projectCardGenerator.js';
-import { initProjectCard } from './projectsCardController.js';
+import { projectsData } from '@projectCardManager/data/projectsData';
+import { generateProjectCardHTML } from '@projectCardManager/projectCardGenerator';
+import { initProjectCard } from '@projectCardManager/projectsCardController';
 
-export function initAllProjects(containerId = 'projects-grid') {
+/**
+ * Initializes all project cards in the specified container
+ * @param containerId - The ID of the container element (defaults to 'projects-grid')
+ */
+export function initAllProjects(containerId: string = 'projects-grid'): void {
     const container = document.getElementById(containerId);
     if (!container) {
         console.error(`Container with id "${containerId}" not found`);
@@ -10,12 +14,12 @@ export function initAllProjects(containerId = 'projects-grid') {
     }
 
     // Generate HTML for all project cards
-    const cardsHTML = projectsData.map(project =>
+    const cardsHTML: string = projectsData.map(project =>
         generateProjectCardHTML(project)
     ).join('');
 
     // Insert before the "View More" card (or append if not found)
-    const viewMoreCard = container.querySelector('.glass-card');
+    const viewMoreCard: Element | null = container.querySelector('.glass-card');
     if (viewMoreCard) {
         viewMoreCard.insertAdjacentHTML('beforebegin', cardsHTML);
     } else {

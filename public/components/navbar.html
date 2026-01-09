@@ -1,0 +1,39 @@
+<header class="bg-gradient-navbar px-8 py-3 z-50">
+    <div class="flex justify-between items-center py-3">
+        <ul class="nav-menu">
+            <li class="glass-card animated nav-menu-element px-10 py-1 w-auto">
+                <a href="#projects" data-page="projects" class="nav-link">Projects</a>
+            </li>
+            <li class="glass-card animated nav-menu-element px-10 py-1 w-auto">
+                <a href="#skills" data-page="skills" class="nav-link">Skills</a>
+            </li>
+            <li class="glass-card animated nav-menu-element px-10 py-1 w-auto">
+                <a href="#contact" data-page="contact" class="nav-link">Contact</a>
+            </li>
+        </ul>
+
+        <ul class="nav-menu flex items-center">
+            <li class="glass-card animated nav-menu-element">
+                <a href="doc/resume.pdf" class="block px-10 py-1 text-center">Resume</a>
+            </li>
+            <div class="nav-menu-divider"></div>
+            <li class="glass-card animated nav-menu-element">
+                <a href="doc/diploma.pdf" class="block px-10 py-1 text-center">Diploma</a>
+            </li>
+        </ul>
+
+        <button class="md:hidden focus:outline-none" id="menu-toggle">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+    </div>
+
+    <div class="hidden md:hidden" id="mobile-menu">
+        <ul class="mobile-nav-menu">
+            <li><a href="#projects" data-page="projects" class="nav-link">Projects</a></li>
+            <li><a href="#skills" data-page="skills" class="nav-link">Skills</a></li>
+            <li><a href="#contact" data-page="contact" class="nav-link">Contact</a></li>
+        </ul>
+    </div>
+</header>

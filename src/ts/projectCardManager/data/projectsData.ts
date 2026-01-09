@@ -1,6 +1,6 @@
 /**
- * @file Project data for portfolio website
- * Cards are created at runtime using this data in projectCardGenerator.js
+ * @file Project data for portfolio website (ryanbyers1023.github.io)
+ * Cards are created at runtime using this data in projectCardGenerator.ts
  */
 
 // ============================================================================
@@ -9,17 +9,15 @@
 
 /**
  * Project status values
- * @enum {string}
  */
-export const ProjectStatus = {
-    COMPLETE: 'Complete',
-    IN_PROGRESS: 'In Progress',
-    INCOMPLETE: 'Incomplete'
-};
+export enum ProjectStatus {
+    COMPLETE = 'Complete',
+    IN_PROGRESS = 'In Progress',
+    INCOMPLETE = 'Incomplete'
+}
 
 /**
  * Tailwind color schemes for tech stack badges
- * @enum {string}
  */
 export const TechColors = {
     CPP: 'bg-blue-100 text-indigo-800',
@@ -31,42 +29,48 @@ export const TechColors = {
     HTML: 'bg-red-100 text-yellow-800',
     JS: 'bg-red-100 text-white-800',
     CSS: 'bg-red-100 text-black-800'
-};
+} as const;
 
 // ============================================================================
 // TYPE DEFINITIONS
 // ============================================================================
 
 /**
- * @typedef {Object} TechStack
- * @property {string} name - Technology name
- * @property {string} color - Tailwind CSS classes for badge styling
+ * Technology stack item with name and styling
  */
+export interface TechStack {
+    name: string;
+    color: string;
+}
 
 /**
- * @typedef {Object} ProjectDetails
- * @property {string} overview - Brief overview of the project
- * @property {string[]} keyFeatures - Main features of the project
- * @property {string[]} technicalHighlights - Technical achievements and highlights
- * @property {string} status - Current project status
- * @property {string} [statusNotes] - Additional notes about project status
- * @property {string[]} goals - Project objectives and learning goals
- * @property {string[]} challenges - Challenges faced during development
- * @property {string[]} solutions - Solutions to the challenges
- * @property {string[]} techStackJustifications - Justifications for technology choice
- * @property {string[]} skillsGained - Skills developed during the project
+ * Detailed project information
  */
+export interface ProjectDetails {
+    overview: string;
+    keyFeatures: string[];
+    technicalHighlights: string[];
+    status: ProjectStatus;
+    statusNotes?: string;
+    goals: string[];
+    challenges: string[];
+    solutions: string[];
+    techStack: Record<string, string>;
+    skillsGained: string[];
+}
 
 /**
- * @typedef {Object} Project
- * @property {string} id - Unique identifier for the project card
- * @property {string} title - Project title
- * @property {string} description - Short description for card preview
- * @property {string[]} images - Array of image paths for gallery
- * @property {TechStack[]} techStack - Technologies used in the project
- * @property {string} githubUrl - GitHub repository URL
- * @property {ProjectDetails} details - Additonal detailed project information
+ * Portfolio project data structure
  */
+export interface Project {
+    id: string;
+    title: string;
+    description: string;
+    images: string[];
+    techStack: TechStack[];
+    githubUrl: string;
+    details: ProjectDetails;
+}
 
 // ============================================================================
 // PROJECT DATA
@@ -74,9 +78,8 @@ export const TechColors = {
 
 /**
  * Array of portfolio projects
- * @type {Project[]}
  */
-export const projectsData = [
+export const projectsData: Project[] = [
     {
         id: 'project-card-1',
         title: 'Vector Graphics Engine',
@@ -205,10 +208,15 @@ export const projectsData = [
             ],
 
             solutions: [
-                'Unfamiliarity - Online resources such as GeeksforGeeks, YouTube, and official documentation provided many easy avenues to learn the previously unfamiliar stack',
-                'Working in a team - Clear communication regarding each team member\'s technical, social, and leadership skills allowed for efficient and fair task delegation',
-                'Coordination - Kept in constant contact with team throughout project lifecycle via Discord, and delegated tasks using the Scrum system with User Stories',
-                'Security - Implemented bcrypt for password hashing and Helmet middleware for HTTP security headers'
+                'Unfamiliarity - Online programming resources, we found, were abundant. These came in the form of official documentation, resources from StackExchange, Youtube tutorials for the various frameworks and libraries we chose,' +
+                'and sometimes, we found that even website like Reddit could hold the solution to a problem we had been butting out heads against the wall for. Additionally, our excellent team communication allowed' +
+                'us to help each other solve problems in real-time, irrespective of our pre-scheduled meet times. This allowed for each of us to leverage our individual strengths efficiently towards progressing the project\'s goals.',
+                'Working in a team - Clear communication regarding each team member\'s technical, social, and leadership skills allowed for efficient and fair task delegation. Each team member detailed their availability clearly and plainly' +
+                'during the initial planning stages of the project, allowing for us to designate meet times that accommodated us all best.',
+                'Coordination - Constant contact with team maintained throughout project lifecycle via Discord, and tasks were evenly delegated via user stories that were tracked on team-management platform called Jira.' +
+                'Each story was scored based upon the estimated amount of work before each Sprint occurred, and each team member was allowed to chose their own tasks. This system, while sometimes feeling a bit cumbersome' +
+                'given our small team size of 4 members, allowed for us to keep work load even and fair, keep a tight schedule, and ensure each team member was doing their part to push the project forward.',
+                'Security - Implemented bcrypt for password hashing and Helmet middleware for HTTP security headers. Pre-written SQL statements prevent SQL injection attacks via front-end text input fields.'
             ],
 
             techStack: {
