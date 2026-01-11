@@ -1,7 +1,6 @@
 /**
  * @file Project data for portfolio website (ryanbyers1023.github.io)
- * Cards are created at runtime using this data in projectCardGenerator.ts
- * Data sourced from projectsData.ts
+ * Cards are created at runtime using this data, fed into projectCardGenerator.ts
  */
 
 // ============================================================================

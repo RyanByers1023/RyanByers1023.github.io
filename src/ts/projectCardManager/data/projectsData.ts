@@ -45,8 +45,10 @@ export const projectsData: Project[] = [
 
             goals: [
                 'Gain experience from top to bottom for medium-sized software development projects',
-                'Gain familiarity with project management tools such as Git and Node Package Manager (npm).',
-                'Learn and implement more advanced software design patterns like factory, singleton, subscriber and publisher, etc.'
+                'Learn and use project management tools such as Git and Node Package Manager (npm).',
+                'Improve confidence in C++, an incredibly important language for software development due to its ubiquity in the space.',
+                'Establish familiarity with low level project work, and learn what exactly this part of software development generally entails.',
+                'Implement software design patterns I learned during my time in college. e.g. factory, singleton, subscriber and publisher, etc.'
             ],
 
             challenges: [
@@ -69,13 +71,14 @@ export const projectsData: Project[] = [
 
             techStack: {
                 'SDL2': 'Forms the core of the rendering process. Opening and closing windows, drawing pixels to the screen, and taking user input from the keyboard are the main functionalities provided by SDL2 that I used for this project',
-                'C++': 'Chosen for its performance capabilities and low-level memory control, essential for real-time 3D rendering'
+                'C++': 'Chosen for its performance capabilities and low-level memory control, essential for real-time 3D rendering',
+                'Github + Git CLI': 'Used for remote development, project version control, branch management, and merge conflict resolution.'
             },
 
             skillsGained: [
-                'Git CLI - Used during production to quickly push/pull/undo changes to the codebase. Provided ability to switch between production and in-development branches and even work on the project remotely.',
+                'Git CLI - Learned during production how to quickly push/pull/undo changes to a repository in a safe manner. Learned how to create and switch between production and in-development branches on the fly and even work on the project remotely.',
                 'Project Management - Learned the fundamentals of how to begin, manage, and complete a medium-sized project with no guidance',
-                'Proficiency in C++ - Given the codebase is 100% C++, greatly improved ability to use the language',
+                'Proficiency in C++ - Through this project, C++ has become my favorite language, and the constant exposure to it during development, refactors, and eventually production allowed me to aquiant myself well with its rules, resoruces (std library), and intricasies.',
                 'Programming Pattern usage - Researched and implemented various design patterns to handle the immense amount of data being calculated each frame',
                 'Data structure proficiency - Standard library containers such as vectors, arrays, unordered maps, and various other containers are used frequently throughout the program to make data handling transparent and easy to understand'
             ]
@@ -88,10 +91,10 @@ export const projectsData: Project[] = [
         description: 'Full-stack stock market simulation web application. Features real-time trading, persistent user accounts, and interactive market visualization',
 
         images: [
-            './img/stockMarketSim/SMSGraphDemo.gif',
-            './img/stockMarketSim/SMSHome.gif',
-            './img/stockMarketSim/SMSLoginDemo.gif',
-            './img/stockMarketSim/SMSAbout.gif'
+            '@imgs/stockMarketSim/SMSGraphDemo.gif',
+            '@imgs/stockMarketSim/SMSHome.gif',
+            '@imgs/stockMarketSim/SMSLoginDemo.gif',
+            '@imgs/stockMarketSim/SMSAbout.gif'
         ],
 
         techStack: [

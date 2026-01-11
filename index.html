@@ -3,19 +3,19 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Ryan Byers' Portfolio Website</title>
+        <title>Ryan Byers' Portfolio</title>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-        <link href="./src/styles/mainContainerStyles.css" rel="stylesheet">
-        <link href="./src/styles/glassmorphismStyles.css" rel="stylesheet">
-        <link href="./src/styles/projectCardStyles.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet">
+        <link href="@styles/mainContainerStyles.css" rel="stylesheet">
+        <link href="@styles/glassmorphismStyles.css" rel="stylesheet">
+        <link href="@styles/projectCardStyles.css" rel="stylesheet">
     </head>
     <body>
         <div class="flex flex-col min-h-screen navbar-container">
             <!-- Navbar will be injected here -->
             <div id="navbar-container"></div>
 
-            <!-- Main Content Area -->
+            <!-- Main Content Area -- Pages stored in /pages get injected/cleared here -->
             <div id="content-container" class="flex-1 bg-gradient-navbar">
                 <div id="loading" class="text-center py-16 hidden">
                     <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-indigo-500 border-t-transparent"></div>
@@ -27,5 +27,5 @@
             <div id="footer-container"></div>
         </div>
     </body>
-    <script type="module" src="./src/main.ts"></script>
+    <script type="module" src="@src/main.ts"></script>
 </html>
