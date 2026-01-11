@@ -60,9 +60,11 @@ export const projectsData: Project[] = [
 
             solutions: [
                 'Unfamiliarity w/ SDL2 - Official SDL2 documentation, W3schools.com, StackExchange.com, Reddit, Geeksforgeeks, and sometimes even AI provided great information that helped me in developing this program withe SDL2.',
-                'Unfamiliarity w/ APIs - SDL2\'s C API was my main introduction to using code that I did not develop in my programs. Truely, a lot of trial and error, along with the previously mentioned resources helped me along in learning and eventually becoming more comfortable with this concept.'
-                'Memory management refactor - Employing modern memory management strategies as early as possible in development to avoid the need for a large, arduous refactor later in the project\'s life.',
-                'Refactor time reduction - More time and effort into the planning stage of the project. Refactoring is always necessary, but this project required more than I felt was typical, indicating I need to devote more project time to planning.'
+                'Unfamiliarity w/ APIs - SDL2\'s C API was my main introduction to using code that I did not develop in my programs. Truely, a lot of trial and error, along with the previously mentioned resources helped me along in learning and eventually becoming more comfortable with this concept.',
+                'Unfamiliarity with standards - Researched Git Commit standards (atomic commits) and industry/community standard for comments with the goal of reaching high readability for my codebase, while maintaining JSDoc functionality. Additonally, research regarding industry standard module desgin was conducted to improve the quality/exandability of the codebase.',
+                'Unfamiliarity with repo management systems - Trial and error, Reddit, Github documentation, and even AI aided me in learning Git CLI and eventually, how to properly leverage Github.',
+                'Refactoring pointers - Employing modern memory management strategies as early as possible in development to avoid the need for a large, arduous refactor later in the project\'s life.',
+                'Refactoring time reduction - More time and effort into the planning stage of the project. Refactoring is always necessary, but this project required more than I felt was typical, indicating I need to devote more project time to planning.'
             ],
 
             techStack: {
