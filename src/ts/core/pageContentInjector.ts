@@ -108,7 +108,7 @@ export function initPageLoader({
 
     // Early return if required container is missing
     if (!contentContainer) {
-        console.warn(`[pageLoader] Missing #${containerId}`);
+        console.warn(`pageLoader Missing #${containerId}`);
         return;
     }
 
@@ -255,7 +255,7 @@ export function initPageLoader({
         } catch (err) {
             // Ignore abort errors (user navigated away)
             if (err instanceof Error && err.name !== ABORT_ERROR_NAME) {
-                console.error(`${pageLoader} Error:`, err);
+                console.error('pageLoader Error:', err);
             }
         } finally {
             // Only hide loading if this request wasn't aborted

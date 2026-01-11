@@ -64,11 +64,11 @@ const listeners = new Set<RouteChangeCallback>();
  * @returns {string} Current route name without hash prefix or file extension
  *
  * @example
- * // URL: https://example.com/#skills
+ * // URL: https://ryanbyers1023.github.io/#skills
  * pageFromHash() // Returns 'skills'
  *
  * @example
- * // URL: https://example.com/
+ * // URL: https://ryanbyers1023.github.io
  * pageFromHash() // Returns 'projects' (default)
  *
  * @private
