@@ -1,76 +1,4 @@
-/**
- * @file Project data for portfolio website (ryanbyers1023.github.io)
- * Cards are created at runtime using this data in projectCardGenerator.ts
- */
-
-// ============================================================================
-// CONSTANTS
-// ============================================================================
-
-/**
- * Project status values
- */
-export enum ProjectStatus {
-    COMPLETE = 'Complete',
-    IN_PROGRESS = 'In Progress',
-    INCOMPLETE = 'Incomplete'
-}
-
-/**
- * Tailwind color schemes for tech stack badges
- */
-export const TechColors = {
-    CPP: 'bg-blue-100 text-indigo-800',
-    SDL2: 'bg-red-100 text-indigo-800',
-    TAILWIND: 'bg-blue-100 text-indigo-800',
-    NODE: 'bg-red-100 text-blue-800',
-    EXPRESS: 'bg-red-100 text-red-800',
-    MYSQL: 'bg-red-100 text-orange-800',
-    HTML: 'bg-red-100 text-yellow-800',
-    JS: 'bg-red-100 text-white-800',
-    CSS: 'bg-red-100 text-black-800'
-} as const;
-
-// ============================================================================
-// TYPE DEFINITIONS
-// ============================================================================
-
-/**
- * Technology stack item with name and styling
- */
-export interface TechStack {
-    name: string;
-    color: string;
-}
-
-/**
- * Detailed project information
- */
-export interface ProjectDetails {
-    overview: string;
-    keyFeatures: string[];
-    technicalHighlights: string[];
-    status: ProjectStatus;
-    statusNotes?: string;
-    goals: string[];
-    challenges: string[];
-    solutions: string[];
-    techStack: Record<string, string>;
-    skillsGained: string[];
-}
-
-/**
- * Portfolio project data structure
- */
-export interface Project {
-    id: string;
-    title: string;
-    description: string;
-    images: string[];
-    techStack: TechStack[];
-    githubUrl: string;
-    details: ProjectDetails;
-}
+import { ProjectStatus, TechColors, TechStack, ProjectDetails, Project } from '@data/projects';
 
 // ============================================================================
 // PROJECT DATA
@@ -116,31 +44,34 @@ export const projectsData: Project[] = [
             statusNotes: 'Gouraud Shader implementation incomplete as of 12/4/25.',
 
             goals: [
-                'Gain experience in medium-sized projects',
-                'Gain experience in software development',
-                'Gain familiarity with project management tools such as Git and package managers',
-                'Learn and implement more advanced software design patterns like factory and singleton'
+                'Gain experience from top to bottom for medium-sized software development projects',
+                'Gain familiarity with project management tools such as Git and Node Package Manager (npm).',
+                'Learn and implement more advanced software design patterns like factory, singleton, subscriber and publisher, etc.'
             ],
 
             challenges: [
-                'Unfamiliarity with graphical libraries such as SDL2',
-                'The pointer refactor - Learning how to effectively and safely refactor code',
-                'Low-level memory management via smart (unique_ptr) pointers',
+                'Unfamiliarity with low-level graphical libraries such as SDL2',
+                'Unfamiliarity with programming APIs',
+                'Unfamiliarity with modern programming standards and techniques',
+                'Unfamiliarity with repository management systems like Git/Github',
+                'Learning how to effectively and safely refactor code via an extensive memory management refactor relating to pointers',
                 'Unfamiliarity with equations and techniques used to create a rendering pipeline'
             ],
 
             solutions: [
-                'Memory management refactor - Employ modern memory management strategies as early as possible in development',
-                'Refactor time reduction - More time and effort into the planning stage of the project'
+                'Unfamiliarity w/ SDL2 - Official SDL2 documentation, W3schools.com, StackExchange.com, Reddit, Geeksforgeeks, and sometimes even AI provided great information that helped me in developing this program withe SDL2.',
+                'Unfamiliarity w/ APIs - SDL2\'s C API was my main introduction to using code that I did not develop in my programs. Truely, a lot of trial and error, along with the previously mentioned resources helped me along in learning and eventually becoming more comfortable with this concept.'
+                'Memory management refactor - Employing modern memory management strategies as early as possible in development to avoid the need for a large, arduous refactor later in the project\'s life.',
+                'Refactor time reduction - More time and effort into the planning stage of the project. Refactoring is always necessary, but this project required more than I felt was typical, indicating I need to devote more project time to planning.'
             ],
 
             techStack: {
-                'SDL2': 'Forms the foundation of the rendering process. Opening and closing windows, drawing pixels to the screen, and taking user input from the keyboard are the main functionalities provided by SDL2 that I used for this project',
+                'SDL2': 'Forms the core of the rendering process. Opening and closing windows, drawing pixels to the screen, and taking user input from the keyboard are the main functionalities provided by SDL2 that I used for this project',
                 'C++': 'Chosen for its performance capabilities and low-level memory control, essential for real-time 3D rendering'
             },
 
             skillsGained: [
-                'Git CLI - Used during production to quickly push/pull changes and switch between production and in-development branches. Provided ability to undo damaging changes',
+                'Git CLI - Used during production to quickly push/pull/undo changes to the codebase. Provided ability to switch between production and in-development branches and even work on the project remotely.',
                 'Project Management - Learned the fundamentals of how to begin, manage, and complete a medium-sized project with no guidance',
                 'Proficiency in C++ - Given the codebase is 100% C++, greatly improved ability to use the language',
                 'Programming Pattern usage - Researched and implemented various design patterns to handle the immense amount of data being calculated each frame',

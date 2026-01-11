@@ -1,5 +1,5 @@
 /**
- * @file Hash-based client-side router
+ * @file Hash-based client-side router (lazy loader)
  * @description Lightweight routing system using URL hash for navigation with
  * pub-sub pattern for route change notifications
  */
@@ -10,9 +10,6 @@
 
 /** Default route to navigate to when no hash is present */
 const DEFAULT_ROUTE = 'projects';
-
-/** Hash prefix character for URL fragments */
-const HASH_PREFIX = '#';
 
 /** Regular expression pattern for matching .html file extensions */
 const HTML_EXT_PATTERN = /\.html$/i;
@@ -62,13 +59,13 @@ const listeners = new Set<RouteChangeCallback>();
  * Extracts the current route name from the URL hash
  *
  * Removes the leading '#' character and any whitespace, falling back
- * to the default route if no hash is present
+ * to the default route (projects) if no hash is present
  *
  * @returns {string} Current route name without hash prefix or file extension
  *
  * @example
- * // URL: https://example.com/#projects
- * pageFromHash() // Returns 'projects'
+ * // URL: https://example.com/#skills
+ * pageFromHash() // Returns 'skills'
  *
  * @example
  * // URL: https://example.com/
@@ -77,7 +74,7 @@ const listeners = new Set<RouteChangeCallback>();
  * @private
  */
 function pageFromHash(): string {
-    const hash = window.location.hash.replace(new RegExp(`^${HASH_PREFIX}`), '').trim();
+    const hash = window.location.hash.replace(new RegExp(`^$#`), '').trim();
     return hash || DEFAULT_ROUTE;
 }
 
@@ -151,7 +148,7 @@ export function getCurrentRoute(): string {
 export function navigateTo(routeName: string): void {
     // Normalize by removing .html extension if present
     const clean = routeName.replace(HTML_EXT_PATTERN, '');
-    const newHash = `${HASH_PREFIX}${clean}`;
+    const newHash = `$#${clean}`;
 
     if (window.location.hash !== newHash) {
         // Setting hash triggers 'hashchange' event, which notifies listeners
