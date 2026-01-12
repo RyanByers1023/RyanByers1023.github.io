@@ -74,7 +74,7 @@ const listeners = new Set<RouteChangeCallback>();
  * @private
  */
 function pageFromHash(): string {
-    const hash = window.location.hash.replace(new RegExp(`^$#`), '').trim();
+    const hash = window.location.hash.replace(new RegExp(`^#`), '').trim();
     return hash || DEFAULT_ROUTE;
 }
 
@@ -148,7 +148,7 @@ export function getCurrentRoute(): string {
 export function navigateTo(routeName: string): void {
     // Normalize by removing .html extension if present
     const clean = routeName.replace(HTML_EXT_PATTERN, '');
-    const newHash = `$#${clean}`;
+    const newHash = `#${clean}`;
 
     if (window.location.hash !== newHash) {
         // Setting hash triggers 'hashchange' event, which notifies listeners
