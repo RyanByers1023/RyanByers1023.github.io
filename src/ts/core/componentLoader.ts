@@ -33,7 +33,7 @@ export async function loadComponent(
 
         console.log(`componentLoader Loaded ${componentPath} into #${containerId}`);
     } catch (error) {
-        console.error(`componentLoader} Error loading ${componentPath}:`, error);
+        console.error(`componentLoader Error loading ${componentPath}:`, error);
     }
 }
 
