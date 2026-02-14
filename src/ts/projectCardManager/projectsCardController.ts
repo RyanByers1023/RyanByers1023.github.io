@@ -5,7 +5,7 @@
  */
 export function initProjectCard(cardId: string, images: string[] = []): void {
     /** ========================== Initialize public variables ========================== **/
-    const card = getCard();
+    const card = getCard(cardId);
 
     const cardContainer = getCardContainer(card);
 
@@ -117,8 +117,8 @@ export function initProjectCard(cardId: string, images: string[] = []): void {
         });
     }
 
-    /** retrieves and verifies a project card by the provided cardId parameter (string) **/
-    function getCard() : HTMLElement{
+    /** retrieves and verifies a project card by the provided cardId parameter **/
+    function getCard(cardId: string) : HTMLElement{
         const card = document.getElementById(cardId);
 
         if (!card) {

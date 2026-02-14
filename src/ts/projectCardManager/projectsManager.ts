@@ -4,30 +4,31 @@ import { initProjectCard } from '@projectCardManager/projectsCardController';
 
 /**
  * Initializes all project cards in the specified container
- * @param containerId - The ID of the container element (defaults to 'projects-grid')
+ * @param projectsContainerId - The ID of the container element (defaults to 'projects-grid')
  */
-export function initAllProjects(containerId: string = 'projects-grid'): void {
-    const container = document.getElementById(containerId);
-    if (!container) {
-        console.error(`Container with id "${containerId}" not found`);
-        return;
+export function initAllProjects(projectsContainerId: string = 'projects-grid'): void {
+    const projectsContainer = getProjectsContainer(projectsContainerId) as HTMLElement;
+
+    initAllProjectCards();
+
+    function getProjectsContainer(projectsContainerId: string) : HTMLElement{
+        const projectsContainer = document.getElementById(projectsContainerId);
+        if (!projectsContainer) {
+            throw new Error(`Container with id "${projectsContainerId}" not found`);
+        }
+        return projectsContainer;
     }
 
-    // Generate HTML for all project cards
-    const cardsHTML: string = projectsData.map(project =>
-        generateProjectCardHTML(project)
-    ).join('');
 
-    // Insert before the "View More" card (or append if not found)
-    const viewMoreCard: Element | null = container.querySelector('.glass-card');
-    if (viewMoreCard) {
-        viewMoreCard.insertAdjacentHTML('beforebegin', cardsHTML);
-    } else {
-        container.insertAdjacentHTML('beforeend', cardsHTML);
+    function initAllProjectCards(){
+        // Generate HTML for all project cards
+        const cardsHTML: string = projectsData.map(project =>
+            generateProjectCardHTML(project)
+        ).join('');
+
+        // Initialize all cards
+        projectsData.forEach(project => {
+            initProjectCard(project.id, project.images);
+        });
     }
-
-    // Initialize all cards
-    projectsData.forEach(project => {
-        initProjectCard(project.id, project.images);
-    });
 }
