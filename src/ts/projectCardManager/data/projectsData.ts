@@ -1,4 +1,4 @@
-import { ProjectStatus, TechColors, TechStack, ProjectDetails, Project } from '@data/projects';
+import { ProjectStatus, TechColors, TechStack, ProjectDetails, Project } from '@projectCardManager/data/projects';
 
 // ============================================================================
 // PROJECT DATA
