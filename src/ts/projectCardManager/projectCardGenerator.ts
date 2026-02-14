@@ -3,6 +3,9 @@
  * @description Generates HTML markup for project cards with front/back flip functionality
  */
 
+/**TODO: seperate structural (HTML) from logic (TS), split into different files, with the HTML components being stored
+ * in ./templates and loaded/injected at runtime **/
+
 // ============================================================================
 // TYPE DEFINITIONS
 // ============================================================================

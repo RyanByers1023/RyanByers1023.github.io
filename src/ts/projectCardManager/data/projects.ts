@@ -39,35 +39,69 @@ export const TechColors = {
  * Technology stack item with name and styling
  */
 export interface TechStack {
+    /** Name of the technology (Node, CSS, JS, Tailwind, etc.) */
     name: string;
+
+    /** Color commonly associated with tech, text bubble background is determined by this value */
     color: string;
 }
 
 /**
- * Detailed project information
+ * Portfolio project data structure, contains main parameters
+ * along with details, which encapsulates additional project data
  */
-export interface ProjectDetails {
-    overview: string;
-    keyFeatures: string[];
-    technicalHighlights: string[];
-    status: ProjectStatus;
-    statusNotes?: string;
-    goals: string[];
-    challenges: string[];
-    solutions: string[];
-    techStack: Record<string, string>;
-    skillsGained: string[];
+export interface Project {
+    /** Internal identfier used by projectsCardManager.ts to ID multiple cards indivdually */
+    id: string;
+
+    /** Name of the project */
+    title: string;
+
+    /** Brief description of entire project */
+    description: string;
+
+    /** contains all images that the gallery object will iterate through */
+    images: string[];
+
+    //**List of enum TechStacks (detailed above), contains all technologies used in project */
+    techStack: TechStack[];
+
+    /** URL to respective Github project repository */
+    githubUrl: string;
+
+
+    /** linker to additonal interface -- ProjectDetails, contains addtl fields */
+    details: ProjectDetails;
 }
 
 /**
- * Portfolio project data structure
+ *Additonal detailed project information
  */
-export interface Project {
-    id: string;
-    title: string;
-    description: string;
-    images: string[];
-    techStack: TechStack[];
-    githubUrl: string;
-    details: ProjectDetails;
+export interface ProjectDetails {
+    /** High level overview of project, relatively brief */
+    overview: string;
+
+    /** Any standout features worth mentioning */
+    keyFeatures: string[];
+
+    /** Highlights related to any impressive technical aspects of the project (no raw pointers, etc.) */
+    technicalHighlights: string[];
+
+    /** Enum that details whether the project is in progress, finished, or cancelled */
+    status: ProjectStatus;
+
+    /** Reasons for current project status (if necessary) */
+    statusNotes?: string;
+
+    /** What was my overall goal with the project? */
+    goals: string[];
+
+    /** What were some of the most challenging things I had to deal with during development */
+    challenges: string[];
+
+    /** From these above challenges, what did I do to progress through them? */
+    solutions: string[];
+
+    /** What did I learn during the course of making this project? */
+    skillsGained: string[];
 }
