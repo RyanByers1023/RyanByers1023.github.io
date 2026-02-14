@@ -83,7 +83,7 @@ export const projectsData: Project[] = [
     {
         id: 'project-card-1',
         title: 'Vector Graphics Engine',
-        description: 'Lightweight 3D model renderer. Users can import models and view them fully shaded in a 3D, perspective-based render',
+        description: 'Lightweight 3D model renderer. Users can import models and view them fully shaded (shader implementation WIP) in a 3D, perspective-based render',
 
         images: [
             './img/renderer/rendererDemo.gif'
@@ -103,13 +103,13 @@ export const projectsData: Project[] = [
                 'Custom model shader implementation',
                 'Accurate perspective-based 3D projection pipeline',
                 'Real-time 3D transformations',
-                'Both wireframe and shaded rendering options available'
+                'Both wireframe and shaded rendering options available',
+                'Object level screen space culling'
             ],
 
             technicalHighlights: [
                 'Lightweight and performant rendering engine',
-                'Custom shader implementation from scratch',
-                'Efficient memory management using modern C++ smart pointers'
+                'Contains only modern C++ smart pointers (minus one, as SDL2 requires one)'
             ],
 
             status: ProjectStatus.INCOMPLETE,

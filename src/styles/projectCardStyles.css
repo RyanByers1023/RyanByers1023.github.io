@@ -218,6 +218,11 @@
     width: 30px;
 }
 
+/* Custom scrollbar for back face */
+.card-back::-webkit-scrollbar:hover {
+    width: 30px;
+}
+
 .card-back::-webkit-scrollbar-track {
     background: aliceblue;
     border-radius: 0 1rem 1rem 0;

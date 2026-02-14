@@ -13,8 +13,33 @@
     "noEmit": true,
     "baseUrl": ".",
     "paths": {
-      "@core/*": ["src/ts/core/*"],
-      "@projectCardManager/*": ["src/ts/projectCardManager/*"]
+      "@src/*": [
+        "./src/*"
+      ],
+      "@components/*": [
+        "./public/components/*"
+      ],
+      "@docs/*": [
+        "./public/doc/*"
+      ],
+      "@imgs/*": [
+        "./public/img/*"
+      ],
+      "@pages/*": [
+        "./public/pages/*"
+      ],
+      "@styles/*": [
+        "./src/styles/*"
+      ],
+      "@scripts/*": [
+        "./src/ts/*"
+      ],
+      "@core/*": [
+        "./src/ts/core/*"
+      ],
+      "@projectCardManager/*": [
+        "./src/ts/projectCardManager/*"
+      ]
     }
   },
   "include": ["src/**/*"],
