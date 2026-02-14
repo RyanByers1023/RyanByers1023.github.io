@@ -1,76 +1,4 @@
-/**
- * @file Project data for portfolio website (ryanbyers1023.github.io)
- * Cards are created at runtime using this data in projectCardGenerator.ts
- */
-
-// ============================================================================
-// CONSTANTS
-// ============================================================================
-
-/**
- * Project status values
- */
-export enum ProjectStatus {
-    COMPLETE = 'Complete',
-    IN_PROGRESS = 'In Progress',
-    INCOMPLETE = 'Incomplete'
-}
-
-/**
- * Tailwind color schemes for tech stack badges
- */
-export const TechColors = {
-    CPP: 'bg-blue-100 text-indigo-800',
-    SDL2: 'bg-red-100 text-indigo-800',
-    TAILWIND: 'bg-blue-100 text-indigo-800',
-    NODE: 'bg-red-100 text-blue-800',
-    EXPRESS: 'bg-red-100 text-red-800',
-    MYSQL: 'bg-red-100 text-orange-800',
-    HTML: 'bg-red-100 text-yellow-800',
-    JS: 'bg-red-100 text-white-800',
-    CSS: 'bg-red-100 text-black-800'
-} as const;
-
-// ============================================================================
-// TYPE DEFINITIONS
-// ============================================================================
-
-/**
- * Technology stack item with name and styling
- */
-export interface TechStack {
-    name: string;
-    color: string;
-}
-
-/**
- * Detailed project information
- */
-export interface ProjectDetails {
-    overview: string;
-    keyFeatures: string[];
-    technicalHighlights: string[];
-    status: ProjectStatus;
-    statusNotes?: string;
-    goals: string[];
-    challenges: string[];
-    solutions: string[];
-    techStack: Record<string, string>;
-    skillsGained: string[];
-}
-
-/**
- * Portfolio project data structure
- */
-export interface Project {
-    id: string;
-    title: string;
-    description: string;
-    images: string[];
-    techStack: TechStack[];
-    githubUrl: string;
-    details: ProjectDetails;
-}
+import { ProjectStatus, TechColors, TechStack, ProjectDetails, Project } from '@data/projects';
 
 // ============================================================================
 // PROJECT DATA
@@ -83,7 +11,7 @@ export const projectsData: Project[] = [
     {
         id: 'project-card-1',
         title: 'Vector Graphics Engine',
-        description: 'Lightweight 3D model renderer. Users can import models and view them fully shaded (shader implementation WIP) in a 3D, perspective-based render',
+        description: 'Lightweight 3D model renderer. Users can import models and view them fully shaded in a 3D, perspective-based render',
 
         images: [
             './img/renderer/rendererDemo.gif'
@@ -103,46 +31,54 @@ export const projectsData: Project[] = [
                 'Custom model shader implementation',
                 'Accurate perspective-based 3D projection pipeline',
                 'Real-time 3D transformations',
-                'Both wireframe and shaded rendering options available',
-                'Object level screen space culling'
+                'Both wireframe and shaded rendering options available'
             ],
 
             technicalHighlights: [
                 'Lightweight and performant rendering engine',
-                'Contains only modern C++ smart pointers (minus one, as SDL2 requires one)'
+                'Custom shader implementation from scratch',
+                'Efficient memory management using modern C++ smart pointers'
             ],
 
             status: ProjectStatus.INCOMPLETE,
             statusNotes: 'Gouraud Shader implementation incomplete as of 12/4/25.',
 
             goals: [
-                'Gain experience in medium-sized projects',
-                'Gain experience in software development',
-                'Gain familiarity with project management tools such as Git and package managers',
-                'Learn and implement more advanced software design patterns like factory and singleton'
+                'Gain experience from top to bottom for medium-sized software development projects',
+                'Learn and use project management tools such as Git and Node Package Manager (npm).',
+                'Improve confidence in C++, an incredibly important language for software development due to its ubiquity in the space.',
+                'Establish familiarity with low level project work, and learn what exactly this part of software development generally entails.',
+                'Implement software design patterns I learned during my time in college. e.g. factory, singleton, subscriber and publisher, etc.'
             ],
 
             challenges: [
-                'Unfamiliarity with graphical libraries such as SDL2',
-                'The pointer refactor - Learning how to effectively and safely refactor code',
-                'Low-level memory management via smart (unique_ptr) pointers',
+                'Unfamiliarity with low-level graphical libraries such as SDL2',
+                'Unfamiliarity with programming APIs',
+                'Unfamiliarity with modern programming standards and techniques',
+                'Unfamiliarity with repository management systems like Git/Github',
+                'Learning how to effectively and safely refactor code via an extensive memory management refactor relating to pointers',
                 'Unfamiliarity with equations and techniques used to create a rendering pipeline'
             ],
 
             solutions: [
-                'Memory management refactor - Employ modern memory management strategies as early as possible in development',
-                'Refactor time reduction - More time and effort into the planning stage of the project'
+                'Unfamiliarity w/ SDL2 - Official SDL2 documentation, W3schools.com, StackExchange.com, Reddit, Geeksforgeeks, and sometimes even AI provided great information that helped me in developing this program withe SDL2.',
+                'Unfamiliarity w/ APIs - SDL2\'s C API was my main introduction to using code that I did not develop in my programs. Truely, a lot of trial and error, along with the previously mentioned resources helped me along in learning and eventually becoming more comfortable with this concept.',
+                'Unfamiliarity with standards - Researched Git Commit standards (atomic commits) and industry/community standard for comments with the goal of reaching high readability for my codebase, while maintaining JSDoc functionality. Additonally, research regarding industry standard module desgin was conducted to improve the quality/exandability of the codebase.',
+                'Unfamiliarity with repo management systems - Trial and error, Reddit, Github documentation, and even AI aided me in learning Git CLI and eventually, how to properly leverage Github.',
+                'Refactoring pointers - Employing modern memory management strategies as early as possible in development to avoid the need for a large, arduous refactor later in the project\'s life.',
+                'Refactoring time reduction - More time and effort into the planning stage of the project. Refactoring is always necessary, but this project required more than I felt was typical, indicating I need to devote more project time to planning.'
             ],
 
             techStack: {
-                'SDL2': 'Forms the foundation of the rendering process. Opening and closing windows, drawing pixels to the screen, and taking user input from the keyboard are the main functionalities provided by SDL2 that I used for this project',
-                'C++': 'Chosen for its performance capabilities and low-level memory control, essential for real-time 3D rendering'
+                'SDL2': 'Forms the core of the rendering process. Opening and closing windows, drawing pixels to the screen, and taking user input from the keyboard are the main functionalities provided by SDL2 that I used for this project',
+                'C++': 'Chosen for its performance capabilities and low-level memory control, essential for real-time 3D rendering',
+                'Github + Git CLI': 'Used for remote development, project version control, branch management, and merge conflict resolution.'
             },
 
             skillsGained: [
-                'Git CLI - Used during production to quickly push/pull changes and switch between production and in-development branches. Provided ability to undo damaging changes',
+                'Git CLI - Learned during production how to quickly push/pull/undo changes to a repository in a safe manner. Learned how to create and switch between production and in-development branches on the fly and even work on the project remotely.',
                 'Project Management - Learned the fundamentals of how to begin, manage, and complete a medium-sized project with no guidance',
-                'Proficiency in C++ - Given the codebase is 100% C++, greatly improved ability to use the language',
+                'Proficiency in C++ - Through this project, C++ has become my favorite language, and the constant exposure to it during development, refactors, and eventually production allowed me to aquiant myself well with its rules, resoruces (std library), and intricasies.',
                 'Programming Pattern usage - Researched and implemented various design patterns to handle the immense amount of data being calculated each frame',
                 'Data structure proficiency - Standard library containers such as vectors, arrays, unordered maps, and various other containers are used frequently throughout the program to make data handling transparent and easy to understand'
             ]
@@ -155,10 +91,10 @@ export const projectsData: Project[] = [
         description: 'Full-stack stock market simulation web application. Features real-time trading, persistent user accounts, and interactive market visualization',
 
         images: [
-            './img/stockMarketSim/SMSGraphDemo.gif',
-            './img/stockMarketSim/SMSHome.gif',
-            './img/stockMarketSim/SMSLoginDemo.gif',
-            './img/stockMarketSim/SMSAbout.gif'
+            '@imgs/stockMarketSim/SMSGraphDemo.gif',
+            '@imgs/stockMarketSim/SMSHome.gif',
+            '@imgs/stockMarketSim/SMSLoginDemo.gif',
+            '@imgs/stockMarketSim/SMSAbout.gif'
         ],
 
         techStack: [

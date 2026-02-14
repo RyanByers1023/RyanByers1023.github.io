@@ -1,5 +1,5 @@
 /**
- * @file Page content loader
+ * @file Page content Injector
  * @description Handles dynamic loading and injection of page content with route-based
  * file fetching, loading states, and error handling
  */
@@ -87,9 +87,6 @@ export function initPageLoader({
     // CONSTANTS
     // ========================================================================
 
-    /** CSS class for hiding elements */
-    const HIDDEN_CLASS = 'hidden';
-
     /** Regular expression pattern for matching .html file extensions */
     const HTML_EXT_PATTERN = /\.html$/i;
 
@@ -102,9 +99,6 @@ export function initPageLoader({
     /** CSS classes for error message text */
     const ERROR_TEXT_CLASSES = 'text-red-600';
 
-    /** Log prefix for page loader messages */
-    const LOG_PREFIX = '[pageLoader]';
-
     // ========================================================================
     // DOM ELEMENT REFERENCES
     // ========================================================================
@@ -114,7 +108,7 @@ export function initPageLoader({
 
     // Early return if required container is missing
     if (!contentContainer) {
-        console.warn(`${LOG_PREFIX} Missing #${containerId}`);
+        console.warn(`pageLoader Missing #${containerId}`);
         return;
     }
 
@@ -138,7 +132,7 @@ export function initPageLoader({
      */
     const showLoading = (): void => {
         if (loadingIndicator) {
-            loadingIndicator.classList.remove(HIDDEN_CLASS);
+            loadingIndicator.classList.remove('hidden');
         }
     };
 
@@ -149,7 +143,7 @@ export function initPageLoader({
      */
     const hideLoading = (): void => {
         if (loadingIndicator) {
-            loadingIndicator.classList.add(HIDDEN_CLASS);
+            loadingIndicator.classList.add('hidden');
         }
     };
 
@@ -261,7 +255,7 @@ export function initPageLoader({
         } catch (err) {
             // Ignore abort errors (user navigated away)
             if (err instanceof Error && err.name !== ABORT_ERROR_NAME) {
-                console.error(`${LOG_PREFIX} Error:`, err);
+                console.error('pageLoader Error:', err);
             }
         } finally {
             // Only hide loading if this request wasn't aborted

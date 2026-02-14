@@ -1,10 +1,7 @@
 /**
  * @file Component loader for static HTML components
- * @description Loads and injects HTML components like navbar and footer
+ * @description Loads and injects static HTML components like navbar and footer
  */
-
-/** Log prefix for component loader messages */
-const LOG_PREFIX = '[componentLoader]';
 
 /**
  * Loads an HTML component and injects it into a container
@@ -20,7 +17,7 @@ export async function loadComponent(
     const container = document.getElementById(containerId);
 
     if (!container) {
-        console.error(`${LOG_PREFIX} Container #${containerId} not found`);
+        console.error(`componentLoader Container #${containerId} not found`);
         return;
     }
 
@@ -34,9 +31,9 @@ export async function loadComponent(
         const html = await response.text();
         container.innerHTML = html;
 
-        console.log(`${LOG_PREFIX} Loaded ${componentPath} into #${containerId}`);
+        console.log(`componentLoader Loaded ${componentPath} into #${containerId}`);
     } catch (error) {
-        console.error(`${LOG_PREFIX} Error loading ${componentPath}:`, error);
+        console.error(`componentLoader Error loading ${componentPath}:`, error);
     }
 }
 

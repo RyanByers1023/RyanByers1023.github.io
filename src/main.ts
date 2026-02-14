@@ -1,8 +1,7 @@
 /**
  * @file Application entry point
- * @description Initializes and bootstraps all core modules including navbar,
- * page loader, and project cards. Modules communicate via the router for
- * decoupled architecture.
+ * @description Initializes all core modules including navbar,
+ * page loader, and project cards. Modules communicate via a custom lazy loading router.
  */
 
 import { initNavbar } from '@core/navbarInitializer';
