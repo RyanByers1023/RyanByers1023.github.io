@@ -4,6 +4,8 @@
  * page loader, and project cards. Modules communicate via a custom lazy loading router.
  */
 
+/** TODO: implement automatic, resizing and reformatting based on device/window size, etc. look into media queries via css */
+
 import { initNavbar } from '@core/navbarInitializer';
 import { initPageLoader } from '@core/pageContentInjector';
 import { initAllProjects } from '@projectCardManager/projectsManager';
