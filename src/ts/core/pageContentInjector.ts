@@ -4,6 +4,8 @@
  * file fetching, loading states, and error handling
  */
 
+/** TODO: refactor this file, it is incredibly difficult to read */
+
 import { onRouteChange } from './router';
 
 // ============================================================================
@@ -206,6 +208,8 @@ export function initPageLoader({
      *
      * @private
      */
+
+    /**TODO: refactor this and break it up a bit, too long */
     async function loadRoute(routeName: string): Promise<void> {
         const file = mapRouteToFile(routeName);
 
