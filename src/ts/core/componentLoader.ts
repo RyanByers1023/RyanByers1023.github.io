@@ -14,26 +14,38 @@ export async function loadComponent(
     componentPath: string,
     containerId: string
 ): Promise<void> {
-    const container = document.getElementById(containerId);
+    try {
+        /* getting and setting the content stored within html **/
+        const container = getContainer();
 
-    if (!container) {
-        console.error(`componentLoader Container #${containerId} not found`);
-        return;
+        const response = await getResponse();
+
+        container.innerHTML = await response.text();
+
+        /** DEBUG log */
+        console.log(`componentLoader Loaded ${componentPath} into #${containerId}`);
+    } catch (error) {
+        console.error(`componentLoader Error loading ${componentPath}:`, error);
     }
 
-    try {
+    function getContainer() : HTMLElement{
+        const container = document.getElementById(containerId);
+
+        if (!container) {
+            throw new Error(`componentLoader Container #${containerId} not found`);
+        }
+
+        return container;
+    }
+
+    async function getResponse(): Promise<Response>{
         const response = await fetch(componentPath);
 
         if (!response.ok) {
             throw new Error(`Failed to load ${componentPath} (HTTP ${response.status})`);
         }
 
-        const html = await response.text();
-        container.innerHTML = html;
-
-        console.log(`componentLoader Loaded ${componentPath} into #${containerId}`);
-    } catch (error) {
-        console.error(`componentLoader Error loading ${componentPath}:`, error);
+        return response;
     }
 }
 
