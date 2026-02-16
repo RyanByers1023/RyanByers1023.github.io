@@ -1,4 +1,5 @@
 import { navigateTo, onRouteChange, getCurrentRoute } from './router';
+/** Module level constants, pre-written tailwind CSS stlying */
 
 /** Scroll distance threshold for triggering header style changes */
 const SCROLL_THRESHOLD = 100;
@@ -33,27 +34,24 @@ const ARIA_EXPANDED = 'aria-expanded';
 interface NavbarConfig {
     /** CSS selector for the header element */
     headerSelector?: string;
+
     /** ID of the mobile menu toggle button */
     menuToggleId?: string;
-    /** ID of the mobile menu container */
-    mobileMenuId?: string;
+
     /** CSS selector for navigation links */
     linkSelector?: string;
 }
 
-/**TODO: remove hardcoded values here, make the init function retreive them from the DOM */
 export function initNavbar({
                                headerSelector = 'header',
                                menuToggleId = 'menu-toggle',
-                               mobileMenuId = 'mobile-menu',
                                linkSelector = '.nav-link',
                            }: NavbarConfig = {}): void {
     
+    /** retrieve DOM references relative to the navbar */
     const header = document.querySelector<HTMLElement>(headerSelector);
-    const menuToggle = document.getElementById(menuToggleId);
-    const mobileMenu = document.getElementById(mobileMenuId);
     const navLinks = document.querySelectorAll<HTMLAnchorElement>(linkSelector);
-
+    const menuToggle = document.getElementById(menuToggleId);
 
     initRouteChangeHandlers(newRoute);
 
