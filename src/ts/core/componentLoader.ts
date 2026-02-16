@@ -37,7 +37,7 @@ export async function loadComponent(
         return container;
     }
 
-    async function getResponse(componenentPath: string): Promise<Response>{
+    async function getResponse(componentPath: string): Promise<Response>{
         const response = await fetch(componentPath);
 
         if (!response.ok) {
