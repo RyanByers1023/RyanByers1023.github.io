@@ -15,20 +15,19 @@ export async function loadComponent(
     containerId: string
 ): Promise<void> {
     try {
-        /* getting and setting the content stored within html **/
-        const container = getContainer();
+        const container = getContainer(containerId);
 
-        const response = await getResponse();
+        const response = await getResponse(componentPath);
 
         container.innerHTML = await response.text();
 
-        /** DEBUG log */
+        /** DEBUG success log */
         console.log(`componentLoader Loaded ${componentPath} into #${containerId}`);
     } catch (error) {
-        console.error(`componentLoader Error loading ${componentPath}:`, error);
+        throw new Error(`componentLoader failed to load component: ${componentPath}`, { cause: error });
     }
 
-    function getContainer() : HTMLElement{
+    function getContainer(containerId: string) : HTMLElement{
         const container = document.getElementById(containerId);
 
         if (!container) {
@@ -38,7 +37,7 @@ export async function loadComponent(
         return container;
     }
 
-    async function getResponse(): Promise<Response>{
+    async function getResponse(componenentPath: string): Promise<Response>{
         const response = await fetch(componentPath);
 
         if (!response.ok) {

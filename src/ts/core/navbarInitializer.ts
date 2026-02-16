@@ -28,35 +28,14 @@ interface NavbarConfig {
 // PUBLIC API
 // ============================================================================
 
-/**
- * Initializes the navbar with interactive functionality
- *
- * Sets up the following features:
- * - Active link highlighting based on current route
- * - Sticky header with shadow effect on scroll
- * - Mobile menu toggle with ARIA accessibility
- * - Navigation link click handling with router integration
- * - Route change listener for automatic active state updates
  *
  * @param {NavbarConfig} config - Configuration object for navbar selectors and IDs
  * @param {string} [config.headerSelector='header'] - CSS selector for header element
  * @param {string} [config.menuToggleId='menu-toggle'] - ID of menu toggle button
  * @param {string} [config.mobileMenuId='mobile-menu'] - ID of mobile menu container
  * @param {string} [config.linkSelector='.nav-link'] - CSS selector for navigation links
- *
- * @example
- * // Initialize with default selectors
- * initNavbar();
- *
- * @example
- * // Initialize with custom selectors
- * initNavbar({
- *   headerSelector: 'nav-header',
- *   menuToggleId: '.nav-menu-toggle-button',
- *   mobileMenuId: 'nav-menu-mobile',
- *   linkSelector: '.nav-link'
- * });
  */
+
 export function initNavbar({
                                headerSelector = 'header',
                                menuToggleId = 'menu-toggle',
@@ -64,6 +43,8 @@ export function initNavbar({
                                linkSelector = '.nav-link',
                            }: NavbarConfig = {}): void {
 
+
+    /* TODO: move these module level constants to the top of the file**/
     // ========================================================================
     // CONSTANTS
     // ========================================================================
@@ -94,11 +75,7 @@ export function initNavbar({
 
     /** ARIA attribute for indicating menu expanded state */
     const ARIA_EXPANDED = 'aria-expanded';
-
-    // ========================================================================
-    // DOM ELEMENT REFERENCES
-    // ========================================================================
-
+    
     const header = document.querySelector<HTMLElement>(headerSelector);
     const menuToggle = document.getElementById(menuToggleId);
     const mobileMenu = document.getElementById(mobileMenuId);
@@ -109,19 +86,41 @@ export function initNavbar({
         return;
     }
 
+    initRouteChangeHandlers(newRoute);
+
+    initNavLinkClickListeners(e);
+
+    initStickyHeader();
+
+
+
+    function initRouteChangeHandlers(newRoute: string): void{
+        onRouteChange((newRoute: string) => {
+            setActiveLink(newRoute);
+        });
+    }
+
+    function initNavLinkClickListeners(e: Event): void{
+        navLinks.forEach(link => {
+        link.addEventListener('click', (e: Event) => {
+            e.preventDefault();
+            const routeName = link.getAttribute(DATA_PAGE_ATTR);
+
+            if (routeName) {
+                navigateTo(routeName);
+            }
+        });
+    });
+    }
+
+    
+
+    /** TODO: move active state management utils to another file */
+
     // ========================================================================
     // ACTIVE STATE MANAGEMENT
     // ========================================================================
 
-    /**
-     * Updates active state styling for navigation links
-     *
-     * Adds 'active' class to the link matching the current route and removes
-     * it from all other links
-     *
-     * @param {string} routeName - Name of the currently active route
-     * @private
-     */
     function setActiveLink(routeName: string): void {
         navLinks.forEach(link => {
             const linkRoute = link.getAttribute(DATA_PAGE_ATTR);
@@ -133,105 +132,26 @@ export function initNavbar({
         });
     }
 
+    /** TODO: move sticky header utils to another file */
+
     // ========================================================================
     // STICKY HEADER
     // ========================================================================
 
-    /**
-     * Implements sticky header behavior with scroll-based styling
-     *
-     * Updates header appearance when user scrolls past threshold:
-     * - Adds shadow for depth perception
-     * - Adjusts padding for compact appearance
-     *
-     * @private
-     */
-    if (header) {
-        /**
-         * Updates header shadow and padding based on scroll position
-         *
-         * Threshold set at 100px - header styling changes when user
-         * scrolls beyond this point
-         *
-         * @private
-         */
-        const updateHeaderShadow = (): void => {
-            const scrolled = window.scrollY > SCROLL_THRESHOLD;
-            header.classList.toggle(SHADOW_CLASS, scrolled);
-            header.classList.toggle(PADDING_SMALL_CLASS, scrolled);
-            header.classList.toggle(PADDING_LARGE_CLASS, !scrolled);
-        };
+    function initStickyHeader() : void{
+        if (header) {
+            const updateHeaderShadow = (): void => {
+                const scrolled = window.scrollY > SCROLL_THRESHOLD;
+                header.classList.toggle(SHADOW_CLASS, scrolled);
+                header.classList.toggle(PADDING_SMALL_CLASS, scrolled);
+                header.classList.toggle(PADDING_LARGE_CLASS, !scrolled);
+            };
 
-        updateHeaderShadow();
-        window.addEventListener('scroll', updateHeaderShadow, { passive: true });
+            updateHeaderShadow();
+            window.addEventListener('scroll', updateHeaderShadow, { passive: true });
+        }
+        else{
+            throw new Error("Header could not be found, sticky header not initialized");
+        }
     }
-
-    // ========================================================================
-    // MOBILE MENU TOGGLE
-    // ========================================================================
-
-    /**
-     * Sets up mobile menu toggle functionality with accessibility support
-     *
-     * Implements ARIA attributes for screen reader compatibility and
-     * toggles menu visibility on button click
-     *
-     * @private
-     */
-    if (menuToggle && mobileMenu) {
-        menuToggle.setAttribute(ARIA_CONTROLS, mobileMenuId);
-        menuToggle.setAttribute(ARIA_EXPANDED, 'false');
-
-        menuToggle.addEventListener('click', () => {
-            const isHidden = mobileMenu.classList.toggle(HIDDEN_CLASS);
-            menuToggle.setAttribute(ARIA_EXPANDED, String(!isHidden));
-        });
-    }
-
-    // ========================================================================
-    // NAVIGATION LINK HANDLERS
-    // ========================================================================
-
-    /**
-     * Attaches click handlers to navigation links for route navigation
-     *
-     * Prevents default link behavior, triggers router navigation,
-     * and closes mobile menu after navigation
-     *
-     * @private
-     */
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e: Event) => {
-            e.preventDefault();
-            const routeName = link.getAttribute(DATA_PAGE_ATTR);
-
-            if (routeName) {
-                navigateTo(routeName);
-
-                // Close mobile menu after navigation
-                if (mobileMenu) {
-                    mobileMenu.classList.add(HIDDEN_CLASS);
-                    if (menuToggle) {
-                        menuToggle.setAttribute(ARIA_EXPANDED, 'false');
-                    }
-                }
-            }
-        });
-    });
-
-    // ========================================================================
-    // ROUTE CHANGE LISTENER
-    // ========================================================================
-
-    /**
-     * Registers callback to update active link styling on route changes
-     *
-     * Ensures navbar reflects current route even when navigation occurs
-     * through other means (e.g., browser back/forward buttons)
-     *
-     * @private
-     */
-    onRouteChange((newRoute: string) => {
-        setActiveLink(newRoute);
-    });
 }
