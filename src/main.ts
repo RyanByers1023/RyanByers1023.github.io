@@ -64,7 +64,6 @@ function initializeNavbar(): void {
     initNavbar({
         headerSelector: HEADER_SELECTOR,
         menuToggleId: MENU_TOGGLE_ID,
-        mobileMenuId: MOBILE_MENU_ID,
         linkSelector: NAV_LINK_SELECTOR,
     });
 }

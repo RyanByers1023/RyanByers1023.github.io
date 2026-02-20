@@ -47,27 +47,28 @@ export function initNavbar({
                                menuToggleId = 'menu-toggle',
                                linkSelector = '.nav-link',
                            }: NavbarConfig = {}): void {
-    
+
     /** retrieve DOM references relative to the navbar */
     const header = document.querySelector<HTMLElement>(headerSelector);
     const navLinks = document.querySelectorAll<HTMLAnchorElement>(linkSelector);
     const menuToggle = document.getElementById(menuToggleId);
 
-    initRouteChangeHandlers(newRoute);
+    initRouteChangeHandlers();
 
-    initNavLinkClickListeners(e);
+    initNavLinkClickListeners();
 
     initStickyHeader();
 
     countNavbarLinks();
 
-    function countNavbarLinks(){
+    function countNavbarLinks() {
         if (!navLinks.length) {
             console.warn('[navbar] No nav links found');
-        return;
+            return;
+        }
     }
 
-    function initStickyHeader() : void{
+    function initStickyHeader(): void {
         if (header) {
             const updateHeaderShadow = (): void => {
                 const scrolled = window.scrollY > SCROLL_THRESHOLD;
@@ -77,33 +78,32 @@ export function initNavbar({
             };
 
             updateHeaderShadow();
-            window.addEventListener('scroll', updateHeaderShadow, { passive: true });
-        }
-        else{
+            window.addEventListener('scroll', updateHeaderShadow, {passive: true});
+        } else {
             throw new Error("Header could not be found, sticky header not initialized");
         }
     }
 
 
-    function initRouteChangeHandlers(newRoute: string): void{
+    function initRouteChangeHandlers(): void {
         onRouteChange((newRoute: string) => {
             setActiveLink(newRoute);
         });
     }
 
-    function initNavLinkClickListeners(e: Event): void{
+    function initNavLinkClickListeners(): void {
         navLinks.forEach(link => {
-        link.addEventListener('click', (e: Event) => {
-            e.preventDefault();
-            const routeName = link.getAttribute(DATA_PAGE_ATTR);
+            link.addEventListener('click', (e: Event) => {
+                e.preventDefault();
+                const routeName = link.getAttribute(DATA_PAGE_ATTR);
 
-            if (routeName) {
-                navigateTo(routeName);
-            }
+                if (routeName) {
+                    navigateTo(routeName);
+                }
+            });
         });
-    });
     }
-    
+
 
     /** TODO: move active state management utils to another file */
 

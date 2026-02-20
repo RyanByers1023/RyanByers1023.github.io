@@ -36,15 +36,7 @@ export const TechColors = {
 // ============================================================================
 
 /**
- * Technology stack item with name and styling
- */
-export interface TechStack {
-    /** Name of the technology (Node, CSS, JS, Tailwind, etc.) */
-    name: string;
 
-    /** Color commonly associated with tech, text bubble background is determined by this value */
-    color: string;
-}
 
 /**
  * Portfolio project data structure, contains main parameters
@@ -63,12 +55,8 @@ export interface Project {
     /** contains all images that the gallery object will iterate through */
     images: string[];
 
-    //**List of enum TechStacks (detailed above), contains all technologies used in project */
-    techStack: TechStack[];
-
     /** URL to respective Github project repository */
     githubUrl: string;
-
 
     /** linker to additonal interface -- ProjectDetails, contains addtl fields */
     details: ProjectDetails;
@@ -98,6 +86,8 @@ export interface ProjectDetails {
 
     /** What were some of the most challenging things I had to deal with during development */
     challenges: string[];
+
+    techStack: string[];
 
     /** From these above challenges, what did I do to progress through them? */
     solutions: string[];

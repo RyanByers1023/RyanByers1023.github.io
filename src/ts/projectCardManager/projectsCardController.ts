@@ -40,6 +40,17 @@ export function initProjectCard(cardId: string, images: string[] = []): void {
 
     initClickListeners();
 
+    /** retrieves and verifies a project card by the provided cardId parameter **/
+    function getCard(cardId: string) : HTMLElement{
+        const card = document.getElementById(cardId);
+
+        if (!card) {
+            throw new Error(`Project card with id "${cardId}" not found`);
+        }
+
+        return card as HTMLElement;
+    }
+
 
     function initClickListeners(): void {
         // Card click handler, flips project card 180 degrees
@@ -115,17 +126,6 @@ export function initProjectCard(cardId: string, images: string[] = []): void {
         cardContainer.addEventListener('mouseleave', () => {
             isMouseOverCard = false;
         });
-    }
-
-    /** retrieves and verifies a project card by the provided cardId parameter **/
-    function getCard(cardId: string) : HTMLElement{
-        const card = document.getElementById(cardId);
-
-        if (!card) {
-            throw new Error(`Project card with id "${cardId}" not found`);
-        }
-
-        return card as HTMLElement;
     }
 
     /** retrieves and verifies the outer container for the card HTMLElement **/

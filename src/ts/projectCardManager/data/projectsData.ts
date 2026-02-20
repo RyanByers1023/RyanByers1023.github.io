@@ -1,4 +1,4 @@
-import { ProjectStatus, TechColors, TechStack, ProjectDetails, Project } from '@projectCardManager/data/projects';
+import { ProjectStatus, TechColors, ProjectDetails, Project } from '@projectCardManager/data/projects';
 
 // ============================================================================
 // PROJECT DATA
@@ -15,11 +15,6 @@ export const projectsData: Project[] = [
 
         images: [
             './img/renderer/rendererDemo.gif'
-        ],
-
-        techStack: [
-            { name: 'C++', color: TechColors.CPP },
-            { name: 'SDL2', color: TechColors.SDL2 }
         ],
 
         githubUrl: 'https://github.com/RyanByers1023/SDL2_3D_Renderer',
@@ -69,11 +64,11 @@ export const projectsData: Project[] = [
                 'Refactoring time reduction - More time and effort into the planning stage of the project. Refactoring is always necessary, but this project required more than I felt was typical, indicating I need to devote more project time to planning.'
             ],
 
-            techStack: {
-                'SDL2': 'Forms the core of the rendering process. Opening and closing windows, drawing pixels to the screen, and taking user input from the keyboard are the main functionalities provided by SDL2 that I used for this project',
-                'C++': 'Chosen for its performance capabilities and low-level memory control, essential for real-time 3D rendering',
-                'Github + Git CLI': 'Used for remote development, project version control, branch management, and merge conflict resolution.'
-            },
+            techStack: [
+                'SDL2: Forms the core of the rendering process. Opening and closing windows, drawing pixels to the screen, and taking user input from the keyboard are the main functionalities provided by SDL2 that I used for this project',
+                'C++: Chosen for its performance capabilities and low-level memory control, essential for real-time 3D rendering',
+                'Github + Git CLI: Used for remote development, project version control, branch management, and merge conflict resolution.'
+            ],
 
             skillsGained: [
                 'Git CLI - Learned during production how to quickly push/pull/undo changes to a repository in a safe manner. Learned how to create and switch between production and in-development branches on the fly and even work on the project remotely.',
@@ -95,16 +90,6 @@ export const projectsData: Project[] = [
             '@imgs/stockMarketSim/SMSHome.gif',
             '@imgs/stockMarketSim/SMSLoginDemo.gif',
             '@imgs/stockMarketSim/SMSAbout.gif'
-        ],
-
-        techStack: [
-            { name: 'Tailwind CSS', color: TechColors.TAILWIND },
-            { name: 'Node.js', color: TechColors.NODE },
-            { name: 'Express.js', color: TechColors.EXPRESS },
-            { name: 'MySQL', color: TechColors.MYSQL },
-            { name: 'HTML5', color: TechColors.HTML },
-            { name: 'JavaScript', color: TechColors.JS },
-            { name: 'CSS', color: TechColors.CSS }
         ],
 
         githubUrl: 'https://github.com/RyanByers1023/Commerce-Bank-Project',
@@ -155,15 +140,15 @@ export const projectsData: Project[] = [
                 'Security - Implemented bcrypt for password hashing and Helmet middleware for HTTP security headers. Pre-written SQL statements prevent SQL injection attacks via front-end text input fields.'
             ],
 
-            techStack: {
-                'Tailwind CSS': 'Provided utility-first CSS framework for rapid UI development with consistent design system',
-                'Node.js': 'Server-side JavaScript runtime enabling full-stack JavaScript development',
-                'Express.js': 'Minimal and flexible web application framework providing robust routing and middleware support',
-                'MySQL': 'Relational database for persistent storage of user accounts, portfolios, and transaction history',
-                'HTML5': 'Semantic markup for accessible and well-structured web pages',
-                'JavaScript': 'Client-side scripting for interactive UI elements and real-time market updates',
-                'CSS': 'Custom styling to complement Tailwind and create unique visual elements'
-            },
+            techStack: [
+                'Tailwind CSS: Provided utility-first CSS framework for rapid UI development with consistent design system',
+                'Node.js: Server-side JavaScript runtime enabling full-stack JavaScript development',
+                'Express.js: Minimal and flexible web application framework providing robust routing and middleware support',
+                'MySQL: Relational database for persistent storage of user accounts, portfolios, and transaction history',
+                'HTML5: Semantic markup for accessible and well-structured web pages',
+                'JavaScript: Client-side scripting for interactive UI elements and real-time market updates',
+                'CSS: Custom styling to complement Tailwind and create unique visual elements'
+            ],
 
             skillsGained: [
                 'Interpersonal communication - Coordinating with team members across different skill levels and roles',
