@@ -26,6 +26,9 @@ export function initAllProjects(projectsContainerId: string = 'projects-grid'): 
             generateProjectCardHTML(project)
         ).join('');
 
+        // inject the HTML into the DOM
+        projectsContainer.innerHTML = cardsHTML;
+
         // Initialize all cards
         projectsData.forEach(project => {
             initProjectCard(project.id, project.images);
