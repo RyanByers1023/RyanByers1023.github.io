@@ -1,12 +1,11 @@
-import { ProjectStatus, TechColors, ProjectDetails, Project } from '@projectCardManager/data/projects';
+import { ProjectStatus } from './projects';
+import type { Project } from './projects';
 
 // ============================================================================
 // PROJECT DATA
 // ============================================================================
 
-/**
- * Array of portfolio projects
- */
+/** Array of portfolio projects */
 export const projectsData: Project[] = [
     {
         id: 'project-card-1',

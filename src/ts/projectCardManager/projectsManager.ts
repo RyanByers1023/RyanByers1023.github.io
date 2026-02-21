@@ -1,37 +1,36 @@
-import { projectsData } from '@projectCardManager/data/projectsData';
-import { generateProjectCardHTML } from '@projectCardManager/projectCardGenerator';
-import { initProjectCard } from '@projectCardManager/projectsCardController';
+import { projectsData } from './data/projectsData';
+import { generateProjectCardHTML } from './projectCardGenerator';
+import { ProjectCardManager } from './projectCardManager';
+
+// ============================================================================
+// PROJECTS MANAGER - Entry point that bootstraps all project cards
+// ============================================================================
 
 /**
- * Initializes all project cards in the specified container
+ * Initializes all project cards in the specified container.
+ * Generates HTML, injects it into the DOM, then creates a
+ * ProjectCardManager for each card to wire up all behaviors.
+ *
  * @param projectsContainerId - The ID of the container element (defaults to 'projects-grid')
+ * @returns Array of ProjectCardManager instances (useful for later cleanup via destroy())
  */
-export function initAllProjects(projectsContainerId: string = 'projects-grid'): void {
-    const projectsContainer = getProjectsContainer(projectsContainerId) as HTMLElement;
-
-    initAllProjectCards();
-
-    function getProjectsContainer(projectsContainerId: string) : HTMLElement{
-        const projectsContainer = document.getElementById(projectsContainerId);
-        if (!projectsContainer) {
-            throw new Error(`Container with id "${projectsContainerId}" not found`);
-        }
-        return projectsContainer;
+export function initAllProjects(projectsContainerId: string = 'projects-grid'): ProjectCardManager[] {
+    const projectsContainer = document.getElementById(projectsContainerId);
+    if (!projectsContainer) {
+        throw new Error(`Container with id "${projectsContainerId}" not found`);
     }
 
+    // Generate and inject HTML for all cards
+    projectsContainer.innerHTML = projectsData
+        .map(project => generateProjectCardHTML(project))
+        .join('');
 
-    function initAllProjectCards(){
-        // Generate HTML for all project cards
-        const cardsHTML: string = projectsData.map(project =>
-            generateProjectCardHTML(project)
-        ).join('');
+    // Create a manager for each card, init behaviors, and return the instances
+    const managers = projectsData.map(project => {
+        const manager = new ProjectCardManager(project.id, project.images);
+        manager.init();
+        return manager;
+    });
 
-        // inject the HTML into the DOM
-        projectsContainer.innerHTML = cardsHTML;
-
-        // Initialize all cards
-        projectsData.forEach(project => {
-            initProjectCard(project.id, project.images);
-        });
-    }
+    return managers;
 }

@@ -1,5 +1,5 @@
 /**
- * @file Project data for portfolio website (ryanbyers1023.github.io)
+ * @file Project type definitions and constants for the portfolio website.
  * Cards are created at runtime using this data, fed into projectCardGenerator.ts
  */
 
@@ -7,18 +7,14 @@
 // CONSTANTS
 // ============================================================================
 
-/**
- * Project status values
- */
+/** Project status values */
 export enum ProjectStatus {
     COMPLETE = 'Complete',
     IN_PROGRESS = 'In Progress',
     INCOMPLETE = 'Incomplete'
 }
 
-/**
- * Tailwind color schemes for tech stack badges
- */
+/** Tailwind color schemes for tech stack badges */
 export const TechColors = {
     CPP: 'bg-blue-100 text-indigo-800',
     SDL2: 'bg-red-100 text-indigo-800',
@@ -36,14 +32,11 @@ export const TechColors = {
 // ============================================================================
 
 /**
-
-
-/**
  * Portfolio project data structure, contains main parameters
- * along with details, which encapsulates additional project data
+ * along with details, which encapsulates additional project data.
  */
 export interface Project {
-    /** Internal identfier used by projectsCardManager.ts to ID multiple cards indivdually */
+    /** Internal identifier used by ProjectCardManager to ID cards individually */
     id: string;
 
     /** Name of the project */
@@ -52,18 +45,18 @@ export interface Project {
     /** Brief description of entire project */
     description: string;
 
-    /** contains all images that the gallery object will iterate through */
+    /** Contains all images that the gallery will iterate through */
     images: string[];
 
     /** URL to respective Github project repository */
     githubUrl: string;
 
-    /** linker to additonal interface -- ProjectDetails, contains addtl fields */
+    /** Additional detailed project information */
     details: ProjectDetails;
 }
 
 /**
- *Additonal detailed project information
+ * Additional detailed project information.
  */
 export interface ProjectDetails {
     /** High level overview of project, relatively brief */
@@ -72,7 +65,7 @@ export interface ProjectDetails {
     /** Any standout features worth mentioning */
     keyFeatures: string[];
 
-    /** Highlights related to any impressive technical aspects of the project (no raw pointers, etc.) */
+    /** Highlights related to impressive technical aspects of the project */
     technicalHighlights: string[];
 
     /** Enum that details whether the project is in progress, finished, or cancelled */
@@ -81,17 +74,18 @@ export interface ProjectDetails {
     /** Reasons for current project status (if necessary) */
     statusNotes?: string;
 
-    /** What was my overall goal with the project? */
+    /** What was the overall goal with the project? */
     goals: string[];
 
-    /** What were some of the most challenging things I had to deal with during development */
+    /** What were the most challenging things during development? */
     challenges: string[];
 
+    /** Technologies used */
     techStack: string[];
 
-    /** From these above challenges, what did I do to progress through them? */
+    /** From the challenges, what was done to progress through them? */
     solutions: string[];
 
-    /** What did I learn during the course of making this project? */
+    /** What was learned during the course of making this project? */
     skillsGained: string[];
 }

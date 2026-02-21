@@ -24,7 +24,7 @@ export async function loadComponent(
         /** DEBUG success log */
         console.log(`componentLoader Loaded ${componentPath} into #${containerId}`);
     } catch (error) {
-        throw new Error(`componentLoader failed to load component: ${componentPath}`, { cause: error });
+        throw new Error(`componentLoader failed to load component: ${componentPath}, Error: ${error},`);
     }
 
     function getContainer(containerId: string) : HTMLElement{

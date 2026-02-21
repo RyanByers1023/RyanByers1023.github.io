@@ -1,47 +1,18 @@
-/**TODO: seperate structural (HTML) from logic (TS), split into different files, with the HTML components being stored
- * in ./templates and loaded/injected at runtime **/
-
-// ============================================================================
-// TYPE DEFINITIONS
-// ============================================================================
-
 /**
- * Detailed information about a project
+ * TODO: Separate structural (HTML) from logic (TS), split into different files,
+ * with the HTML components stored in ./templates and loaded/injected at runtime.
  */
-interface ProjectDetails {
-    /** High-level project description */
-    overview: string;
-    /** List of main project features */
-    keyFeatures: string[];
-    /** List of technical achievements/highlights */
-    technicalHighlights: string[];
-    /** Current project status ("Complete", "In Progress") */
-    status: string;
-}
 
-/**
- * Complete project data structure for card generation
- */
-interface Project {
-    /** Unique identifier for the project card element */
-    id: string;
-    /** Project title displayed on card */
-    title: string;
-    /** Short description for card preview */
-    description: string;
-    /** Array of image paths for gallery display */
-    images: string[];
-    /** GitHub repository URL */
-    githubUrl: string;
-    /** Additional detailed project information */
-    details: ProjectDetails;
-}
+import type { Project, ProjectDetails } from './data/projects';
 
 // ============================================================================
 // PUBLIC API
 // ============================================================================
 
-
+/**
+ * Generates the complete HTML string for a project card (front + back).
+ * This HTML is injected into the DOM before ProjectCardManager attaches behaviors.
+ */
 export function generateProjectCardHTML(project: Project): string {
     return `
         <div class="card-container">
@@ -54,18 +25,16 @@ export function generateProjectCardHTML(project: Project): string {
 }
 
 // ============================================================================
-// PRIVATE HELPER FUNCTIONS
+// PRIVATE HELPERS
 // ============================================================================
 
 function generateListHTML(items: string[]): string {
     return items.map(item => `<li>${item}</li>`).join('');
 }
 
-
-function imagesInArray(images: string[]): boolean {
+function hasMultipleImages(images: string[]): boolean {
     return images.length > 1;
 }
-
 
 function generateGalleryArrowsHTML(): string {
     return `
@@ -82,18 +51,14 @@ function generateGalleryArrowsHTML(): string {
     `;
 }
 
-
 function generateGalleryControlsHTML(images: string[]): string {
-    if (!imagesInArray(images)) {
-        return '';
-    }
+    if (!hasMultipleImages(images)) return '';
 
     return `
         ${generateGalleryArrowsHTML()}
         <div class="gallery-indicators"></div>
     `;
 }
-
 
 function generateDetailSectionHTML(title: string, content: string): string {
     return `
@@ -103,7 +68,6 @@ function generateDetailSectionHTML(title: string, content: string): string {
         </div>
     `;
 }
-
 
 function generateDetailListSectionHTML(title: string, items: string[]): string {
     return `
@@ -116,9 +80,8 @@ function generateDetailListSectionHTML(title: string, items: string[]): string {
     `;
 }
 
-
 function generateCardFrontHTML(project: Project): string {
-    const galleryControlsHTML: string = generateGalleryControlsHTML(project.images);
+    const galleryControlsHTML = generateGalleryControlsHTML(project.images);
 
     return `
         <div class="card-face card-front">
@@ -138,9 +101,8 @@ function generateCardFrontHTML(project: Project): string {
     `;
 }
 
-
 function generateCardBackHTML(project: Project): string {
-    const { details }: { details: ProjectDetails } = project;
+    const { details } = project;
 
     return `
         <div class="text-black card-face card-back">

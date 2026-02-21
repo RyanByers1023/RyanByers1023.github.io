@@ -25,9 +25,6 @@ const HEADER_SELECTOR = 'header';
 /** ID of the mobile menu toggle button */
 const MENU_TOGGLE_ID = 'menu-toggle';
 
-/** ID of the mobile menu container */
-const MOBILE_MENU_ID = 'mobile-menu';
-
 /** CSS selector for navigation links */
 const NAV_LINK_SELECTOR = '.nav-link';
 
