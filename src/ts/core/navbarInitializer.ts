@@ -1,4 +1,4 @@
-import { navigateTo, onRouteChange, getCurrentRoute } from './router';
+import { navigateTo, onRouteChange} from './router';
 /** Module level constants, pre-written tailwind CSS stlying */
 
 /** Scroll distance threshold for triggering header style changes */
@@ -22,12 +22,6 @@ const PADDING_SMALL_CLASS = 'py-2';
 /** CSS class for default header padding when at top */
 const PADDING_LARGE_CLASS = 'py-4';
 
-/** ARIA attribute for associating toggle button with menu */
-const ARIA_CONTROLS = 'aria-controls';
-
-/** ARIA attribute for indicating menu expanded state */
-const ARIA_EXPANDED = 'aria-expanded';
-
 /**
  * Configuration options for navbar initialization
  */
@@ -44,14 +38,10 @@ interface NavbarConfig {
 
 export function initNavbar({
                                headerSelector = 'header',
-                               menuToggleId = 'menu-toggle',
                                linkSelector = '.nav-link',
                            }: NavbarConfig = {}): void {
-
-    /** retrieve DOM references relative to the navbar */
     const header = document.querySelector<HTMLElement>(headerSelector);
     const navLinks = document.querySelectorAll<HTMLAnchorElement>(linkSelector);
-    const menuToggle = document.getElementById(menuToggleId);
 
     initRouteChangeHandlers();
 
@@ -61,6 +51,7 @@ export function initNavbar({
 
     countNavbarLinks();
 
+
     function countNavbarLinks() {
         if (!navLinks.length) {
             console.warn('[navbar] No nav links found');
@@ -68,18 +59,25 @@ export function initNavbar({
         }
     }
 
+    // handles scroll events for the header
     function initStickyHeader(): void {
-        if (header) {
-            const updateHeaderShadow = (): void => {
-                const scrolled = window.scrollY > SCROLL_THRESHOLD;
-                header.classList.toggle(SHADOW_CLASS, scrolled);
-                header.classList.toggle(PADDING_SMALL_CLASS, scrolled);
-                header.classList.toggle(PADDING_LARGE_CLASS, !scrolled);
-            };
+            setStickyHeaderShadow();
+            window.addEventListener('scroll', setStickyHeaderShadow, {passive: true});
 
-            updateHeaderShadow();
-            window.addEventListener('scroll', updateHeaderShadow, {passive: true});
-        } else {
+    }
+
+    // helper function for initStickyHeader(), sets the css to emulate a shadow effect on the navbar
+    function setStickyHeaderShadow() : void{
+        if (header) {
+            // did the user scroll?
+            const scrolled = window.scrollY > SCROLL_THRESHOLD;
+
+            // apply the css effects based on whether or not the user was detected scrolling
+            header.classList.toggle(SHADOW_CLASS, scrolled);
+            header.classList.toggle(PADDING_SMALL_CLASS, scrolled);
+            header.classList.toggle(PADDING_LARGE_CLASS, !scrolled);
+        }
+        else {
             throw new Error("Header could not be found, sticky header not initialized");
         }
     }
@@ -91,6 +89,7 @@ export function initNavbar({
         });
     }
 
+    // handles click events upon navbar links
     function initNavLinkClickListeners(): void {
         navLinks.forEach(link => {
             link.addEventListener('click', (e: Event) => {
@@ -104,13 +103,7 @@ export function initNavbar({
         });
     }
 
-
-    /** TODO: move active state management utils to another file */
-
-    // ========================================================================
-    // ACTIVE STATE MANAGEMENT
-    // ========================================================================
-
+    // sets a navbar link active if the current page matches the link associated with the navbar element's link
     function setActiveLink(routeName: string): void {
         navLinks.forEach(link => {
             const linkRoute = link.getAttribute(DATA_PAGE_ATTR);
