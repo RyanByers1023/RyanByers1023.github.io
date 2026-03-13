@@ -26,13 +26,18 @@ export class GalleryHandler implements ICardHandler {
 
         this.initIndicators();
 
-        if (this.prevBtn) {
-            this.prevBtn.addEventListener('click', (e: MouseEvent) => {
-                e.stopPropagation();
-                this.prevImage();
-            }, { signal });
-        }
+        this.handleNextBtnClick(signal);
 
+        this.handlePrevBtnClick(signal);
+    }
+
+    destroy(): void {
+        this.abortController.abort();
+    }
+
+    // ========================== Private Helpers ==========================
+
+    private handleNextBtnClick(signal: AbortSignal): void {
         if (this.nextBtn) {
             this.nextBtn.addEventListener('click', (e: MouseEvent) => {
                 e.stopPropagation();
@@ -41,11 +46,14 @@ export class GalleryHandler implements ICardHandler {
         }
     }
 
-    destroy(): void {
-        this.abortController.abort();
+    private handlePrevBtnClick(signal: AbortSignal): void {
+        if (this.prevBtn) {
+            this.prevBtn.addEventListener('click', (e: MouseEvent) => {
+                e.stopPropagation();
+                this.prevImage();
+            }, { signal });
+        }
     }
-
-    // ========================== Private Helpers ==========================
 
     private initIndicators(): void {
         if (!this.indicatorsContainer) return;
