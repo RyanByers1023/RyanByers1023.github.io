@@ -5,6 +5,11 @@ import type { ICardState } from '../cardState';
 /** Duration of the flip animation in milliseconds */
 const FLIP_DURATION_MS = 800;
 
+/** determines how many pixels (from the right edge of the card) should be considered the scrollbar's space (does not flip card upon clicking in this **/
+const SCROLLBAR_WIDTH = 40;
+
+
+
 /**
  * Handles clicking on the card to flip it 180°.
  * Writes isFlipped and isFlipping to shared state so other handlers
@@ -39,14 +44,23 @@ export class FlipHandler implements ICardHandler {
         this.state.isFlipped = !this.state.isFlipped;
         this.state.isFlipping = true;
 
-        // Reset tilt before flipping
-        this.card.style.setProperty('--tilt-x', '0deg');
-        this.card.style.setProperty('--tilt-y', '0deg');
+        // Reset tilt before flipping (vars live on the container, not the card)
+        const container = this.card.parentElement;
+        if (container) {
+            container.style.setProperty('--tilt-x', '0deg');
+            container.style.setProperty('--tilt-y', '0deg');
+        }
 
+        //indicate there has been a flip
         this.card.classList.toggle('flipped');
+
+        //indicate we are in the middle of a flip
         this.card.classList.add('flipping');
+
+        //remove classes relating to tilting from the card
         this.card.classList.remove('tilting', 'resetting');
 
+        //after FLIP_DURATION_MS, reset state to indicate the flip animation has completed
         setTimeout(() => {
             this.state.isFlipping = false;
             this.card.classList.remove('flipping');
@@ -72,8 +86,9 @@ export class FlipHandler implements ICardHandler {
         if (!(cardBack instanceof HTMLElement)) return false;
 
         const rect = cardBack.getBoundingClientRect();
-        const SCROLLBAR_WIDTH = 120;
 
-        return e.clientX > rect.right - SCROLLBAR_WIDTH;
+        const scrollbar_area = rect.right - SCROLLBAR_WIDTH;
+
+        return e.clientX > scrollbar_area;
     }
 }
