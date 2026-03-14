@@ -1,6 +1,7 @@
-import { projectsData } from './data/projectsData';
-import { generateProjectCardHTML } from './projectCardGenerator';
-import { ProjectCardManager } from './projectCardManager';
+import {projectsData} from './data/projectsData';
+import {generateProjectCardHTML} from './projectCardHTMLGenerator';
+import {ProjectCardManager} from './projectCardManager';
+import {Project} from "@projectCardManager/data/projects";
 
 // ============================================================================
 // PROJECTS MANAGER - Entry point that bootstraps all project cards
@@ -16,21 +17,28 @@ import { ProjectCardManager } from './projectCardManager';
  */
 export function initAllProjects(projectsContainerId: string = 'projects-grid'): ProjectCardManager[] {
     const projectsContainer = document.getElementById(projectsContainerId);
+
     if (!projectsContainer) {
         throw new Error(`Container with id "${projectsContainerId}" not found`);
     }
 
-    // Generate and inject HTML for all cards
-    projectsContainer.innerHTML = projectsData
-        .map(project => generateProjectCardHTML(project))
-        .join('');
+    generateCardHTML(projectsContainer);
 
-    // Create a manager for each card, init behaviors, and return the instances
-    const managers = projectsData.map(project => {
+    return createManagers(projectsData);
+}
+
+// Create a manager for each card, init behaviors, and return the instances
+function createManagers(projects: Project[]): ProjectCardManager[] {
+    return projects.map(project => {
         const manager = new ProjectCardManager(project.id, project.images);
         manager.init();
         return manager;
     });
+}
 
-    return managers;
+// Generate and inject HTML for all cards
+function generateCardHTML(projectsContainer: HTMLElement){
+    projectsContainer.innerHTML = projectsData
+        .map(project => generateProjectCardHTML(project))
+        .join('');
 }
