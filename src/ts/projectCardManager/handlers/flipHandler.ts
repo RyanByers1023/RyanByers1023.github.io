@@ -1,14 +1,11 @@
 import type { ICardHandler } from '../interface';
 import type { ICardState } from '../cardState';
 
-
 /** Duration of the flip animation in milliseconds */
 const FLIP_DURATION_MS = 800;
 
 /** determines how many pixels (from the right edge of the card) should be considered the scrollbar's space (does not flip card upon clicking in this **/
 const SCROLLBAR_WIDTH = 40;
-
-
 
 /**
  * Handles clicking on the card to flip it 180°.
