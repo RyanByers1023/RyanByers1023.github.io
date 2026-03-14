@@ -1,8 +1,4 @@
-/**
- * with the HTML components stored in ./templates and loaded/injected at runtime.
- */
-
-import type { Project, ProjectDetails } from './data/projects';
+import type { Project } from './data/projects';
 
 // ============================================================================
 // PUBLIC API
@@ -37,19 +33,8 @@ function hasMultipleImages(images: string[]): boolean {
     return images.length > 1;
 }
 
-function generateGalleryArrowsHTML(): string {
-    return `
-        <button class="gallery-arrow gallery-arrow-left" aria-label="Previous Image">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-            </svg>
-        </button>
-        <button class="gallery-arrow gallery-arrow-right" aria-label="Next Image">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-        </button>
-    `;
+function hasNoImages(images: string[]): boolean {
+    return images.length === 0;
 }
 
 function generateGalleryControlsHTML(images: string[]): string {
@@ -59,6 +44,31 @@ function generateGalleryControlsHTML(images: string[]): string {
         ${generateGalleryArrowsHTML()}
         <div class="gallery-indicators"></div>
     `;
+}
+
+function generateGalleryArrowsHTML(): string {
+    return `
+        ${generateLeftGalleryArrow()}
+        ${generateRightGalleryArrow()}
+    `;
+}
+
+function generateLeftGalleryArrow(): string {
+    return `
+        <button class="gallery-arrow gallery-arrow-left" aria-label="Previous Image">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+        </button>`
+}
+
+function generateRightGalleryArrow(): string {
+    return `
+        <button class="gallery-arrow gallery-arrow-right" aria-label="Next Image">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+        </button>`
 }
 
 function generateDetailSectionHTML(title: string, content: string): string {
@@ -81,14 +91,20 @@ function generateDetailListSectionHTML(title: string, items: string[]): string {
     `;
 }
 
-function generateCardFrontHTML(project: Project): string {
-    const galleryControlsHTML = generateGalleryControlsHTML(project.images);
+function generateGalleryContentHTML(project: Project): string {
+    if (hasNoImages(project.images)) return '';
 
+    return `
+        <img class="gallery-image" src="${project.images[0]}" alt="${project.title}" draggable="false">
+        ${generateGalleryControlsHTML(project.images)}
+    `;
+}
+
+function generateCardFrontHTML(project: Project): string {
     return `
         <div class="card-face card-front">
             <div class="gallery-container">
-                <img class="gallery-image" src="${project.images[0]}" alt="${project.title}" draggable="false">
-                ${galleryControlsHTML}
+                ${generateGalleryContentHTML(project)}
             </div>
 
             <div class="p-6 flex-1 flex flex-col">
