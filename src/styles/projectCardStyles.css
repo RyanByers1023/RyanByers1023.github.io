@@ -4,6 +4,47 @@
     width: 100%;
     max-width: 400px;
     height: 550px;
+    /* Tilt and flip vars live here so both .card-glass and .card-flip inherit them */
+    --tilt-x: 0deg;
+    --tilt-y: 0deg;
+    --flip-y: 0deg;
+}
+
+/* Propagate flip state to the container so .card-glass can read --flip-y */
+.card-container:has(.card-flip.flipped) {
+    --flip-y: 180deg;
+}
+
+/* Glassmorphism layer — sibling of .card-flip, outside preserve-3d.
+   Tilts with the card via inherited CSS vars but never flips,
+   keeping backdrop-filter out of the preserve-3d compositing path. */
+.card-glass {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transform: rotateY(calc(var(--flip-y) + var(--tilt-y))) rotateX(var(--tilt-x));
+    transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+    pointer-events: none;
+    will-change: transform;
+}
+
+/* Mirror transition states from .card-flip onto .card-glass */
+.card-container:has(.card-flip.flipping) .card-glass {
+    transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1) !important;
+}
+
+.card-container:has(.card-flip.resetting) .card-glass {
+    transition: transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1), box-shadow 0.3s ease;
+}
+
+.card-container:hover .card-glass {
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
 }
 
 /* Card wrapper for flip */
@@ -13,14 +54,10 @@
     height: 100%;
     transform-style: preserve-3d;
     cursor: grab;
-    /* Use CSS variables for dynamic values */
-    --tilt-x: 0deg;
-    --tilt-y: 0deg;
     --flip-y: 0deg;
-    /* Single transform using variables */
-    transform: rotateY(calc(var(--flip-y) + var(--tilt-y))) rotateX(var(--tilt-x)) scale(1.02);
-    /* Default transition */
+    transform: rotateY(calc(var(--flip-y) + var(--tilt-y))) rotateX(var(--tilt-x));
     transition: transform 0.1s ease-out;
+    will-change: transform;
 }
 
 .card-flip.flipped {
@@ -35,23 +72,13 @@
     transition: transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
-/* Base card styling */
+/* Base card styling — glassmorphism is on .card-container, not here */
 .card-face {
     position: absolute;
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
     border-radius: 1rem;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    transition: box-shadow 0.3s ease;
-}
-
-.card-face:hover {
-    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
 }
 
 /* Front face */
@@ -153,6 +180,18 @@
     height: 100%;
     object-fit: cover;
     transition: opacity 0.3s ease;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* Disable pointer events on whichever face is currently hidden,
+   so the invisible front face can't intercept clicks on the back face */
+.card-flip.flipped .card-front {
+    pointer-events: none;
+}
+
+.card-flip:not(.flipped) .card-back {
+    pointer-events: none;
 }
 
 /* Navigation arrows */
