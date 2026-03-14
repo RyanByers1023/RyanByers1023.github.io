@@ -91,6 +91,7 @@ export class GalleryHandler implements ICardHandler {
         if (!this.indicatorsContainer) return;
 
         const indicators = this.indicatorsContainer.querySelectorAll('.gallery-indicator');
+
         indicators.forEach((indicator, i: number) => {
             indicator.classList.toggle('active', i === activeIndex);
         });
