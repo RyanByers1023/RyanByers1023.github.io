@@ -1,5 +1,4 @@
 /**
- * TODO: Separate structural (HTML) from logic (TS), split into different files,
  * with the HTML components stored in ./templates and loaded/injected at runtime.
  */
 
@@ -13,9 +12,11 @@ import type { Project, ProjectDetails } from './data/projects';
  * Generates the complete HTML string for a project card (front + back).
  * This HTML is injected into the DOM before ProjectCardManager attaches behaviors.
  */
+
 export function generateProjectCardHTML(project: Project): string {
     return `
         <div class="card-container">
+            <div class="card-glass"></div>
             <div class="card-flip" id="${project.id}">
                 ${generateCardFrontHTML(project)}
                 ${generateCardBackHTML(project)}
@@ -86,7 +87,7 @@ function generateCardFrontHTML(project: Project): string {
     return `
         <div class="card-face card-front">
             <div class="gallery-container">
-                <img class="gallery-image" src="${project.images[0]}" alt="${project.title}">
+                <img class="gallery-image" src="${project.images[0]}" alt="${project.title}" draggable="false">
                 ${galleryControlsHTML}
             </div>
 
