@@ -1,4 +1,3 @@
-/** TODO: refactor this file, it is incredibly difficult to read */
 
 // ============================================================================
 // TYPE DEFINITIONS
