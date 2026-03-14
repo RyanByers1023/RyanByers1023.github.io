@@ -22,21 +22,11 @@ export class ScrollHandler implements ICardHandler {
     init(): void {
         const { signal } = this.abortController;
 
-        // Track mouse entering / leaving the card container
-        this.container.addEventListener('mouseenter', () => {
-            this.state.isMouseOverCard = true;
-        }, { signal });
+        this.initMouseEnterListener(signal);
 
-        this.container.addEventListener('mouseleave', () => {
-            this.state.isMouseOverCard = false;
-        }, { signal });
+        this.initMouseLeaveListener(signal);
 
-        // Intercept scroll wheel events when card back is showing
-        this.container.addEventListener('wheel', (e: WheelEvent) => {
-            if (this.state.isMouseOverCard && this.state.isFlipped && this.cardBack) {
-                this.performScroll(e, this.cardBack);
-            }
-        }, { passive: false, signal });
+        this.initScrollBarListener(signal);
     }
 
     destroy(): void {
@@ -44,6 +34,28 @@ export class ScrollHandler implements ICardHandler {
     }
 
     // ========================== Private Helpers ==========================
+
+    // Intercept scroll wheel events when card back is showing
+    private initScrollBarListener(signal: AbortSignal): void {
+        this.container.addEventListener('wheel', (e: WheelEvent) => {
+            if (this.state.isMouseOverCard && this.state.isFlipped && this.cardBack) {
+                this.performScroll(e, this.cardBack);
+            }
+        }, { passive: false, signal });
+    }
+
+    // Track mouse entering / leaving the card container
+    private initMouseEnterListener(signal: AbortSignal): void {
+        this.container.addEventListener('mouseenter', () => {
+            this.state.isMouseOverCard = true;
+        }, { signal });
+    }
+
+    private initMouseLeaveListener(signal: AbortSignal): void {
+        this.container.addEventListener('mouseleave', () => {
+            this.state.isMouseOverCard = false;
+        }, { signal });
+    }
 
     private performScroll(e: WheelEvent, cardBack: HTMLElement): void {
         const hasScrollableContent = cardBack.scrollHeight > cardBack.clientHeight;
