@@ -1,6 +1,7 @@
 <header class="bg-gradient-navbar px-8 py-3 z-50">
     <div class="flex justify-between items-center py-3">
-        <ul class="nav-menu flex">
+        <!-- Desktop left nav: page links (hidden on mobile) -->
+        <ul class="nav-menu desktop-nav">
             <li class="glass-card animated nav-menu-element">
                 <a href="#projects" data-page="projects" class="block px-10 py-1 text-center">Projects</a>
             </li>
@@ -12,7 +13,8 @@
             </li>
         </ul>
 
-        <ul class="nav-menu flex items-center">
+        <!-- Desktop right nav: document links (hidden on mobile) -->
+        <ul class="nav-menu desktop-nav items-center">
             <li class="glass-card animated nav-menu-element">
                 <a href="doc/resume.pdf" target="_blank" class="block px-10 py-1 text-center">Resume</a>
             </li>
@@ -22,18 +24,26 @@
             </li>
         </ul>
 
-        <button class="md:hidden focus:outline-none" id="menu-toggle">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <!-- Hamburger button (visible on mobile only) -->
+        <button id="menu-toggle" class="hamburger-btn focus:outline-none" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+            <svg class="hamburger-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+            <svg class="close-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
             </svg>
         </button>
     </div>
 
-    <div class="hidden md:hidden" id="mobile-menu">
+    <!-- Mobile dropdown menu -->
+    <div id="mobile-menu" class="hidden">
         <ul class="mobile-nav-menu">
-            <li><a href="#projects" data-page="projects" class="nav-link">Projects</a></li>
-            <li><a href="#skills" data-page="skills" class="nav-link">Skills</a></li>
-            <li><a href="#contact" data-page="contact" class="nav-link">Contact</a></li>
+            <li><a href="#projects" data-page="projects" class="nav-link mobile-nav-link">Projects</a></li>
+            <li><a href="#skills"   data-page="skills"   class="nav-link mobile-nav-link">Skills</a></li>
+            <li><a href="#contact"  data-page="contact"  class="nav-link mobile-nav-link">Contact</a></li>
+            <li class="mobile-nav-divider"></li>
+            <li><a href="doc/resume.pdf"  target="_blank" class="mobile-nav-link">Resume</a></li>
+            <li><a href="doc/diploma.pdf" target="_blank" class="mobile-nav-link">Diploma</a></li>
         </ul>
     </div>
 </header>
