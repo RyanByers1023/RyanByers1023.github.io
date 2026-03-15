@@ -32,22 +32,31 @@ interface NavbarConfig {
     /** ID of the mobile menu toggle button */
     menuToggleId?: string;
 
+    /** ID of the mobile menu container */
+    mobileMenuId?: string;
+
     /** CSS selector for navigation links */
     linkSelector?: string;
 }
 
 export function initNavbar({
                                headerSelector = 'header',
-                               linkSelector = '.nav-link',
+                               menuToggleId   = 'menu-toggle',
+                               mobileMenuId   = 'mobile-menu',
+                               linkSelector   = '.nav-link',
                            }: NavbarConfig = {}): void {
-    const header = document.querySelector<HTMLElement>(headerSelector);
-    const navLinks = document.querySelectorAll<HTMLAnchorElement>(linkSelector);
+    const header     = document.querySelector<HTMLElement>(headerSelector);
+    const navLinks   = document.querySelectorAll<HTMLAnchorElement>(linkSelector);
+    const menuToggle = document.getElementById(menuToggleId);
+    const mobileMenu = document.getElementById(mobileMenuId);
 
     initRouteChangeHandlers();
 
     initNavLinkClickListeners();
 
     initStickyHeader();
+
+    initMobileMenuToggle();
 
     countNavbarLinks();
 
@@ -86,6 +95,7 @@ export function initNavbar({
     function initRouteChangeHandlers(): void {
         onRouteChange((newRoute: string) => {
             setActiveLink(newRoute);
+            closeMobileMenu();
         });
     }
 
@@ -101,6 +111,32 @@ export function initNavbar({
                 }
             });
         });
+    }
+
+    // wires up the hamburger button to toggle the mobile menu open/closed
+    function initMobileMenuToggle(): void {
+        if (!menuToggle || !mobileMenu) return;
+
+        menuToggle.addEventListener('click', () => {
+            const isOpen = !mobileMenu.classList.contains(HIDDEN_CLASS);
+            isOpen ? closeMobileMenu() : openMobileMenu();
+        });
+    }
+
+    function openMobileMenu(): void {
+        if (!mobileMenu || !menuToggle) return;
+        mobileMenu.classList.remove(HIDDEN_CLASS);
+        menuToggle.setAttribute('aria-expanded', 'true');
+        menuToggle.querySelector<SVGElement>('.hamburger-icon')?.classList.add(HIDDEN_CLASS);
+        menuToggle.querySelector<SVGElement>('.close-icon')?.classList.remove(HIDDEN_CLASS);
+    }
+
+    function closeMobileMenu(): void {
+        if (!mobileMenu || !menuToggle) return;
+        mobileMenu.classList.add(HIDDEN_CLASS);
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.querySelector<SVGElement>('.hamburger-icon')?.classList.remove(HIDDEN_CLASS);
+        menuToggle.querySelector<SVGElement>('.close-icon')?.classList.add(HIDDEN_CLASS);
     }
 
     // sets a navbar link active if the current page matches the link associated with the navbar element's link
