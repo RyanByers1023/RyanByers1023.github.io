@@ -58,6 +58,83 @@
 }
 
 
+/* ============================================================
+   HAMBURGER / MOBILE MENU
+   ============================================================ */
+
+/* Hide desktop navs and show hamburger on small screens */
+@media (max-width: 767px) {
+    .desktop-nav {
+        display: none !important;
+    }
+
+    .hamburger-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.5rem;
+        height: 2.5rem;
+        color: #4029F0;
+        cursor: pointer;
+    }
+
+    .hamburger-btn svg {
+        width: 1.75rem;
+        height: 1.75rem;
+    }
+}
+
+/* Hide hamburger and force desktop navs visible on md+ screens */
+@media (min-width: 768px) {
+    .hamburger-btn {
+        display: none !important;
+    }
+
+    #mobile-menu {
+        display: none !important;
+    }
+}
+
+/* Mobile dropdown menu list */
+.mobile-nav-menu {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.75rem 0 1rem;
+    font-family: 'Bebas Neue', sans-serif;
+}
+
+.mobile-nav-link {
+    display: block;
+    padding: 0.6rem 1rem;
+    border-radius: 0.5rem;
+    color: #1e1b4b;
+    font-size: 1.1rem;
+    letter-spacing: 0.04em;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link.active {
+    background: rgba(64, 41, 240, 0.1);
+    color: #4029F0;
+}
+
+.mobile-nav-divider {
+    height: 1px;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgb(61, 199, 223),
+        rgb(43, 200, 230),
+        transparent
+    );
+    margin: 0.4rem 1rem;
+}
+
+/* ============================================================ */
+
 .nav-menu-divider {
     width: 2px;
     height: 40px;
