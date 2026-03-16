@@ -12,6 +12,26 @@
     transition: transform 0.2s ease;
 }
 
+/* ============================================================
+   CONTACT PAGE TILT
+   ============================================================ */
+
+.page-tilt-container {
+    perspective: 1500px;
+    --tilt-x: 0deg;
+    --tilt-y: 0deg;
+}
+
+.page-tilt-container .glass-card {
+    transform: rotateY(var(--tilt-y)) rotateX(var(--tilt-x));
+    transition: transform 0.1s ease-out;
+    will-change: transform;
+}
+
+.page-tilt-container .glass-card.resetting {
+    transition: transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
 .glass-card.animated:hover {
     transform: scale(1.05); /* same as hover:scale-105 */
 }

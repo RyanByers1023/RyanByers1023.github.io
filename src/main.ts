@@ -13,6 +13,7 @@ import '@styles/projectCardStyles.css';
 import { initNavbar } from '@core/navbarInitializer';
 import { initPageLoader } from '@core/pageContentInjector';
 import { initAllProjects } from '@projectCardManager/projectsManager';
+import { initPageTilt } from '@core/contactTiltManager';
 import {loadAllComponents} from "@core/componentLoader";
 
 // ============================================================================
@@ -89,6 +90,10 @@ function initializePageLoader(): void {
             // Initialize project cards when navigating to projects page
             if (route === PROJECTS_ROUTE) {
                 initAllProjects(PROJECTS_GRID_ID);
+            }
+
+            if (route === 'contact' || route === 'skills') {
+                initPageTilt();
             }
         }
     });
