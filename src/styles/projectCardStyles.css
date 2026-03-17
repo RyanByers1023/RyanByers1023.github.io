@@ -8,6 +8,7 @@
     --tilt-x: 0deg;
     --tilt-y: 0deg;
     --flip-y: 0deg;
+    --flip-duration: 0.8s;
 }
 
 /* Propagate flip state to the container so .card-glass can read --flip-y */
@@ -36,12 +37,9 @@
 
 /* Mirror transition states from .card-flip onto .card-glass */
 .card-container:has(.card-flip.flipping) .card-glass {
-    transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1) !important;
+    transition: transform var(--flip-duration) cubic-bezier(0.4, 0.0, 0.2, 1) !important;
 }
 
-.card-container:has(.card-flip.resetting) .card-glass {
-    transition: transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1), box-shadow 0.3s ease;
-}
 
 .card-container:hover .card-glass {
     box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
@@ -65,11 +63,7 @@
 }
 
 .card-flip.flipping {
-    transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1) !important;
-}
-
-.card-flip.resetting {
-    transition: transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+    transition: transform var(--flip-duration) cubic-bezier(0.4, 0.0, 0.2, 1) !important;
 }
 
 /* Base card styling — glassmorphism is on .card-container, not here */

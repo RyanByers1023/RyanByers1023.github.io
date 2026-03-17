@@ -1,6 +1,6 @@
 import { CardState } from './cardState';
 import { resolveCardElements } from './cardElements';
-import { TiltHandler, FlipHandler, ScrollHandler, GalleryHandler } from './handlers';
+import { CardStateHandler, TiltHandler, FlipHandler, ScrollHandler, GalleryHandler } from './handlers';
 import type { ICardHandler } from './interface';
 import type { ICardState } from './cardState';
 import type { CardElements } from './cardElements';
@@ -43,8 +43,9 @@ export class ProjectCardManager {
             galleryImg, prevBtn, nextBtn, indicatorsContainer } = this.elements;
 
         return [
+            new CardStateHandler(container, card, this.state),
             new TiltHandler(container, card, this.state),
-            new FlipHandler(card, this.state),
+            new FlipHandler(card),
             new ScrollHandler(container, cardBack, this.state),
             new GalleryHandler(galleryImg, prevBtn, nextBtn, indicatorsContainer, this.images),
         ];

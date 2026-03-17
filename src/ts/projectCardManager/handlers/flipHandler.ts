@@ -1,23 +1,17 @@
 import type { ICardHandler } from '../interface';
-import type { ICardState } from '../cardState';
-
-/** Duration of the flip animation in milliseconds */
-const FLIP_DURATION_MS = 800;
 
 /** determines how many pixels (from the right edge of the card) should be considered the scrollbar's space (does not flip card upon clicking in this **/
 const SCROLLBAR_WIDTH = 40;
 
 /**
- * Handles clicking on the card to flip it 180°.
- * Writes isFlipped and isFlipping to shared state so other handlers
- * (tilt, scroll) can react accordingly.
+ * Sole responsibility: detect valid flip clicks and dispatch 'card-flip'.
+ * CardStateHandler owns all resulting state and class changes.
  */
 export class FlipHandler implements ICardHandler {
     private readonly abortController = new AbortController();
 
     constructor(
         private readonly card: HTMLElement,
-        private readonly state: ICardState
     ) {}
 
     init(): void {
@@ -38,30 +32,7 @@ export class FlipHandler implements ICardHandler {
     // ========================== Private Helpers ==========================
 
     private flipCard(): void {
-        this.state.isFlipped = !this.state.isFlipped;
-        this.state.isFlipping = true;
-
-        // Reset tilt before flipping (vars live on the container, not the card)
-        const container = this.card.parentElement;
-        if (container) {
-            container.style.setProperty('--tilt-x', '0deg');
-            container.style.setProperty('--tilt-y', '0deg');
-        }
-
-        //indicate there has been a flip
-        this.card.classList.toggle('flipped');
-
-        //indicate we are in the middle of a flip
-        this.card.classList.add('flipping');
-
-        //remove classes relating to tilting from the card
-        this.card.classList.remove('tilting', 'resetting');
-
-        //after FLIP_DURATION_MS, reset state to indicate the flip animation has completed
-        setTimeout(() => {
-            this.state.isFlipping = false;
-            this.card.classList.remove('flipping');
-        }, FLIP_DURATION_MS);
+        this.card.dispatchEvent(new CustomEvent('card-flip'));
     }
 
     /**

@@ -1,3 +1,4 @@
+export { CardStateHandler } from './cardStateHandler';
 export { TiltHandler } from './tiltHandler';
 export { FlipHandler } from './flipHandler';
 export { ScrollHandler } from './scrollHandler';
