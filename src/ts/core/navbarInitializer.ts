@@ -1,5 +1,5 @@
 import { navigateTo, onRouteChange} from './router';
-/** Module level constants, pre-written tailwind CSS stlying */
+/** Module level constants, pre-written tailwind CSS styles */
 
 /** Scroll distance threshold for triggering header style changes */
 const SCROLL_THRESHOLD = 100;
