@@ -86,6 +86,7 @@
     transform: rotateY(180deg);
     padding: 2rem;
     overflow-y: auto;
+    touch-action: pan-y;
 }
 
 /* Tech tags */
