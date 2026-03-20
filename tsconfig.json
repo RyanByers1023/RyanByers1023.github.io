@@ -39,6 +39,12 @@
       ],
       "@projectCardManager/*": [
         "./src/ts/projectCardManager/*"
+      ],
+      "@data/*": [
+        "./src/ts/projectCardManager/data/*"
+      ],
+      "@handlers/*": [
+        "./src/ts/projectCardManager/handlers/*"
       ]
     }
   },

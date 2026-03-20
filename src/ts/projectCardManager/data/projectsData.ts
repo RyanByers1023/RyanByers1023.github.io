@@ -1,5 +1,5 @@
-import { ProjectStatus } from './projects';
-import type { Project } from './projects';
+import { ProjectStatus } from '@data/projects';
+import type { Project } from '@data/projects';
 
 // ============================================================================
 // PROJECT DATA

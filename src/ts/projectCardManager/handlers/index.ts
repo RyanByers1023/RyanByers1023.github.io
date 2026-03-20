@@ -1,5 +1,5 @@
-export { CardStateHandler } from './cardStateHandler';
-export { TiltHandler } from './tiltHandler';
-export { FlipHandler } from './flipHandler';
-export { ScrollHandler } from './scrollHandler';
-export { GalleryHandler } from './galleryHandler';
+export { CardStateHandler } from '@handlers/cardStateHandler';
+export { TiltHandler } from '@handlers/tiltHandler';
+export { FlipHandler } from '@handlers/flipHandler';
+export { ScrollHandler } from '@handlers/scrollHandler';
+export { GalleryHandler } from '@handlers/galleryHandler';

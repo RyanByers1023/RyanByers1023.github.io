@@ -1,4 +1,4 @@
-import { navigateTo, onRouteChange} from './router';
+import { navigateTo, onRouteChange} from '@core/router';
 /** Module level constants, pre-written tailwind CSS styles */
 
 /** Scroll distance threshold for triggering header style changes */

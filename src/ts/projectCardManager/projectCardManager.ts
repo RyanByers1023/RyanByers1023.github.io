@@ -1,9 +1,9 @@
-import { CardState } from './cardState';
-import { resolveCardElements } from './cardElements';
-import { CardStateHandler, TiltHandler, FlipHandler, ScrollHandler, GalleryHandler } from './handlers';
-import type { ICardHandler } from './interface';
-import type { ICardState } from './cardState';
-import type { CardElements } from './cardElements';
+import { CardState } from '@projectCardManager/cardState';
+import { resolveCardElements } from '@projectCardManager/cardElements';
+import { CardStateHandler, TiltHandler, FlipHandler, ScrollHandler, GalleryHandler } from '@handlers/index';
+import type { ICardHandler } from '@projectCardManager/interface';
+import type { ICardState } from '@projectCardManager/cardState';
+import type { CardElements } from '@projectCardManager/cardElements';
 
 /**
  * Composition root for a single project card. Owns the shared state and

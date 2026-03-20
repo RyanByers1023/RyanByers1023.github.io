@@ -13,7 +13,7 @@ import '@styles/projectCardStyles.css';
 import { initNavbar } from '@core/navbarInitializer';
 import { initPageLoader } from '@core/pageContentInjector';
 import { initAllProjects } from '@projectCardManager/projectsManager';
-import { initPageTilt } from '@core/contactTiltManager';
+import { initPageTilt } from '@core/containerTiltManager';
 import {loadAllComponents} from "@core/componentLoader";
 
 // ============================================================================

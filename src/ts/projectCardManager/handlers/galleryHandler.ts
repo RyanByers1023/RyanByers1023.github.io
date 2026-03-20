@@ -1,4 +1,4 @@
-import type { ICardHandler } from '../interface';
+import type { ICardHandler } from '@projectCardManager/interface';
 
 /**
  * Manages the image gallery on the card front face.

@@ -1,5 +1,5 @@
-import type { ICardHandler } from '../interface';
-import type { ICardState } from '../cardState';
+import type { ICardHandler } from '@projectCardManager/interface';
+import type { ICardState } from '@projectCardManager/cardState';
 
 // ============================================================================
 // SCROLL HANDLER - Scroll wheel support for the card back face

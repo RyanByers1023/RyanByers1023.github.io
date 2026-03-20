@@ -1,6 +1,6 @@
-import {projectsData} from './data/projectsData';
-import {generateProjectCardHTML} from './projectCardHTMLGenerator';
-import {ProjectCardManager} from './projectCardManager';
+import {projectsData} from '@data/projectsData';
+import {generateProjectCardHTML} from '@projectCardManager/projectCardHTMLGenerator';
+import {ProjectCardManager} from '@projectCardManager/ProjectCardManager';
 import {Project} from "@projectCardManager/data/projects";
 
 // ============================================================================

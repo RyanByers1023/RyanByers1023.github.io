@@ -1,4 +1,4 @@
-import type { ICardHandler } from '../interface';
+import type { ICardHandler } from '@projectCardManager/interface';
 
 /** determines how many pixels (from the right edge of the card) should be considered the scrollbar's space (does not flip card upon clicking in this **/
 const SCROLLBAR_WIDTH = 40;

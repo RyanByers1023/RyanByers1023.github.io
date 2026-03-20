@@ -1,6 +1,6 @@
-import type { ICardHandler } from '../interface';
-import type { ICardState } from '../cardState';
-import { readFlipDurationMs } from '../cardUtils';
+import type { ICardHandler } from '@projectCardManager/interface';
+import type { ICardState } from '@projectCardManager/cardState';
+import { readFlipDurationMs } from '@projectCardManager/cardUtils';
 
 /**
  * Sole responsibility: keep shared card state accurate.
