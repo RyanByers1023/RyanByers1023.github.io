@@ -1,5 +1,5 @@
-import type { ICardHandler } from '../interface';
-import type { ICardState } from '../cardState';
+import type { ICardHandler } from '@projectCardManager/interface';
+import type { ICardState } from '@projectCardManager/cardState';
 
 /**
  * Applies a 3D tilt effect to the card.
@@ -16,8 +16,8 @@ export class TiltHandler implements ICardHandler {
 
     // ── Auto-tilt ────────────────────────────────────────────────────────────
     // Cap matches the approximate max a user achieves with the mouse
-    // (1/2 card width / DAMPENER =~ 3°)
-    private readonly MAX_AUTO_TILT_DEG = 3;
+    // (1/2 card width / DAMPENER =~ 3° at default dampener of 45)
+    private readonly MAX_AUTO_TILT_DEG: number;
 
 
     // Angular frequencies for the idle sinusoidal path, in radians per millisecond.
@@ -61,11 +61,11 @@ export class TiltHandler implements ICardHandler {
         private readonly card: HTMLElement,
         private readonly state: ICardState,
         dampener: number = 45,
-        _ms_mouse_leave_tilt_reset_delay: number = 200, // kept for API compat, no longer needed
         scrollbar_width: number = 120,
     ) {
-        this.DAMPENER      = dampener;
+        this.DAMPENER        = dampener;
         this.SCROLLBAR_WIDTH = scrollbar_width;
+        this.MAX_AUTO_TILT_DEG = 135 / dampener;
     }
 
     init(): void {
@@ -161,8 +161,8 @@ export class TiltHandler implements ICardHandler {
     }
 
     private updateCursorTargets(e: MouseEvent): void {
-        this.cursorTargetX = this.calculateTiltX(e);
-        this.cursorTargetY = this.calculateTiltY(e);
+        this.cursorTargetX = -this.calculateTiltX(e);
+        this.cursorTargetY = -this.calculateTiltY(e);
     }
 
     // ========================== Calculations ==========================
