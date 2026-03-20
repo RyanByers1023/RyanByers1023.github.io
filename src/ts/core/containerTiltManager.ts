@@ -1,11 +1,11 @@
-import { TiltHandler } from '@projectCardManager/handlers/tiltHandler';
+import { TiltHandler } from '@handlers/tiltHandler';
 import { CardState } from '@projectCardManager/cardState';
 
 const PAGE_TILT_CONTAINER_CLASS = 'page-tilt-container';
 const GLASS_CARD_CLASS = 'glass-card';
 
 // Higher dampener = less tilt. Project cards use 45; these page cards use 250.
-const CONTACT_DAMPENER = 250;
+const TILT_DAMPENER = 150;
 
 export function initPageTilt(): void {
     const containers = document.querySelectorAll<HTMLElement>(`.${PAGE_TILT_CONTAINER_CLASS}`);
@@ -14,7 +14,12 @@ export function initPageTilt(): void {
         const card = container.querySelector<HTMLElement>(`.${GLASS_CARD_CLASS}`);
         if (!card) return;
 
-        const tiltHandler = new TiltHandler(container, card, new CardState(), CONTACT_DAMPENER);
+        const state = new CardState();
+
+        container.addEventListener('mouseenter', () => { state.isMouseOverCard = true; });
+        container.addEventListener('mouseleave', () => { state.isMouseOverCard = false; });
+
+        const tiltHandler = new TiltHandler(container, card, state, TILT_DAMPENER);
         tiltHandler.init();
     });
 }
