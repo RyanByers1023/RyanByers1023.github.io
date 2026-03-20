@@ -11,7 +11,7 @@ import '@styles/projectCardStyles.css';
 /** TODO: implement automatic, resizing and reformatting based on device/window size, etc. look into media queries via css */
 
 import { initNavbar } from '@core/navbarInitializer';
-import { initPageLoader } from '@core/pageContentInjector';
+import { initPageLoader } from '@core/contentHandler';
 import { initAllProjects } from '@projectCardManager/projectsManager';
 import { initPageTilt } from '@core/containerTiltManager';
 import {loadAllComponents} from "@core/componentLoader";

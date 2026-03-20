@@ -14,6 +14,7 @@ export default defineConfig({
             '@styles': path.resolve(__dirname, './src/styles'),
             '@scripts': path.resolve(__dirname, './src/ts'),
             '@core': path.resolve(__dirname, './src/ts/core'),
+            '@contentHandler': path.resolve(__dirname, './src/ts/core/contentHandler'),
             '@projectCardManager': path.resolve(__dirname, './src/ts/projectCardManager'),
             '@data': path.resolve(__dirname, './src/ts/projectCardManager/data'),
             '@handlers': path.resolve(__dirname, './src/ts/projectCardManager/handlers')

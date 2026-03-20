@@ -37,6 +37,9 @@
       "@core/*": [
         "./src/ts/core/*"
       ],
+      "@contentHandler/*": [
+        "./src/ts/core/contentHandler/*"
+      ],
       "@projectCardManager/*": [
         "./src/ts/projectCardManager/*"
       ],
