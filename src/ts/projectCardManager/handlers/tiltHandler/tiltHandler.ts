@@ -1,5 +1,6 @@
 import type { ICardHandler } from '@projectCardManager/interface';
 import type { ICardState } from '@projectCardManager/cardState';
+import { SpringHandler } from './springHandler';
 
 /**
  * Applies a 3D tilt effect to the card.
@@ -34,23 +35,8 @@ export class TiltHandler implements ICardHandler {
     private readonly phaseX = Math.random() * Math.PI * 2;
     private readonly phaseY = Math.random() * Math.PI * 2;
 
-    // ── Spring state ─────────────────────────────────────────────────────────
-    // Acceleration toward target per frame.
-    // increase this value to increase the speed in which the card 'snaps back' to its current target
-    private readonly SPRING_STIFFNESS = 0.015;
-    // Fraction of velocity retained per frame.
-    // increase this value to increase the amount the card will 'overshoot' its current target
-    private readonly SPRING_DAMPING   = .8;
-
-    // auto tilt values (updated continuously via stepSpring)
-    private currentX  = 0;
-    private currentY  = 0;
-    private velocityX = 0;
-    private velocityY = 0;
-
-    // ── Cursor target (updated on mousemove) ─────────────────────────────────
-    private cursorTargetX = 0;
-    private cursorTargetY = 0;
+    // ── Dependencies ───────────────────────────────────────────────────────
+    private readonly spring = new SpringHandler();
 
     // ── Misc ─────────────────────────────────────────────────────────────────
     private readonly abortController = new AbortController();
@@ -107,13 +93,12 @@ export class TiltHandler implements ICardHandler {
 
     private performTiltAnimation(targetX: number, targetY: number): void {
         if (!this.state.isFlipping) {
-            this.stepSpring(targetX, targetY);
+            this.spring.step(targetX, targetY, this.state);
             this.applyCurrentTilt();
         }
     }
 
     // ========================== Spring ==========================
-
 
     /**
      * Returns the tilt target for this frame.
@@ -123,31 +108,17 @@ export class TiltHandler implements ICardHandler {
     private getTiltTarget(timestamp: number): { x: number; y: number } {
         //in hover mode
         if (this.state.isMouseOverCard) {
-            return { x: this.cursorTargetX, y: this.cursorTargetY };
+            return { x: this.state.cursorTargetX, y: this.state.cursorTargetY };
         }
 
         //in idle mode
         return this.calculateAutoTiltTarget(timestamp)
     }
 
-    /**
-     * Advances the spring one frame toward (targetX, targetY).
-     * Velocity is preserved across calls so mode switches carry momentum.
-     */
-    private stepSpring(targetX: number, targetY: number): void {
-        this.velocityX += (targetX - this.currentX) * this.SPRING_STIFFNESS;
-        this.velocityY += (targetY - this.currentY) * this.SPRING_STIFFNESS;
-
-        this.velocityX *= this.SPRING_DAMPING;
-        this.velocityY *= this.SPRING_DAMPING;
-
-        this.currentX += this.velocityX;
-        this.currentY += this.velocityY;
-    }
 
     private applyCurrentTilt(): void {
-        this.container.style.setProperty('--tilt-x', `${this.currentX}deg`);
-        this.container.style.setProperty('--tilt-y', `${this.currentY}deg`);
+        this.container.style.setProperty('--tilt-x', `${this.state.currentX}deg`);
+        this.container.style.setProperty('--tilt-y', `${this.state.currentY}deg`);
     }
 
     // ========================== Listeners ==========================
@@ -161,8 +132,8 @@ export class TiltHandler implements ICardHandler {
     }
 
     private updateCursorTargets(e: MouseEvent): void {
-        this.cursorTargetX = -this.calculateTiltX(e);
-        this.cursorTargetY = -this.calculateTiltY(e);
+        this.state.cursorTargetX = -this.calculateTiltX(e);
+        this.state.cursorTargetY = -this.calculateTiltY(e);
     }
 
     // ========================== Calculations ==========================
