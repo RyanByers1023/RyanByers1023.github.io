@@ -1,4 +1,4 @@
-import { TiltHandler } from '@src/ts/projectCardManager/handlers/tiltHandler/tiltHandler';
+import { TiltHandler } from '@src/ts/projectCardManager/handlers/cardEffectHandlers/tiltHandler';
 import { CardState } from '@projectCardManager/cardState';
 
 const PAGE_TILT_CONTAINER_CLASS = 'page-tilt-container';
