@@ -20,11 +20,16 @@ export class ScrollHandler implements ICardHandler {
     ) {}
 
     init(): void {
+        // No card back to scroll — nothing to do
+        if (!this.cardBack) return;
+
+        //narrow cardBack to HTMLElement type;
+        const cardBack = this.cardBack; 
         const { signal } = this.abortController;
 
         this.container.addEventListener('wheel', (e: WheelEvent) => {
-            if (this.state.isMouseOverCard && this.state.isFlipped && this.cardBack) {
-                this.performScroll(e, this.cardBack);
+            if (this.userCanScroll()) {
+                this.performScroll(e, cardBack);
             }
         }, { passive: false, signal });
     }
@@ -36,12 +41,22 @@ export class ScrollHandler implements ICardHandler {
     // ========================== Private Helpers ==========================
 
     private performScroll(e: WheelEvent, cardBack: HTMLElement): void {
-        const hasScrollableContent = cardBack.scrollHeight > cardBack.clientHeight;
-
-        if (hasScrollableContent) {
+        if (this.hasScrollableContent(cardBack)) {
             e.preventDefault();
             e.stopPropagation();
-            cardBack.scrollTop += e.deltaY;
+            this.scroll(e, cardBack);
         }
+    }
+
+    private hasScrollableContent(cardBack: HTMLElement){
+        return (cardBack.scrollHeight > cardBack.clientHeight);
+    }
+
+    private userCanScroll() : boolean{
+        return (this.state.isMouseOverCard && this.state.isFlipped && this.cardBack != null);
+    }
+
+    private scroll(e: WheelEvent, cardBack: HTMLElement){
+        cardBack.scrollTop += e.deltaY;
     }
 }
