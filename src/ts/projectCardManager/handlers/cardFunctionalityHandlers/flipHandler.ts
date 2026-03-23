@@ -17,12 +17,7 @@ export class FlipHandler implements ICardHandler {
     init(): void {
         const { signal } = this.abortController;
 
-        this.card.addEventListener('click', (e: MouseEvent) => {
-            if (this.isClickOnInteractable(e)) return;
-            if (this.isClickOnScrollbar(e)) return;
-
-            this.flipCard();
-        }, { signal });
+        this.addCardClickListener(signal);
     }
 
     destroy(): void {
@@ -30,6 +25,15 @@ export class FlipHandler implements ICardHandler {
     }
 
     // ========================== Private Helpers ==========================
+
+    private addCardClickListener(signal: AbortSignal){
+        this.card.addEventListener('click', (e: MouseEvent) => {
+            if (this.isClickOnInteractable(e) ||
+                this.isClickOnScrollbar(e)) return;
+
+            this.flipCard();
+        }, { signal });
+    }
 
     private flipCard(): void {
         this.card.dispatchEvent(new CustomEvent('card-flip'));
