@@ -17,7 +17,7 @@ export class CardStateHandler implements ICardHandler {
 
     init(): void {
         const { signal } = this.abortController;
-        this.handleAllEvents(signal);
+        this.addAllListeners(signal);
     }
 
     destroy(): void {
@@ -26,25 +26,25 @@ export class CardStateHandler implements ICardHandler {
 
 //--------private helper functions----------
 
-    private handleAllEvents(signal: AbortSignal): void {
-        this.handleMouseEnterEvent(signal);
-        this.handleMouseLeaveEvent(signal);
-        this.handleCardFlipEvent(signal);
+    private addAllListeners(signal: AbortSignal): void {
+        this.addMouseEnterListener(signal);
+        this.addMouseLeaveListener(signal);
+        this.addCardFlipListener(signal);
     }
 
-    private handleMouseEnterEvent(signal: AbortSignal): void {
+    private addMouseEnterListener(signal: AbortSignal): void {
         this.container.addEventListener('mouseenter', () => {
             this.setMouseEnterStateValue();
         }, { signal });
     }
 
-    private handleMouseLeaveEvent(signal: AbortSignal): void {
+    private addMouseLeaveListener(signal: AbortSignal): void {
         this.container.addEventListener('mouseleave', () => {
             this.removeMouseLeaveStateValue();
         }, { signal });
     }
 
-    private handleCardFlipEvent(signal: AbortSignal): void {
+    private addCardFlipListener(signal: AbortSignal): void {
         this.card.addEventListener('card-flip', () => {
             this.setAllFlippingValues();
 
