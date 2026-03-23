@@ -1,10 +1,10 @@
 import type { ICardHandler } from '@projectCardManager/interface';
+import { IndicatorManager } from './indicatorManager';
 
 /**
  * Manages the image gallery on the card front face.
- * Handles prev/next navigation, indicator dots, and image switching.
- * Does not depend on shared CardState since gallery behavior is
- * independent of flip/tilt state.
+ * Owns navigation state (current index), prev/next logic, and image switching.
+ * Delegates indicator dot concerns to IndicatorManager.
  */
 export class GalleryHandler implements ICardHandler {
     private readonly abortController = new AbortController();
@@ -21,18 +21,19 @@ export class GalleryHandler implements ICardHandler {
     init(): void {
         // No gallery to set up if there's 0 or 1 image
         if (this.images.length <= 1) return;
-        
+
         //narrow type to HTMLElement
-        let indicatorsContainer = this.indicatorsContainer;
+        const indicatorsContainer = this.indicatorsContainer;
         if(!indicatorsContainer) return;
 
         const { signal } = this.abortController;
 
-        this.buildIndicatorElements(indicatorsContainer);
-
-        const indicators = this.getAllIndicators(indicatorsContainer);
-
-        this.addIndicatorClickListeners(signal, indicators);
+        const indicators = new IndicatorManager(
+            indicatorsContainer,
+            this.images.length,
+            signal,
+            (index) => this.showImage(index, indicators),
+        );
 
         this.addButtonClickListeners(signal, indicators);
     }
@@ -43,87 +44,45 @@ export class GalleryHandler implements ICardHandler {
 
     // ========================== Private Helpers ==========================
 
-    private addButtonClickListeners(signal: AbortSignal, indicators: NodeListOf<Element>){
+    private addButtonClickListeners(signal: AbortSignal, indicators: IndicatorManager): void {
         this.addNextButtonClickListener(signal, indicators);
         this.addPrevButtonClickListener(signal, indicators);
     }
-    
-    private addNextButtonClickListener(signal: AbortSignal, indicators: NodeListOf<Element>): void {
+
+    private addNextButtonClickListener(signal: AbortSignal, indicators: IndicatorManager): void {
         if (this.nextBtn) {
             this.nextBtn.addEventListener('click', (e: MouseEvent) => {
-                this.handleNextButtonClick(e, indicators);
+                e.stopPropagation();
+                this.showNextImage(indicators);
             }, { signal });
         }
     }
 
-    private addPrevButtonClickListener(signal: AbortSignal, indicators: NodeListOf<Element>): void {
+    private addPrevButtonClickListener(signal: AbortSignal, indicators: IndicatorManager): void {
         if (this.prevBtn) {
             this.prevBtn.addEventListener('click', (e: MouseEvent) => {
-                this.handlePrevButtonClick(e, indicators);
+                e.stopPropagation();
+                this.showPrevImage(indicators);
             }, { signal });
         }
     }
 
-    private handleNextButtonClick(e: MouseEvent, indicators: NodeListOf<Element>){
-        e.stopPropagation();
-        this.setNextImage(indicators);
-    }
-
-    private handlePrevButtonClick(e: MouseEvent, indicators: NodeListOf<Element>){
-        e.stopPropagation();
-        this.setPrevImage(indicators);
-    }
-
-    private addIndicatorClickListeners(signal: AbortSignal, indicators: NodeListOf<Element>): void {
-        indicators.forEach((indicator, index) => {
-            indicator.addEventListener('click', (e: Event) => {
-                this.handleIndicatorButtonClick(e, index, indicators);
-            }, { signal });
-        });
-    }
-
-    private handleIndicatorButtonClick(e: Event, index: number, indicators: NodeListOf<Element>){
-        e.stopPropagation();
-        this.showImage(index, indicators);
-    }
-
-    private buildIndicatorElements(indicatorsContainer: HTMLElement): void {
-        indicatorsContainer.innerHTML = '';
-
-        this.images.forEach((_: string, index: number) => {
-            const indicator = document.createElement('div');
-            indicator.className = 'gallery-indicator';
-            if (index === 0) indicator.classList.add('active');
-            indicatorsContainer.appendChild(indicator);
-        });
-    }
-
-    private showImage(index: number, indicators: NodeListOf<Element>): void {
+    private showImage(index: number, indicators: IndicatorManager): void {
         this.currentIndex = index;
 
         if (this.galleryImg) {
             this.galleryImg.src = this.images[index];
         }
 
-        this.setActiveIndicators(index, indicators);
+        indicators.setActive(index);
     }
 
-    private getAllIndicators(indicatorsContainer: HTMLElement){
-        return indicatorsContainer.querySelectorAll('.gallery-indicator');
-    }
-
-    private setActiveIndicators(activeIndex: number, indicators: NodeListOf<Element>): void {
-        indicators.forEach((indicator, i: number) => {
-            indicator.classList.toggle('active', i === activeIndex);
-        });
-    }
-
-    private setNextImage(indicators: NodeListOf<Element>): void {
+    private showNextImage(indicators: IndicatorManager): void {
         const nextIndex = (this.currentIndex + 1) % this.images.length;
         this.showImage(nextIndex, indicators);
     }
 
-    private setPrevImage(indicators: NodeListOf<Element>): void {
+    private showPrevImage(indicators: IndicatorManager): void {
         const prevIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
         this.showImage(prevIndex, indicators);
     }
