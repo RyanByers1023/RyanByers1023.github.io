@@ -5,12 +5,7 @@ import { readFlipDurationMs } from '@projectCardManager/cardUtils';
 /**
  * Sole responsibility: keep shared card state accurate.
  * All other handlers read state but never write it.
- *
- * Owned state fields:
- *   isMouseOverCard — updated via mouseenter / mouseleave on the container
- *   isFlipped       — toggled on each 'card-flip' event dispatched by FlipHandler
- *   isFlipping      — true for FLIP_DURATION_MS after each flip
- */
+ **/
 export class CardStateHandler implements ICardHandler {
     private readonly abortController = new AbortController();
 
@@ -22,16 +17,14 @@ export class CardStateHandler implements ICardHandler {
 
     init(): void {
         const { signal } = this.abortController;
-
         this.handleAllEvents(signal);
     }
 
     destroy(): void {
-        //destroys all listeners
         this.abortController.abort();
     }
 
-    // ========================== Private Helpers ==========================
+//--------private helper functions----------
 
     private handleAllEvents(signal: AbortSignal): void {
         this.handleMouseEnterEvent(signal);
@@ -41,27 +34,62 @@ export class CardStateHandler implements ICardHandler {
 
     private handleMouseEnterEvent(signal: AbortSignal): void {
         this.container.addEventListener('mouseenter', () => {
-            this.state.isMouseOverCard = true;
+            this.setMouseEnterStateValue();
         }, { signal });
     }
 
     private handleMouseLeaveEvent(signal: AbortSignal): void {
         this.container.addEventListener('mouseleave', () => {
-            this.state.isMouseOverCard = false;
+            this.removeMouseLeaveStateValue();
         }, { signal });
     }
 
     private handleCardFlipEvent(signal: AbortSignal): void {
         this.card.addEventListener('card-flip', () => {
-            this.state.isFlipped = !this.state.isFlipped;
-            this.state.isFlipping = true;
-            this.card.classList.toggle('flipped');
-            this.card.classList.add('flipping');
+            this.setAllFlippingValues();
 
             setTimeout(() => {
-                this.state.isFlipping = false;
-                this.card.classList.remove('flipping');
+                this.removeAllFlippingValues();
             }, readFlipDurationMs(this.card));
         }, { signal });
+    }
+
+//------private interface functions-----------
+
+    private setMouseEnterStateValue(){
+        this.state.isMouseOverCard = true;
+    }
+
+    private removeMouseLeaveStateValue(){
+        this.state.isMouseOverCard = false;
+    }
+
+    //toggle both the state machine flip values, and the css state values
+    private setAllFlippingValues(){
+        this.setFlippingStateValues()
+        this.setFlippingCSSValues();
+    }
+
+    private setFlippingCSSValues(){
+        this.card.classList.toggle('flipped');
+        this.card.classList.add('flipping');
+    }
+
+    private setFlippingStateValues(){
+        this.state.isFlipped = !this.state.isFlipped;
+        this.state.isFlipping = true;
+    }
+
+    private removeAllFlippingValues(){
+        this.removeFlippingCSSValue();
+        this.removeFlippingStateValue();
+    }
+
+    private removeFlippingCSSValue(){
+        this.card.classList.remove('flipping');
+    }
+
+    private removeFlippingStateValue(){
+        this.state.isFlipping = false;
     }
 }
