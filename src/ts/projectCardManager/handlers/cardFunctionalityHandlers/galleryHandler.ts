@@ -77,63 +77,35 @@ export class GalleryHandler implements ICardHandler {
     private addIndicatorClickListeners(signal: AbortSignal, indicators: NodeListOf<Element>): void {
         indicators.forEach((indicator, index) => {
             indicator.addEventListener('click', (e: Event) => {
-                this.handleIndicatorButtonClick(e, index, indicator);
+                this.handleIndicatorButtonClick(e, index, indicators);
             }, { signal });
         });
     }
 
-    private handleIndicatorButtonClick(e: MouseEvent, index: number, indicators: NodeListOf<Element>){
+    private handleIndicatorButtonClick(e: Event, index: number, indicators: NodeListOf<Element>){
         e.stopPropagation();
         this.showImage(index, indicators);
     }
 
     private buildIndicatorElements(indicatorsContainer: HTMLElement): void {
-        this.buildIndicatorContainer(indicatorsContainer);
+        indicatorsContainer.innerHTML = '';
 
         this.images.forEach((_: string, index: number) => {
-            this.buildIndicatorElement(indicatorsContainer, index)
+            const indicator = document.createElement('div');
+            indicator.className = 'gallery-indicator';
+            if (index === 0) indicator.classList.add('active');
+            indicatorsContainer.appendChild(indicator);
         });
     }
 
-    private buildIndicatorContainer(indicatorsContainer: HTMLElement){
-        indicatorsContainer.innerHTML = '';
-    }
-
-    private buildIndicatorElement(indicatorsContainer: HTMLElement, index: number) : void{
-        const indicator = this.buildIndicatorDiv();
-        this.setIndicatorClassName(indicator, 'gallery-indicator')
-        this.setActiveIndicator(indicator, index);
-        indicatorsContainer.appendChild(indicator);
-    }
-
-    private buildIndicatorDiv(){
-        return document.createElement('div');
-    }
-
-    private setActiveIndicator(indicator: HTMLElement, index: number) : void{
-        if (index === 0){
-            indicator.classList.add('active');
-        } 
-    }
-
-    private setIndicatorClassName(indicator: HTMLElement, indicatorName: string) : void{
-        indicator.className = indicatorName;
-    }
-
     private showImage(index: number, indicators: NodeListOf<Element>): void {
-        this.setIndex(index);
-        this.setGalleryImage(index);
-        this.setActiveIndicators(index, indicators);
-    }
-
-    private setIndex(index: number){
         this.currentIndex = index;
-    }
 
-    private setGalleryImage(index: number){
         if (this.galleryImg) {
             this.galleryImg.src = this.images[index];
         }
+
+        this.setActiveIndicators(index, indicators);
     }
 
     private getAllIndicators(indicatorsContainer: HTMLElement){
