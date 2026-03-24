@@ -93,14 +93,14 @@ export const projectsData: Project[] = [
             overview: 'A simple, clean, portfolio designed to convey my experience as a developer in the most efficient way I can.',
 
             keyFeatures: [
-                'Custom project card system',
-                'Lazy loader router architecture',
-                'Simple, clean, uncluttered page layout',
+                'Custom project card system.',
+                'Lazy loader router architecture.',
+                'Simple, clean, uncluttered page layout.',
             ],
 
             technicalHighlights: [
                 'Card system built using a dependency injection architecture to enable easy future feature additions and removals.',
-                'Card state machine establishes a clear, universal point of truth, eliminating any and all potential conflicting animation problems',
+                'Card state machine establishes a clear, universal point of truth for both checking and updating project card state related attributes.',
                 'Card system allows for as many projects to be displayed as the user wants.',
                 'Clean, seamless animations built via CSS for performance, and cross compatibility.',
                 'Fully modularized, simple system that can be repurposed and reworked with ease.',
@@ -110,22 +110,27 @@ export const projectsData: Project[] = [
             status: ProjectStatus.COMPLETE,
 
             goals: [
-                'To build a user interface for a portfolio that conveys information as efficiently and cleanly as possible',
-                'To aid in my search for a job in the industry',
-                'To display my front end capabilities to potential employers',
-                'To become more well acquainted with HTML, CSS, Typescript, and Tailwind CSS'
+                'To build a user interface for a portfolio that conveys information as efficiently and cleanly as possible.',
+                'To aid in my search for a job in the industry.',
+                'To display my front end capabilities to potential employers.',
+                'To become more well acquainted with HTML, CSS, Typescript, and Tailwind CSS.',
+                'To familiarize myself with commonly used frameworks, libraries, middleware, and runtimes within the web development sphere.'
             ],
 
             challenges: [
-                'Unfamiliarity with some of the technology stack (Tailwind CSS, Vite, and Typescript)',
-                'Working to build the website alone, on my own schedule',
-                'Implementing interesting visual features without compromising the simplicity or usability of the site'
+                'Initial unfamiliarity with some of the technology stack.',
+                'Working to build the website alone, on my own schedule.',
+                'Implementing interesting visual features without compromising the simplicity or usability of the site.',
+                'Maintaining a codebase that stays in line with modern programming principles like SRP.',
+                'Working with artificial intelligence tools for code development, while maintaining a clean, readable, and modularized codebase.',
             ],
 
             solutions: [
                 'Unfamiliarity with tech stack - Resources from sites like StackExchange, Youtube tutorials, and Anthropic\'s Claude AI provided me ample help in getting things up and running',
                 'Solo work - Adapting to a routine of working on the project every day, as well as utilizing the Pomodoro Technique helped to increase my productivity and motivation from day to day',
-                'Maintaining usability - Careful consideration and rigorous testing regarding the various buttons, scrollbars, and other interactive elements aided in revealing areas that needed to feel more seamless'
+                'Maintaining usability - Careful consideration and rigorous testing regarding the various buttons, scrollbars, and other interactive elements aided in revealing areas that needed to feel more seamless',
+                'Building code with modern principles in mind - Research conducted on Github to see what other, respected developers\' code looks like.',
+                'Working with AI - Establishing clear guidelines with regard to expectations in code quality, and familiarizing myself with AI integrated tools such as the Claude Code IDE extension'
             ],
 
             techStack: [
@@ -134,7 +139,7 @@ export const projectsData: Project[] = [
                 'CSS: Custom styling to complement Tailwind and create unique visual elements.',
                 'Tailwind CSS: Lightweight, utility-first CSS framework.',
                 'Node.js: Server-side JavaScript runtime enabling full-stack JavaScript development, also comes bundled with Node Package Manager (npm), which allows for easier package importing.',
-                'Vite: Simple front end build tool that provided a lightning fast development server for testing.',
+                'Vite: Build tool that provided a lightning fast development server for testing, and a more performant Javascript build tool than that of Next.JS.',
             ],
 
             skillsGained: [
