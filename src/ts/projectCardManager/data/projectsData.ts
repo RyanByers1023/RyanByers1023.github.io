@@ -153,7 +153,7 @@ export const projectsData: Project[] = [
  
     {
         id: 'project-card-3',
-        title: 'Player Functionality Unity Package',
+        title: 'Unity Package - Player Functionality',
         description: 'Simple player functionality package that adds multiple useful, easy to intergrate, abilities for a character controller.',
 
         images: [],
@@ -184,35 +184,25 @@ export const projectsData: Project[] = [
             ],
 
             challenges: [
-                'Initial unfamiliarity with some of the technology stack.',
-                'Working to build the website alone, on my own schedule.',
-                'Implementing interesting visual features without compromising the simplicity or usability of the site.',
-                'Maintaining a codebase that stays in line with modern programming principles like SRP.',
-                'Working with artificial intelligence tools for code development, while maintaining a clean, readable, and modularized codebase.',
+                
             ],
 
             solutions: [
-                'Unfamiliarity with tech stack - Resources from sites like StackExchange, Youtube tutorials, and Anthropic\'s Claude AI provided me ample help in getting things up and running',
-                'Solo work - Adapting to a routine of working on the project every day, as well as utilizing the Pomodoro Technique helped to increase my productivity and motivation from day to day',
-                'Maintaining usability - Careful consideration and rigorous testing regarding the various buttons, scrollbars, and other interactive elements aided in revealing areas that needed to feel more seamless',
-                'Building code with modern principles in mind - Research conducted on Github to see what other, respected developers\' code looks like.',
-                'Working with AI - Establishing clear guidelines with regard to expectations in code quality, and familiarizing myself with AI integrated tools such as the Claude Code IDE extension'
+                
             ],
 
             techStack: [
-                'HTML5: Semantic markup for web pages, defines the structural elements of the page/',
-                'Typescript: Javascript with types. Enhances readability of the codebase while allowing client-side scripting for interactive UI elements',
-                'CSS: Custom styling to complement Tailwind and create unique visual elements.',
-                'Tailwind CSS: Lightweight, utility-first CSS framework.',
-                'Node.js: Server-side JavaScript runtime enabling full-stack JavaScript development, also comes bundled with Node Package Manager (npm), which allows for easier package importing.',
-                'Vite: Build tool that provided a lightning fast development server for testing, and a more performant Javascript build tool than that of Next.JS.',
+                'Unity: Game engine, provides APIs for C# script creation.',
+                'C#: Scripting language used within Unity',
+                'Claude Code (mostly Opus 4.x): IDE based AI code assistant',
+                'Git/Github: Versioning tools that provide redundancy for the entire codebase, alongside commits, version history, etc.',
             ],
 
             skillsGained: [
-                'Typescript: Greatly enhanced the readability of my front end scripts, and with it I found myself working faster and developing cleaner, easier to understand functions.',
-                'Tailwind CSS: Allows me to quickly build simple, fast, and stylish customer facing UIs.',
-                'Node.js: Npm allows for me to import packages into any project quickly and easily. Also, Node.js experience allows for me to easily develop full-stack systems.',
-                'Vite: Prototyping and testing is much easier, as I can make changes to the codebase and see them reflected in real time in a browser environment.',
+                'Unity: ',
+                'C#: ',
+                'Claude Code (mostly Opus 4.x): ',
+                'Git/Github: ',
             ]
         }
     }
