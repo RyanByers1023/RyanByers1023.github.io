@@ -149,5 +149,71 @@ export const projectsData: Project[] = [
                 'Vite: Prototyping and testing is much easier, as I can make changes to the codebase and see them reflected in real time in a browser environment.',
             ]
         }
+    },
+ 
+    {
+        id: 'project-card-3',
+        title: 'Player Functionality Unity Package',
+        description: 'Simple player functionality package that adds multiple useful, easy to intergrate, abilities for a character controller.',
+
+        images: [],
+
+        githubUrl: 'https://github.com/RyanByers1023/x',
+
+        details: {
+            overview: 'Easy to integrate unity package that supplies the user with several player character ability methods',
+
+            keyFeatures: [
+                
+            ],
+
+            technicalHighlights: [
+                'Does not touch Unity lifecycle methods, user has complete control',
+                'Desgined to easily hook into an existing game loop',
+                'Provided API gives users easy access to main functionality',
+                'Fully set-up player prefab included (if chosen while importing)',
+            ],
+
+            status: ProjectStatus.COMPLETE,
+
+            goals: [
+                'Provide scalability to my main project (Xeno Containment Initiative) by forcing modularity via package creation',
+                'Reduce workload for additional projects that require the same functionality',
+                'Provide community with boilerplate player functionality free of charge',
+                'Show potential employers my understanding of APIs, packages, and code to application integration'
+            ],
+
+            challenges: [
+                'Initial unfamiliarity with some of the technology stack.',
+                'Working to build the website alone, on my own schedule.',
+                'Implementing interesting visual features without compromising the simplicity or usability of the site.',
+                'Maintaining a codebase that stays in line with modern programming principles like SRP.',
+                'Working with artificial intelligence tools for code development, while maintaining a clean, readable, and modularized codebase.',
+            ],
+
+            solutions: [
+                'Unfamiliarity with tech stack - Resources from sites like StackExchange, Youtube tutorials, and Anthropic\'s Claude AI provided me ample help in getting things up and running',
+                'Solo work - Adapting to a routine of working on the project every day, as well as utilizing the Pomodoro Technique helped to increase my productivity and motivation from day to day',
+                'Maintaining usability - Careful consideration and rigorous testing regarding the various buttons, scrollbars, and other interactive elements aided in revealing areas that needed to feel more seamless',
+                'Building code with modern principles in mind - Research conducted on Github to see what other, respected developers\' code looks like.',
+                'Working with AI - Establishing clear guidelines with regard to expectations in code quality, and familiarizing myself with AI integrated tools such as the Claude Code IDE extension'
+            ],
+
+            techStack: [
+                'HTML5: Semantic markup for web pages, defines the structural elements of the page/',
+                'Typescript: Javascript with types. Enhances readability of the codebase while allowing client-side scripting for interactive UI elements',
+                'CSS: Custom styling to complement Tailwind and create unique visual elements.',
+                'Tailwind CSS: Lightweight, utility-first CSS framework.',
+                'Node.js: Server-side JavaScript runtime enabling full-stack JavaScript development, also comes bundled with Node Package Manager (npm), which allows for easier package importing.',
+                'Vite: Build tool that provided a lightning fast development server for testing, and a more performant Javascript build tool than that of Next.JS.',
+            ],
+
+            skillsGained: [
+                'Typescript: Greatly enhanced the readability of my front end scripts, and with it I found myself working faster and developing cleaner, easier to understand functions.',
+                'Tailwind CSS: Allows me to quickly build simple, fast, and stylish customer facing UIs.',
+                'Node.js: Npm allows for me to import packages into any project quickly and easily. Also, Node.js experience allows for me to easily develop full-stack systems.',
+                'Vite: Prototyping and testing is much easier, as I can make changes to the codebase and see them reflected in real time in a browser environment.',
+            ]
+        }
     }
 ];

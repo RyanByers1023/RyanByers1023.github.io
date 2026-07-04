@@ -4,7 +4,7 @@ import { CardState } from '@projectCardManager/cardState';
 const PAGE_TILT_CONTAINER_CLASS = 'page-tilt-container';
 const GLASS_CARD_CLASS = 'glass-card';
 
-// Higher dampener = less tilt. Project cards use 45; these page cards use 250.
+// Higher dampener = less tilt
 const TILT_DAMPENER = 150;
 
 export function initPageTilt(): void {

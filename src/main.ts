@@ -51,17 +51,6 @@ const PAGES_BASE_PATH = '/pages/';
 // INITIALIZATION
 // ============================================================================
 
-/**
- * Initializes the navigation bar with menu toggle and route handling
- *
- * Sets up:
- * - Mobile menu toggle functionality
- * - Active link highlighting
- * - Sticky header behavior
- * - Click handlers for navigation
- *
- * @private
- */
 function initializeNavbar(): void {
     initNavbar({
         headerSelector: HEADER_SELECTOR,
@@ -70,17 +59,6 @@ function initializeNavbar(): void {
     });
 }
 
-/**
- * Initializes the page loader with dynamic content injection
- *
- * Sets up:
- * - Route-based HTML file loading
- * - Loading indicator management
- * - Post-render callback for route-specific initialization
- * - Special handling for projects page to initialize card functionality
- *
- * @private
- */
 function initializePageLoader(): void {
     initPageLoader({
         containerId: CONTENT_CONTAINER_ID,
@@ -92,6 +70,8 @@ function initializePageLoader(): void {
                 initAllProjects(PROJECTS_GRID_ID);
             }
 
+
+            //page tilt only runs on the following pages:
             if (route === 'contact' || route === 'skills') {
                 initPageTilt();
             }
@@ -99,20 +79,6 @@ function initializePageLoader(): void {
     });
 }
 
-// ============================================================================
-// BOOTSTRAP APPLICATION
-// ============================================================================
-
-/**
- * Bootstraps the application by initializing all core modules
- *
- * Initialization order:
- * 1. Navbar - Sets up navigation UI and route change handlers
- * 2. Page Loader - Sets up content loading and injection
- *
- * Modules communicate exclusively through the router for loose coupling,
- * enabling independent development and testing of each module.
- */
 async function bootstrap(): Promise<void> {
     await loadAllComponents();
 
@@ -121,14 +87,6 @@ async function bootstrap(): Promise<void> {
     initializePageLoader();
 }
 
-// ============================================================================
-// APPLICATION START
-// ============================================================================
-
-/**
- * Wait for DOM to be fully loaded before initializing application
- * This ensures all HTML elements exist before we try to access them
- */
 if (document.readyState === 'loading') {
     // DOM is still loading, wait for it
     document.addEventListener('DOMContentLoaded', bootstrap);
