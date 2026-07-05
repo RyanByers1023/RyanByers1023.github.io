@@ -173,7 +173,7 @@ export const projectsData: Project[] = [
                 'Our codebase is tracked via Git and stored on Github, allowing for remote work, and easy version tracking across team members'
             ],
 
-            status: ProjectStatus.COMPLETE,
+            status: ProjectStatus.IN_PROGRESS,
 
             goals: [
                 'Develop my skills in interface development, package creation, and API usage',
