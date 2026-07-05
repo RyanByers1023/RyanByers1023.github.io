@@ -150,9 +150,65 @@ export const projectsData: Project[] = [
             ]
         }
     },
- 
+
     {
         id: 'project-card-3',
+        title: 'Unity game - Xeno Containment Initiative',
+        description: 'Rougelite in which the player must escape an every increasingly dangerous underground laboratory.',
+        images: [],
+
+        githubUrl: 'https://github.com/RyanByers1023/x',
+
+        details: {
+            overview: 'Easy to integrate unity package that supplies the user with several player character ability methods',
+
+            keyFeatures: [
+                
+            ],
+
+            technicalHighlights: [
+                'Dependency injection pattern used within main Initialization module for scalability and readability',
+                'Each module was developed to be decoupled from the rest of the codebase and initialization logic',
+                'In depth weapon and vehicle system, developed from the ground up, and built to be expandable later',
+                'Our codebase is tracked via Git and stored online on Github, allowing for remote work, and easy version tracking across team members'
+            ],
+
+            status: ProjectStatus.COMPLETE,
+
+            goals: [
+                'Develop my skills in interface development, package creation, and API usage',
+                'Create a video game that is both finished and hosted on a major platform (Steam, Xbox, PlayStation, etc.)',
+                'Add more content to my resume for potential employers',
+                'Create a game that I want to play'
+            ],
+
+            challenges: [
+                
+            ],
+
+            solutions: [
+                
+            ],
+
+            techStack: [
+                'Unity: Game engine, provides APIs for C# script creation.',
+                'C#: Scripting language used within Unity',
+                'Claude Code (mostly Opus 4.x): IDE based AI code assistant',
+                'Git/Github: Versioning tools that provide redundancy for the entire codebase, alongside commits, version history, etc.',
+            ],
+
+            skillsGained: [
+                'Unity: ',
+                'C#: ',
+                'Claude Code (mostly Opus 4.x): ',
+                'Git/Github: ',
+            ]
+        }
+    },
+
+    {
+ 
+        id: 'project-card-4',
         title: 'Unity Package - Player Functionality',
         description: 'Simple player functionality package that adds multiple useful, easy to intergrate, abilities for a character controller.',
 
@@ -206,4 +262,6 @@ export const projectsData: Project[] = [
             ]
         }
     }
+
+    
 ];
