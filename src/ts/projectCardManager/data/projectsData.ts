@@ -170,7 +170,7 @@ export const projectsData: Project[] = [
                 'Dependency injection pattern used within main Initialization module for scalability and readability',
                 'Each module was developed to be decoupled from the rest of the codebase and initialization logic',
                 'In depth weapon and vehicle system, developed from the ground up, and built to be expandable later',
-                'Our codebase is tracked via Git and stored online on Github, allowing for remote work, and easy version tracking across team members'
+                'Our codebase is tracked via Git and stored on Github, allowing for remote work, and easy version tracking across team members'
             ],
 
             status: ProjectStatus.COMPLETE,
@@ -198,10 +198,10 @@ export const projectsData: Project[] = [
             ],
 
             skillsGained: [
-                'Unity: ',
-                'C#: ',
-                'Claude Code (mostly Opus 4.x): ',
-                'Git/Github: ',
+                'Unity: As this is my first time developing a video game, learning essential design patterns such as interfaces, dependency injection, and single entry point was difficult, but very rewarding.',
+                'C#: I\'ve had exposure to C# previously in College via various projects, but this is the first project that I have used it as my main language, and I have become much more familiar with its syntax, along with the upsides and downsides of the language',
+                'Claude Code (mostly Opus 4.x): Development with AI has been up and down, but as I become aquainted with the best, most effcient ways to use these systems, AI has become a staple tool for me going forward.',
+                'Git/Github: Further development using Git/Github has allowed me to become very familiar with the system, using it quickly and with ease',
             ]
         }
     },
