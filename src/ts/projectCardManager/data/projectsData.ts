@@ -154,16 +154,22 @@ export const projectsData: Project[] = [
     {
         id: 'project-card-3',
         title: 'Unity game - Xeno Containment Initiative',
-        description: 'Rougelite in which the player must escape an every increasingly dangerous underground laboratory.',
+        description: 'Fast paced, detruction and physics based action solo/co-op rougelite where players must ascend and escape an ever increasingly dangerous underground laboratory with a cavalcade of goofy tools and weapons at their disposal.',
         images: [],
 
         githubUrl: 'https://github.com/RyanByers1023/x',
 
         details: {
-            overview: 'Easy to integrate unity package that supplies the user with several player character ability methods',
+            overview: 'Fast paced rougelite involving physics based combat, procedural level generation, and destructable environments.',
 
             keyFeatures: [
-                
+                'Capture aliens with friends! XCI can be played solo or co-op!',
+                'Unique multi-stage capture phase provides an incredibly replayable, variable gameplay loop.',
+                'Players utilized RC vehicles to scout each floor out for weapons, materials, and the enemy.',
+                'Each enemy weakness has a unique visual and auditory tell, providing players invaluable information prior to engagements.',
+                'Enemy AI system included to allow for complex, emmergent gameplay that forces the player to fight and move strategically based on the enemy encountered, and the environement the fight is taking place in',
+                'Upgrade various facets of your character, your tools, and your weapons using materials obtained from previous escape attempts.',
+                'Includes procedurally map generation in order to enhance replayability and spontaneity to the first phase of each run'
             ],
 
             technicalHighlights: [
@@ -177,9 +183,11 @@ export const projectsData: Project[] = [
 
             goals: [
                 'Develop my skills in interface development, package creation, and API usage',
-                'Create a video game that is both finished and hosted on a major platform (Steam, Xbox, PlayStation, etc.)',
+                'Develop my skills with regard to enaging in medium-sized project development',
+                'Develop my skills using tools such as Unity, Git and Github with a small team, and AI coding assistants',
+                'Create a video game that is hosted on a major distribution platform (Steam, Xbox, PlayStation, etc.)',
                 'Add more content to my resume for potential employers',
-                'Create a game that I want to play'
+                'Create a game that I would want to play'
             ],
 
             challenges: [
