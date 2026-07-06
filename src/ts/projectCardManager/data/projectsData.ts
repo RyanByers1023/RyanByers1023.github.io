@@ -1,3 +1,5 @@
+//to be potentially converted into seperate, individual JSON files for wider compatibility and meeting of industry standadization
+
 import { ProjectStatus } from '@data/projects';
 import type { Project } from '@data/projects';
 

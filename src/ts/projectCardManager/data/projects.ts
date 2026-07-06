@@ -1,14 +1,3 @@
-//to be turned into seperate, individual JSON files for wide compatibility and industry standadization
-
-/**
- * @file Project type definitions and constants for the portfolio website.
- * Cards are created at runtime using this data, fed into projectCardHTMLGenerator.ts
- */
-
-// ============================================================================
-// CONSTANTS
-// ============================================================================
-
 /** Project status values */
 export enum ProjectStatus {
     COMPLETE = 'Complete',

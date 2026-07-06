@@ -6,10 +6,9 @@ import type { ICardState } from '@projectCardManager/cardState';
  */
 export class SpringHandler {
     // Acceleration toward target per frame.
-    // increase this value to increase the speed in which the card 'snaps back' to its current target
     private readonly SPRING_STIFFNESS = 0.015;
+    
     // Fraction of velocity retained per frame.
-    // increase this value to increase the amount the card will 'overshoot' its current target
     private readonly SPRING_DAMPING = 0.8;
 
     /**

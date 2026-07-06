@@ -12,11 +12,9 @@ import { TiltCalculator } from './tiltCalculator';
  *   • CardState      — all mutable tilt data
  */
 export class TiltHandler implements ICardHandler {
-    // ── Dependencies ───────────────────────────────────────────────────────
     private readonly spring = new SpringHandler();
     private readonly calculator: TiltCalculator;
 
-    // ── Misc ─────────────────────────────────────────────────────────────────
     private readonly abortController = new AbortController();
     private rafId: number | null = null;
 

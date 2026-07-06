@@ -46,6 +46,8 @@ export class TiltCalculator {
         return this.calculateAutoTiltTarget(timestamp, state);
     }
 
+
+    //TODO: SOC
     /**
      * Updates cursor tilt targets on state from a mouse event.
      */
@@ -54,6 +56,7 @@ export class TiltCalculator {
         state.cursorTargetY = -this.calculateTiltY(e, container, state);
     }
 
+    //TODO: SOC
     /**
      * Determines whether the mouse is hovering over the scrollbar region
      * on the card back. Returns false if the mouse is on the front face.
@@ -68,8 +71,6 @@ export class TiltCalculator {
         const rect = cardBack.getBoundingClientRect();
         return e.clientX > rect.right - this.SCROLLBAR_WIDTH;
     }
-
-    // ========================== Private ==========================
 
     private calculateAutoTiltTarget(timestamp: number, state: ICardState): { x: number; y: number } {
         const tiltX = this.MAX_AUTO_TILT_DEG * Math.sin(timestamp * this.IDLE_FREQ_X_RAD_PER_MS + this.phaseX);
