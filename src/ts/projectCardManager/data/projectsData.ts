@@ -1,11 +1,6 @@
 import { ProjectStatus } from '@data/projects';
 import type { Project } from '@data/projects';
 
-// ============================================================================
-// PROJECT DATA
-// ============================================================================
-
-/** Array of portfolio projects */
 export const projectsData: Project[] = [
     {
         id: 'project-card-1',
@@ -214,6 +209,7 @@ export const projectsData: Project[] = [
                 'C#: I\'ve had exposure to C# previously in College via various projects, but this is the first project that I have used it as my main language, and I have become much more familiar with its syntax, along with the upsides and downsides of the language',
                 'Claude Code (mostly Opus 4.x): Development with AI has been up and down, but as I become aquainted with the best, most effcient ways to use these systems, AI has become a staple tool for me going forward.',
                 'Git/Github: Further development using Git/Github has allowed me to become very familiar with the system, using it quickly and with ease',
+                'Team collaboration and communication - Development with a team involves friction, opposing ideas, conflicting schedules, etc., but maintaining a positive working relationship, even through disagreements and hard times is crucial to maintain steady progress on the project. I learned to let go of some of the control of the projects I am involved in whilst in a team environment, because sometimes I am wrong about the decisions that I make, and having others involved to correct me and help push the project in the right direction was crucial to development.'
             ]
         }
     },
