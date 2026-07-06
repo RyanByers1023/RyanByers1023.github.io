@@ -184,18 +184,22 @@ export const projectsData: Project[] = [
             goals: [
                 'Develop my skills in interface development, package creation, and API usage',
                 'Develop my skills with regard to enaging in medium-sized project development',
-                'Develop my skills using tools such as Unity, Git and Github with a small team, and AI coding assistants',
+                'Develop my skills using tools such as Unity, Git and Github in tandem with a small team, and AI coding assistants',
                 'Create a video game that is hosted on a major distribution platform (Steam, Xbox, PlayStation, etc.)',
                 'Add more content to my resume for potential employers',
                 'Create a game that I would want to play'
             ],
 
             challenges: [
-                
+                'Game development is complicated - there are a multitude of professions that clash in the development of a video game, and I do not have all of the expertise required to make all of the correct design decisions and architectural choices. Sometimes, I have to stop development to study, or take a leap of faith and learn as I go.',
+                'Collaborating with non technical team members - Not all team members in a game development team always know how to use tools like Git or how to properly organize a large project folder. These are things I do have knowledge in, but explaining the process to other team members takes time away from development and roadblocks tend to arise at a much greater rate.',
+                'Making continous progress on a dauntingly large task over a long period of time - This is a challenge common to every project I\'ve ever worked on, but this is by far the largest project I\'ve been involved in, so the problem of '
             ],
 
             solutions: [
-                
+                'Game development is complicated - Studying, Youtube, Stack Exchange, and AI coding assistants were able to point me in the right direction for details of development in which I have minimal experience.',
+                'Collaborating with non-technical team members - Patience and pre planning help with the innevitable time loss that comes with getting other team members up to speed in new tech. Also, the sharing of ideas consistently by maintaining constant communication during development time helps to mold the project into something that represents the best of both of our visions for the game.',
+                'Making continouts progress on a dauntingly large task over a long period of time - Utlization of time management techiniques like the Pomodoro techinque to maximize my effectiveness during development time, along with proper self care and constant team communication allowed me to continue work, even when I began through phases of myself losing personal interest in the project.',
             ],
 
             techStack: [
