@@ -4,24 +4,36 @@ import type { Project } from '@data/projects';
 export const playerFunctionalityPackage: Project = {
     id: 'project-card-4',
     title: 'Unity Package - Player Functionality',
-    description: 'Simple player functionality package that adds multiple useful, easy to intergrate, abilities for a character controller.',
+    description: 'Player functionality package that adds useful, easy to integrate, abilities for a player character system.',
+
+    //want the following captures here:
+    //zoom in on health bar going up when a pickup is obtained
+    //ak firing, zoom in on ammo counter
+    //fire ak, drop ak, pick up ak (display ammo counter continuity)
+    //zoom in on swapping through hotbar and holding various different items that are shown to be stored in the player inventory
+    //zoom in on inspector showing all the bindings in the input hub
+    //display of detection sphere gizmo activating/deactivating for interaction system
 
     images: [],
 
-    githubUrl: 'https://github.com/RyanByers1023/x',
+    githubUrl: 'https://github.com/RyanByers1023/Player-Functionality',
 
     details: {
-        overview: 'Easy to integrate unity package that supplies the user with several player character ability methods',
+        overview: 'Easy to integrate unity package that supplies the user with several basic player character abilities.',
 
         keyFeatures: [
-
+            'Health management',
+            'Ammo inventory',
+            'Interaction system',
+            'Event-based input dispatching',
+            'Hotbar system'
         ],
 
         technicalHighlights: [
-            'Does not touch Unity lifecycle methods, user has complete control',
-            'Desgined to easily hook into an existing game loop',
+            'Does not touch Unity lifecycle methods, user has complete control over initialization',
             'Provided API gives users easy access to main functionality',
-            'Fully set-up player prefab included (if chosen while importing)',
+            'Fully prepared player prefab included (must be selected while importing)',
+            'Custom prefabs can be easily configured via the creation of the custom PlayerLoadout and PlayerTuning Scriptable Objects.'
         ],
 
         status: ProjectStatus.COMPLETE,
@@ -34,11 +46,15 @@ export const playerFunctionalityPackage: Project = {
         ],
 
         challenges: [
-
+            'Unfamiliarity with the process involved in Unity package creation and distribution.',
+            'Maintaining a complete decoupling between these systems and my main project.',
+            'Developing interfaces and APIs that provide ease of use to those using my systems.',
         ],
 
         solutions: [
-
+            'Unfamiliarity with Unity packages: ',
+            'Coupling issues: ',
+            'Interface and API development: '
         ],
 
         techStack: [
@@ -49,10 +65,7 @@ export const playerFunctionalityPackage: Project = {
         ],
 
         skillsGained: [
-            'Unity: ',
-            'C#: ',
-            'Claude Code (mostly Opus 4.x): ',
-            'Git/Github: ',
+
         ]
     }
 };

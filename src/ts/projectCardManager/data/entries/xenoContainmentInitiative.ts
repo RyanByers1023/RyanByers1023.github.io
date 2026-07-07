@@ -4,32 +4,37 @@ import type { Project } from '@data/projects';
 export const xenoContainmentInitiative: Project = {
     id: 'project-card-3',
     title: 'Unity game - Xeno Containment Initiative',
-    description: 'Fast paced, solo/co-op destruction and physics-based action rougelite where players must ascend and escape an ever increasingly dangerous underground laboratory with a cavalcade of desperate tools and weapons at their disposal.',
+    description: 'Hectic, first person action rouge-lite, solo or co-op, in which players desperately attempt their escape from a secret lab. Players are provided the following task by the lab\'s facilitators: study, fight, subdue, and contain all of the hostile alien creatures roaming throughout the various levels of the lab, and you just may earn your freedom.',
+
+    //want the following captures here:
+    //
+
     images: [],
 
-    //project is closed-source, no link
+    //project is currently closed-source, no link
     githubUrl: '',
 
     details: {
-        overview: 'Fast paced rouge-lite involving physics based combat, punchy science experiment gone-wrong weaponry, procedural level generation, and rooms chock full of an incredible array of destructible items.',
+        overview: 'Fast paced solo/co-op rouge-lite involving physics based combat, punchy sci-fi infused weaponry, intelligent AI, procedural level generation, and rooms chock full of destructible items.',
 
         keyFeatures: [
-            'Capture aliens with friends, or choose to ascend alone. XCI can be played solo or co-op!',
-            'Unique multi-stage capture phase provides an incredibly dynamic gameplay loop.',
-            'Players are given access to high-tech RC vehicles in order to scout each floor out for weapons, materials, and the enemy.',
-            'Each enemy weakness is given a unique visual and auditory tell, providing attentive players invaluable information prior to engagements.',
-            'Hectic pacing - After the initial scouting phase ends, players may be surprised in how quickly situations can devolve to pure chaos...',
-            'AI system allows for complex, emergent gameplay that forces the player to hide, move, and fight strategically based on both the enemy strategy and their current surroundings.',
-            'You are being studied - Some aliens can be surprisingly responsive to your actions, and thus it is well advised to choose your plan of attack carefully, and take note of how the alien responds...',
-            'Upgrade various facets of your character, your RC vehicle, and your weapons using materials obtained from previous escape attempts through a perma-upgrade, and run based upgrade system.',
-            'The procedural map generation system strategically creates a unique, but well-designed level on the fly each run.'
+            'Capture aliens with friends, or choose to ascend the labs alone. XCI can be played solo or co-op!',
+            'Unique multi-stage capture phase provides players with an incredibly dynamic gameplay loop.',
+            'Players are given access to RC vehicles rigged up with high tech gadgetry in order to scout each floor out for weapons, materials, and the alien.',
+            'Each alien weakness is given a unique visual and auditory tell, providing attentive players invaluable information prior to engagements.',
+            'Hectic pacing - After the initial scouting phase ends, players may be surprised in how quickly situations can devolve into pure chaos...',
+            'AI system allows for complex, emergent gameplay that forces the player to hide, move, and fight strategically based on both the alien\'s attack/defense strategy and their current surroundings.',
+            'You are being studied - Some aliens can be surprisingly responsive to your actions, thus it is well advised to choose your plan of attack carefully, and take note of how the alien responds...',
+            'Upgrade various facets of your character, your RC vehicle, and your weapons using materials obtained from previous escape attempts through a dual upgrade system: perma-upgrades and upgrades that last the duration of the run are in development.',
+            'A custom procedural map generation system creates a unique, but smoothly flowing level on the fly for the player each and every run.'
         ],
 
         technicalHighlights: [
-            'Dependency injection pattern used within main initialization module for scalability and readability',
-            'Each module was developed to be decoupled from the rest of the codebase and initialization logic',
-            'In-depth weapon and vehicle system, developed from the ground up, and built for expandability',
-            'Codebase is tracked via Git and stored on Github, allowing for both easy remote work, team collaboration and synchronicity, and version tracking'
+            'Dependency injection pattern used within main initialization module for scalability',
+            'Each module takes advantage of the single entry point design pattern used in initialization module by avoiding the usage of Unity lifecycle methods (Update(), OnEnable(), etc.) locally. This allows this responsibility to be designated to just one class: the initialization class. The headache of keeping track of the order in which modules run is avoided with this pattern.',
+            'In-depth weapon, vehicle, and AI systems, all developed from the ground up, and all built for easy expandability',
+            'The AI brain uses a goal oriented decision making system in order to make complex strategic decisions that takes into multiple environmental details before choosing an action that benefits it best, and the player the least. Elements that are or were visible to the alien, such as current or predicted player activity, current self status, and even environmental changes, are taken into account when making a decision.',
+            'Code history is tracked via Git and code and meta files are all stored on a private Github repository. This allows for easy remote work, better team collaboration and synchronicity, and easy version tracking'
         ],
 
         status: ProjectStatus.IN_PROGRESS,
